@@ -2,26 +2,55 @@ using UnityEngine;
 
 public class SettingWindow : MonoBehaviour
 {
-    [Header("Main Containers")]
-    public GameObject fullWindowCanvas;   
-    public GameObject lobbyUIPanel;       
-    
-    [Header("References")]
-    public TabManager tabManager; 
+    [Header("Graphic Setting")]
+    public GameObject settingPopup;
+    public GameObject mainMenu;
+    public TabManager tabManager;
 
-    public void OpenWindow()
+    public void SetQuality(int index)
     {
-        fullWindowCanvas.SetActive(true);
-        lobbyUIPanel.SetActive(false);
-        
-        // 창 열 때 무조건 0번(사운드) 페이지가 보이게 설정
-        if (tabManager != null) 
-            tabManager.ChangePage(0); 
+        QualitySettings.SetQualityLevel(index);
+        Debug.Log("그래픽 변경: " + index);
     }
 
-    public void CloseWindow()
+    public void SetFullscreen(bool isFull)
     {
-        fullWindowCanvas.SetActive(false);
-        lobbyUIPanel.SetActive(true);
+        Screen.fullScreen = isFull;
+        Debug.Log("전체화면 설정: " + isFull);
+    }
+
+    public void Open()
+    {
+        if (mainMenu != null)
+        {
+            mainMenu.SetActive(false);
+        }
+
+        if (settingPopup != null)
+        {
+            settingPopup.SetActive(true);
+        }
+
+        if (tabManager != null)
+        {
+            tabManager.ChangePage(0);
+        }
+
+        Debug.Log("설정창 열림");
+    }
+
+    public void Close()
+    {
+        if (settingPopup != null)
+        {
+            settingPopup.SetActive(false);
+        }
+
+        if (mainMenu != null)
+        {
+            mainMenu.SetActive(true);
+        }
+
+        Debug.Log("설정창이 닫힘");
     }
 }

@@ -1,34 +1,30 @@
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 
 public class TabManager : MonoBehaviour
 {
-    [Header("Tab Content")]
-    public GameObject[] contentPages;     
-    public TextMeshProUGUI titleText;      
-    public string[] pageTitleNames;        
-
-    [Header("Tab Buttons")]
-    public Image[] tabButtonImages;       
+    [Header("Buttons")]
+    public Image[] tabButtons;      // 탭 버튼들의 Image 컴포넌트
     public Color activeColor = Color.white;
     public Color idleColor = Color.gray;
 
-    // 탭 버튼(사운드, 그래픽 등)에 연결할 함수
-    public void ChangePage(int index) // 이름을 GoToPage에서 ChangePage로 변경
-    {
-        if (index < 0 || index >= contentPages.Length) return;
+    [Header("Contents")]
+    public GameObject[] pages;      // 버튼 클릭 시 교체될 페이지(패널)들
 
-        for (int i = 0; i < contentPages.Length; i++)
+    public void ChangePage(int index)
+    {
+        if (index < 0 || index >= pages.Length) return;
+
+        for (int i = 0; i < pages.Length; i++)
         {
-            contentPages[i].SetActive(i == index);
-            if (tabButtonImages != null && i < tabButtonImages.Length)
+            // 1. 페이지 활성화 제어
+            pages[i].SetActive(i == index);
+
+            // 2. 버튼 색상 변경 (버튼 자체는 꺼지지 않음)
+            if (i < tabButtons.Length)
             {
-                tabButtonImages[i].color = (i == index) ? activeColor : idleColor;
+                tabButtons[i].color = (i == index) ? activeColor : idleColor;
             }
         }
-
-        if (titleText != null && index < pageTitleNames.Length)
-            titleText.text = pageTitleNames[index];
     }
 }
