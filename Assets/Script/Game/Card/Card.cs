@@ -4,12 +4,12 @@ using System.ComponentModel;
 
 public class Card
 {
-    public enum CardSiot { Heart, Diamond, Club, Spade }
+    public enum CardSuit { Heart, Diamond, Club, Spade }
 
-    public CardSiot suit;
+    public CardSuit suit;
     public int rank;        // 카드 점수
 
-    public Card(CardSiot suit, int rank)
+    public Card(CardSuit suit, int rank)
     {
         this.suit = suit;
         this.rank = rank;

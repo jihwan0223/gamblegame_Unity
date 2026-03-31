@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 public class PlayerHand : MonoBehaviour
 {
     [Header("생성할 카드 프리팹")]
@@ -18,16 +19,23 @@ public class PlayerHand : MonoBehaviour
 
 
     private void Update()
+{
+    bool isExpanding = false;
+
+    // 마우스 왼쪽 버튼을 누르고 있는지 체크
+    if (UnityEngine.InputSystem.Mouse.current != null)
     {
-        bool isExpanding = Input.GetMouseButton(0);     //마우스 누를 때 열림
-
-        if (_cardTransforms.Count > 0)                  // 카드 위치 업뎃
-        {
-            UpdateLayout(isExpanding ? openSpacing : closedSpacing);
-        }
-
-        _lastExpandingState = isExpanding;
+        isExpanding = UnityEngine.InputSystem.Mouse.current.leftButton.isPressed;
     }
+
+    // 카드 개수가 있을 때만 레이아웃 업데이트
+    if (_cardTransforms.Count > 0)
+    {
+        // 누르고 있으면 OpenSpacing, 떼면 ClosedSpacing으로 부드럽게 이동
+        float targetSpacing = isExpanding ? openSpacing : closedSpacing;
+        UpdateLayout(targetSpacing);
+    }
+}
 
     // 카드 추가 / 점수 계산
     public void AddCard(Card newCard)
@@ -37,6 +45,11 @@ public class PlayerHand : MonoBehaviour
         GameObject cardObj = Instantiate(cradPrefab, transform);
 
         _cardTransforms.Add(cardObj.transform);
+
+        if (cardObj.GetComponent<CardView>() != null)
+        {
+            cardObj.GetComponent<CardView>().Setup(newCard);
+        }
 
 
         // 점수 계산
