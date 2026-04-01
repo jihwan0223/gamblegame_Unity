@@ -8,8 +8,8 @@ public class PlayerHand : MonoBehaviour
     public GameObject cradPrefab;
 
     [Header("배치 / 애니메이션 설정")]
-    public float closedSpacing = 0.3f;      // 카드 간격
-    public float openSpacing = 1.2f;        // 펼쳐질때 간격
+    public float closedSpacing = 80f;      // 카드 간격
+    public float openSpacing = 80f;        // 펼쳐질때 간격
     public float lerpSpeed = 10f;           // 카드 이동 속도
 
 
@@ -83,5 +83,23 @@ public class PlayerHand : MonoBehaviour
                 );
             }
         }
+    }
+
+    // 1. 외부(DealerAI 등)에서 현재 점수를 가져갈 수 있게 하는 함수
+    public int GetTotalScore()
+    {
+        // 이미 사용 중인 BlackjackScore 클래스를 활용하여 점수를 반환합니다.
+        return BlackjackScore.CalculateScore(_cardData);
+    }
+
+    // 2. 새 라운드 시작 시 카드를 싹 비워주는 함수
+    public void ClearHand()
+    {
+        _cardData.Clear();
+        foreach (Transform t in _cardTransforms)
+        {
+            Destroy(t.gameObject); // 생성된 카드 오브젝트 삭제
+        }
+        _cardTransforms.Clear();
     }
 }
