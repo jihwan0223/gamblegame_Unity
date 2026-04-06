@@ -1,49 +1,51 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using TMPro;
+
 public class PlayerHand : MonoBehaviour
 {
     [Header("생성할 카드 프리팹")]
-
     public GameObject cradPrefab;
 
     [Header("배치 / 애니메이션 설정")]
-    public float closedSpacing = 80f;      // 카드 간격
-    public float openSpacing = 80f;        // 펼쳐질때 간격
-    public float lerpSpeed = 10f;           // 카드 이동 속도
+    public float closedSpacing = 80f;
+    public float openSpacing = 80f;
+    public float lerpSpeed = 10f;
 
+    [Header("UI 설정")]
+    // 2. 점수를 표시할 텍스트 컴포넌트 (인스펙터에서 드래그 앤 드롭)
+    public TextMeshProUGUI scoreText; 
+    public string scorePrefix = "Score: "; // 점수 앞에 붙을 텍스트 (예: "Player: ")
 
     private List<Card> _cardData = new List<Card>();
     private List<Transform> _cardTransforms = new List<Transform>();
-    private bool _lastExpandingState;
 
+    private void Start()
+    {
+        // 시작 시 점수 초기화
+        UpdateScoreUI(0);
+    }
 
     private void Update()
-{
-    bool isExpanding = false;
-
-    // 마우스 왼쪽 버튼을 누르고 있는지 체크
-    if (UnityEngine.InputSystem.Mouse.current != null)
     {
-        isExpanding = UnityEngine.InputSystem.Mouse.current.leftButton.isPressed;
+        bool isExpanding = false;
+        if (UnityEngine.InputSystem.Mouse.current != null)
+        {
+            isExpanding = UnityEngine.InputSystem.Mouse.current.leftButton.isPressed;
+        }
+
+        if (_cardTransforms.Count > 0)
+        {
+            float targetSpacing = isExpanding ? openSpacing : closedSpacing;
+            UpdateLayout(targetSpacing);
+        }
     }
 
-    // 카드 개수가 있을 때만 레이아웃 업데이트
-    if (_cardTransforms.Count > 0)
-    {
-        // 누르고 있으면 OpenSpacing, 떼면 ClosedSpacing으로 부드럽게 이동
-        float targetSpacing = isExpanding ? openSpacing : closedSpacing;
-        UpdateLayout(targetSpacing);
-    }
-}
-
-    // 카드 추가 / 점수 계산
     public void AddCard(Card newCard)
     {
         _cardData.Add(newCard);
-
         GameObject cardObj = Instantiate(cradPrefab, transform);
-
         _cardTransforms.Add(cardObj.transform);
 
         if (cardObj.GetComponent<CardView>() != null)
@@ -51,29 +53,39 @@ public class PlayerHand : MonoBehaviour
             cardObj.GetComponent<CardView>().Setup(newCard);
         }
 
+        // 3. 점수 계산 및 UI 업데이트
+        int currentScore = GetTotalScore();
+        UpdateScoreUI(currentScore);
 
-        // 점수 계산
-        int currentScore = BlackjackScore.CalculateScore(_cardData);
+        // --- [추가된 부분] 콘솔창에 플레이어 점수 출력 ---
         Debug.Log($"<color=yellow>[Player]</color> 현재 점수: {currentScore}");
+        // ----------------------------------------------
 
         if (currentScore > 21)
         {
-            Debug.Log("<color=red>Bust!</color> 21점을 넘었습니다.");
+            Debug.Log("<color=red>Bust!</color> 21점을 넘었습니다."); // 여기도 조금 더 자세히 수정
+            if (scoreText != null) scoreText.color = Color.red; 
+        }
+    }
+
+    // UI 텍스트를 갱신하는 전용 함수
+    private void UpdateScoreUI(int score)
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = $"{scorePrefix}{score}";
         }
     }
 
     private void UpdateLayout(float spacing)
     {
         int count = _cardTransforms.Count;
-        float centerOffset = (count - 1) / 2f; // 중앙 정렬을 위한 오프셋 값 계산
+        float centerOffset = (count - 1) / 2f;
 
         for (int i = 0; i < count; i++)
         {
-            // i번째 카드가 가야 할 목표 로컬 좌표 계산
-            // Z축은 카드 겹침 현상(Z-Fighting) 방지를 위해 순서대로 살짝 띄움
             Vector3 targetPos = new Vector3((i - centerOffset) * spacing, 0, i * -0.05f);
             
-            // 최적화: 현재 위치와 목표 위치의 거리 차이가 아주 작을 때는 계산 생략
             if (Vector3.SqrMagnitude(_cardTransforms[i].localPosition - targetPos) > 0.0001f)
             {
                 _cardTransforms[i].localPosition = Vector3.Lerp(
@@ -85,21 +97,31 @@ public class PlayerHand : MonoBehaviour
         }
     }
 
-    // 1. 외부(DealerAI 등)에서 현재 점수를 가져갈 수 있게 하는 함수
     public int GetTotalScore()
     {
-        // 이미 사용 중인 BlackjackScore 클래스를 활용하여 점수를 반환합니다.
         return BlackjackScore.CalculateScore(_cardData);
     }
 
-    // 2. 새 라운드 시작 시 카드를 싹 비워주는 함수
     public void ClearHand()
+{
+    // 1. 데이터 리스트 비우기
+    _cardData.Clear();
+    _cardTransforms.Clear();
+
+    // 2. 화면에 생성된 모든 카드 오브젝트(자식들) 삭제
+    // transform에 붙어있는 모든 자식을 루프 돌며 파괴합니다.
+    foreach (Transform child in transform)
     {
-        _cardData.Clear();
-        foreach (Transform t in _cardTransforms)
-        {
-            Destroy(t.gameObject); // 생성된 카드 오브젝트 삭제
-        }
-        _cardTransforms.Clear();
+        Destroy(child.gameObject);
+    }
+
+    // 3. 점수 및 UI 초기화
+    UpdateScoreUI(0);
+    if (scoreText != null) 
+    {
+        scoreText.color = Color.white;
+    }
+
+    Debug.Log($"{gameObject.name} 핸드 클리어.");
     }
 }

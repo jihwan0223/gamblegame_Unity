@@ -1,69 +1,90 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
+using TMPro;
 
 public class DealerAI : MonoBehaviour
 {
+    [Header("Dependencies")]
     public GroqAI groqAI;
-    public PlayerHand dealerHand;
     public DeckManager deckManager;
-    public GameController gameController;
+    public PlayerHand dealerHand;
 
-    public IEnumerator PlayTurn(int pScore)
+    [Header("UI")]
+    public TextMeshProUGUI speechText;
+
+    private GameManager gameManager;
+
+    private void Start()
     {
-        // 1. 모든 참조가 유효한지 먼저 검사
-        if (dealerHand == null) { Debug.LogError("DealerHand가 연결되지 않았습니다!"); yield break; }
-        if (groqAI == null) { Debug.LogError("groqAI가 연결되지 않았습니다!"); yield break; }
-        if (deckManager == null) { Debug.LogError("DeckManager가 연결되지 않았습니다!"); yield break; }
+        gameManager = Object.FindFirstObjectByType<GameManager>(); 
+    }
 
-        Debug.Log("<color=cyan>딜러 턴 시작 (Gemini 모드)</color>");
-        bool isDealerTurn = true;
+    public IEnumerator PlayTurn(int playerTotalScore)
+    {
+        speechText.text = "Dealer's turn...";
+        yield return new WaitForSeconds(0.5f);
 
-        while (isDealerTurn)
+        // 1. 플레이어가 21점 미만일 때만 딜러가 17점까지 카드를 뽑습니다.
+        if (playerTotalScore < 21)
         {
-            // 27번 줄 에러 방지: 점수 계산 전 데이터 확인
-            int dScore = dealerHand.GetTotalScore();
-            Debug.Log($"현재 딜러 점수: {dScore}");
-
-            if (dScore >= 21) break;
-
-            string decision = "";
-            bool isWaiting = true;
-
-            //  결정 요청
-            groqAI.GetDecision(dScore, pScore, (result) => {
-                decision = result;
-                isWaiting = false;
-            });
-
-            // 응답 대기 (무한 대기 방지)
-            float timer = 0;
-            while (isWaiting && timer < 5f) // 5초 넘으면 자동 Stay
+            while (dealerHand.GetTotalScore() < 17)
             {
-                timer += Time.deltaTime;
-                yield return null;
-            }
-
-            if (timer >= 5f) decision = "Stay";
-
-            Debug.Log($"Gemini Decision: {decision}");
-
-            if (decision == "Hit")
-            {
-                Card card = deckManager.DrawCard();
-                if (card != null)
-                {
-                    dealerHand.AddCard(card);
-                    yield return new WaitForSeconds(1.5f);
-                }
-                else break;
-            }
-            else
-            {
-                isDealerTurn = false;
+                yield return new WaitForSeconds(1.0f);
+                dealerHand.AddCard(deckManager.DrawCard());
+                Debug.Log($"딜러가 카드를 뽑았습니다. 현재 점수: {dealerHand.GetTotalScore()}");
             }
         }
+        // 2. 플레이어가 21점이면 즉시 중단
+        else if (playerTotalScore == 21)
+        {
+            Debug.Log("플레이어 21점! 딜러가 즉시 멈춥니다.");
+            speechText.text = "Impressive score...";
+            yield return new WaitForSeconds(0.5f);
+        }
 
-        yield return new WaitForSeconds(1.0f);
-        gameController.DetermineWinner();
+        // --- [승패 판정 Debug.Log 추가] ---
+        int dealerTotalScore = dealerHand.GetTotalScore();
+        if (playerTotalScore < dealerTotalScore)
+        {
+            Debug.Log($"<color=Red>[결과] 딜러({dealerTotalScore}) 승리! (플레이어: {playerTotalScore})</color>");
+        }
+        else if (playerTotalScore > 21)
+        {
+            Debug.Log("<color=Red>[결과] 플레이어 버스트! 딜러 승리.</color>");
+        }
+        
+        else if (playerTotalScore > dealerTotalScore)
+        {
+            Debug.Log($"<color=green>[결과] 플레이어({playerTotalScore}) 승리! (딜러: {dealerTotalScore})</color>");
+        }
+        else if (dealerTotalScore > 21)
+        {
+            Debug.Log("<color=Green>[결과] 딜러 버스트! 플레이어 승리.</color>");
+        }
+        
+        
+        else
+        {
+            Debug.Log("<color=white>[결과] 무승부(Push)입니다.</color>");
+        }
+        // ----------------------------------
+
+        // 3. 모든 상황 종료 후 AI에게 결과 판단 요청 (영어 대사 출력)
+        RequestAIDecision(playerTotalScore, dealerTotalScore);
+    }
+
+    private void RequestAIDecision(int pScore, int dScore)
+    {
+        speechText.text = "..."; 
+
+        groqAI.GetDealerResponse(pScore, dScore, (response) => {
+            speechText.text = response; 
+            
+            // 저장해둔 매니저 호출 (안전하게 null 체크 추가)
+            if (gameManager != null)
+            {
+                gameManager.OnGameEnd();
+            }
+        });
     }
 }

@@ -5,40 +5,38 @@ using UnityEngine.Networking;
 
 public class GroqAI : MonoBehaviour
 {
-    [SerializeField] private string apiKey = "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";
+    private string apiKey = "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";
+    private const string url = "https://api.groq.com/openai/v1/chat/completions";
 
-    public delegate void DecisionCallback(string result);
+    public delegate void OnResponse(string message);
 
-    public void GetDecision(int dealer, int player, DecisionCallback callback)
+    public void GetDealerResponse(int pScore, int dScore, OnResponse callback)
     {
-        StartCoroutine(PostRequest(dealer, player, callback));
+        StartCoroutine(PostRequest(pScore, dScore, callback));
     }
 
-    private IEnumerator PostRequest(int dealer, int player, DecisionCallback callback)
+    private IEnumerator PostRequest(int pScore, int dScore, OnResponse callback)
     {
-        string url = "https://api.groq.com/openai/v1/chat/completions";
+        // 1. 프롬프트 설정 (영어 사용, 승패 판단 포함)
+        string systemRole = $"You are a blackjack dealer. Player:{pScore}, Dealer:{dScore}. " +
+                            "Decide who won and say a short charismatic line in English (Max 2 sentences).";
 
-        // 프롬프트 최소화 + 출력 강제
-        string prompt = $"Dealer:{dealer} Player:{player}. Answer ONLY one word: Hit or Stay.";
+        // 2. JSON 데이터 구성
+        RequestData data = new RequestData();
+        data.model = "llama-3.1-8b-instant";
+        data.messages = new Message[] { 
+            new Message { role = "system", content = systemRole },
+            new Message { role = "user", content = "The game is over. What's your comment?" }
+        };
 
-        string jsonData = @"
-        {
-            ""model"": ""llama-3.1-8b-instant"",
-            ""messages"": [
-                {""role"": ""system"", ""content"": ""You are a blackjack dealer AI. Only reply Hit or Stay.""}, 
-                {""role"": ""user"", ""content"": """ + prompt + @"""}
-            ],
-            ""temperature"": 0,
-            ""max_tokens"": 5
-        }";
-
+        string jsonData = JsonUtility.ToJson(data);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
 
+        // 3. 통신 실행
         using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
         {
             request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
-
             request.SetRequestHeader("Content-Type", "application/json");
             request.SetRequestHeader("Authorization", "Bearer " + apiKey);
 
@@ -46,24 +44,20 @@ public class GroqAI : MonoBehaviour
 
             if (request.result == UnityWebRequest.Result.Success)
             {
-                string response = request.downloadHandler.text;
-                Debug.Log("[Groq 응답] " + response);
-
-                // 안정적인 판별
-                string upper = response.ToUpper();
-
-                if (upper.Contains("HIT"))
-                    callback("Hit");
-                else if (upper.Contains("STAY"))
-                    callback("Stay");
-                else
-                    callback("Stay"); // 예외 방어
+                ResponseData res = JsonUtility.FromJson<ResponseData>(request.downloadHandler.text);
+                callback(res.choices[0].message.content);
             }
             else
             {
-                Debug.LogError("[에러] " + request.error + "\n" + request.downloadHandler.text);
-                callback("Stay");
+                Debug.LogError($"Groq Error: {request.error}");
+                callback("...The house always wins, but my connection doesn't.");
             }
         }
     }
+
+    // JSON 파싱용 구조체
+    [System.Serializable] public class RequestData { public string model; public Message[] messages; }
+    [System.Serializable] public class Message { public string role; public string content; }
+    [System.Serializable] public class ResponseData { public Choice[] choices; }
+    [System.Serializable] public class Choice { public Message message; }
 }
