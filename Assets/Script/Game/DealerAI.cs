@@ -1,62 +1,69 @@
 using System.Collections;
 using UnityEngine;
-using TMPro;
 
 public class DealerAI : MonoBehaviour
 {
-    public TextMeshProUGUI speechText;
-    public enum Difficulty { Easy, Normal, Hard }
-    public Difficulty currentDifficulty;
+    public GroqAI groqAI;
+    public PlayerHand dealerHand;
+    public DeckManager deckManager;
+    public GameController gameController;
 
-    // GameManager에서 호출하여 난이도와 인삿말 설정
-    public void SetDifficulty(int round)
+    public IEnumerator PlayTurn(int pScore)
     {
-        if (round == 1) currentDifficulty = Difficulty.Easy;
-        else if (round == 2) currentDifficulty = Difficulty.Normal;
-        else currentDifficulty = Difficulty.Hard;
+        // 1. 모든 참조가 유효한지 먼저 검사
+        if (dealerHand == null) { Debug.LogError("DealerHand가 연결되지 않았습니다!"); yield break; }
+        if (groqAI == null) { Debug.LogError("groqAI가 연결되지 않았습니다!"); yield break; }
+        if (deckManager == null) { Debug.LogError("DeckManager가 연결되지 않았습니다!"); yield break; }
 
-        Speak("Greet_" + currentDifficulty.ToString(), 0, 0);
-    }
+        Debug.Log("<color=cyan>딜러 턴 시작 (Gemini 모드)</color>");
+        bool isDealerTurn = true;
 
-    public IEnumerator PlayTurn(int pScore, PlayerHand dealerHand, DeckManager deck)
-    {
-        bool isDone = false;
-
-        while (!isDone)
+        while (isDealerTurn)
         {
+            // 27번 줄 에러 방지: 점수 계산 전 데이터 확인
             int dScore = dealerHand.GetTotalScore();
-            yield return new WaitForSeconds(1.5f); // 생각하는 시간 연출
+            Debug.Log($"현재 딜러 점수: {dScore}");
 
-            // 난이도별 로직 결정
-            if (currentDifficulty == Difficulty.Easy)
+            if (dScore >= 21) break;
+
+            string decision = "";
+            bool isWaiting = true;
+
+            //  결정 요청
+            groqAI.GetDecision(dScore, pScore, (result) => {
+                decision = result;
+                isWaiting = false;
+            });
+
+            // 응답 대기 (무한 대기 방지)
+            float timer = 0;
+            while (isWaiting && timer < 5f) // 5초 넘으면 자동 Stay
             {
-                if (dScore < 15) yield return DealerHit(dealerHand, deck, "Hit_Easy", pScore);
-                else { isDone = true; Speak("Stay_Normal", pScore, dScore); }
+                timer += Time.deltaTime;
+                yield return null;
             }
-            else if (currentDifficulty == Difficulty.Normal)
+
+            if (timer >= 5f) decision = "Stay";
+
+            Debug.Log($"Gemini Decision: {decision}");
+
+            if (decision == "Hit")
             {
-                if (dScore < 17) yield return DealerHit(dealerHand, deck, "Hit_Easy", pScore);
-                else { isDone = true; Speak("Stay_Normal", pScore, dScore); }
+                Card card = deckManager.DrawCard();
+                if (card != null)
+                {
+                    dealerHand.AddCard(card);
+                    yield return new WaitForSeconds(1.5f);
+                }
+                else break;
             }
-            else // Hard 모드
+            else
             {
-                if (dScore <= pScore && dScore < 20) yield return DealerHit(dealerHand, deck, "Hard_Provoke", pScore);
-                else { isDone = true; Speak("Stay_Normal", pScore, dScore); }
+                isDealerTurn = false;
             }
         }
-    }
 
-    private IEnumerator DealerHit(PlayerHand hand, DeckManager deck, string key, int pScore)
-    {
-        Speak(key, pScore, hand.GetTotalScore());
-        yield return new WaitForSeconds(1f);
-        Card card = deck.DrawCard();
-        if (card != null) hand.AddCard(card);
-    }
-
-    public void Speak(string key, int pScore, int dScore)
-    {
-        if (speechText != null)
-            speechText.text = DialogueManager.GetSmartText(key, pScore, dScore);
+        yield return new WaitForSeconds(1.0f);
+        gameController.DetermineWinner();
     }
 }
