@@ -7,8 +7,15 @@ public class DeckManager : MonoBehaviour
     
     void Awake()
     {
+        // 덱 생성 및 섞기
+        ResetDeck();
+    }
+    
+    public void ResetDeck()
+    {
         GenerateDeck();
         Shuffle();
+        Debug.Log("<color=cyan>[Deck]</color> 덱이 새로 생성되고 섞였습니다.");
     }
 
     private void GenerateDeck()
@@ -19,13 +26,12 @@ public class DeckManager : MonoBehaviour
         {
             for (int r = 1; r <= 13; r++)
             {
-
                 _deck.Add(new Card((Card.CardSuit)s, r));
             }
         }
     }
 
-    // 카드 섞기
+    // 카드 섞기 (Fisher-Yates 알고리즘)
     public void Shuffle()
     {
         for (int i = 0; i < _deck.Count; i++)
@@ -42,7 +48,8 @@ public class DeckManager : MonoBehaviour
     {
         if (_deck.Count <= 0)
         {
-            return null;
+            Debug.LogWarning("덱에 카드가 없습니다! 자동으로 리셋합니다.");
+            ResetDeck(); // 카드가 없으면 자동으로 다시 생성
         }
 
         Card drawnCard = _deck[0];

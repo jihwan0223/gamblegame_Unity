@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
         if (hitButton != null) hitButton.interactable = false;
         if (stayButton != null) stayButton.interactable = false;
 
-        Debug.Log("플레이어 Stay. 딜러 AI 가동.");
+        Debug.Log("플레이어 Stay.");
         // 딜러 AI에게 플레이어 점수를 넘겨주며 시작
         StartCoroutine(dealerAI.PlayTurn(playerHand.GetTotalScore()));
     }

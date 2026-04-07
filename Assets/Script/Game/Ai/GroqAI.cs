@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class GroqAI : MonoBehaviour
 {
-    private string apiKey = "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";
+    private string apiKey = "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";
     private const string url = "https://api.groq.com/openai/v1/chat/completions";
 
     public delegate void OnResponse(string message);

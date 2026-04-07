@@ -11,6 +11,7 @@ public class DealerAI : MonoBehaviour
 
     [Header("UI")]
     public TextMeshProUGUI speechText;
+    public string scorePrefix = "Score: ";
 
     private GameManager gameManager;
 
@@ -21,55 +22,63 @@ public class DealerAI : MonoBehaviour
 
     public IEnumerator PlayTurn(int playerTotalScore)
     {
+        dealerHand.RevealAllCards();
         speechText.text = "Dealer's turn...";
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
-        // 1. 플레이어가 21점 미만일 때만 딜러가 17점까지 카드를 뽑습니다.
-        if (playerTotalScore < 21)
+    // 1. 딜러 카드 뽑기 로직 -----------------------------------------
+    if (playerTotalScore <= 21)
+    {
+        // 17점 미만이면서 동시에 플레이어 점수보다 낮을 때만 뽑음
+        while (dealerHand.GetTotalScore() < 17 && dealerHand.GetTotalScore() <= playerTotalScore)
         {
-            while (dealerHand.GetTotalScore() < 17)
-            {
-                yield return new WaitForSeconds(1.0f);
-                dealerHand.AddCard(deckManager.DrawCard());
-                Debug.Log($"딜러가 카드를 뽑았습니다. 현재 점수: {dealerHand.GetTotalScore()}");
-            }
+            yield return new WaitForSeconds(1.0f);
+            dealerHand.AddCard(deckManager.DrawCard());
+            
+            if (dealerHand.GetTotalScore() > playerTotalScore) break; 
         }
-        // 2. 플레이어가 21점이면 즉시 중단
-        else if (playerTotalScore == 21)
-        {
-            Debug.Log("플레이어 21점! 딜러가 즉시 멈춥니다.");
-            speechText.text = "Impressive score...";
-            yield return new WaitForSeconds(0.5f);
-        }
+    }
+    else // 플레이어가 이미 21점을 넘은 경우
+    {
+        Debug.Log("플레이어 버스트!");
+    }
 
-        // --- [승패 판정 Debug.Log 추가] ---
-        int dealerTotalScore = dealerHand.GetTotalScore();
-        if (playerTotalScore < dealerTotalScore)
-        {
-            Debug.Log($"<color=Red>[결과] 딜러({dealerTotalScore}) 승리! (플레이어: {playerTotalScore})</color>");
-        }
-        else if (playerTotalScore > 21)
-        {
-            Debug.Log("<color=Red>[결과] 플레이어 버스트! 딜러 승리.</color>");
-        }
-        
-        else if (playerTotalScore > dealerTotalScore)
-        {
-            Debug.Log($"<color=green>[결과] 플레이어({playerTotalScore}) 승리! (딜러: {dealerTotalScore})</color>");
-        }
-        else if (dealerTotalScore > 21)
-        {
-            Debug.Log("<color=Green>[결과] 딜러 버스트! 플레이어 승리.</color>");
-        }
-        
-        
-        else
-        {
-            Debug.Log("<color=white>[결과] 무승부(Push)입니다.</color>");
-        }
+    // 2. 최종 점수 계산
+    int dealerTotalScore = dealerHand.GetTotalScore();
+
+    // 3. 승패 판정 버스트 체크
+    if (playerTotalScore > 21)
+    {
+        // 플레이어가 21을 넘으면 딜러 점수와 상관없이 무조건 플레이어 패배
+        Debug.Log($"<color=red>[결과] 플레이어 버스트({playerTotalScore})! 딜러 승리.</color>");
+    }
+
+    else if (dealerTotalScore > 21)
+    {
+        // 딜러만 21을 넘은 경우
+        Debug.Log($"<color=green>[결과] 딜러 버스트({dealerTotalScore})! 플레이어 승리.</color>");
+    }
+
+    else if (playerTotalScore > dealerTotalScore)
+    {
+        // 둘 다 21 이하일 때 점수 비교
+        Debug.Log($"<color=green>[결과] 플레이어({playerTotalScore}) 승리! (딜러: {dealerTotalScore})</color>");
+    }
+
+    else if (playerTotalScore < dealerTotalScore)
+    {
+        // 둘 다 21 이하일 때 점수 비교
+        Debug.Log($"<color=red>[결과] 딜러({dealerTotalScore}) 승리! (플레이어: {playerTotalScore})</color>");
+    }
+
+    else
+    {
+        // 점수가 정확히 같을 때
+        Debug.Log($"<color=white>[결과] {playerTotalScore}점으로 무승부(Push)입니다.</color>");
+    }
         // ----------------------------------
 
-        // 3. 모든 상황 종료 후 AI에게 결과 판단 요청 (영어 대사 출력)
+        // 3. 모든 상황 종료 후 AI에게 결과 판단 요청
         RequestAIDecision(playerTotalScore, dealerTotalScore);
     }
 
@@ -80,7 +89,6 @@ public class DealerAI : MonoBehaviour
         groqAI.GetDealerResponse(pScore, dScore, (response) => {
             speechText.text = response; 
             
-            // 저장해둔 매니저 호출 (안전하게 null 체크 추가)
             if (gameManager != null)
             {
                 gameManager.OnGameEnd();
