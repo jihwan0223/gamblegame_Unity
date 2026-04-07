@@ -2,11 +2,13 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerHand : MonoBehaviour
 {
-    [Header("설정")]
-    public bool isDealer = false; // 딜러인지 체크
+    [Header("딜러면 체크")]
+    public bool isDealer = false;    // 딜러인지 체크
+    public bool isDealerTurnStarted = false; 
 
     [Header("생성할 카드 프리팹")]
     public GameObject cradPrefab;
@@ -50,39 +52,65 @@ public class PlayerHand : MonoBehaviour
         {
             cardView.Setup(newCard);
 
-            // [추가] 딜러 로직: 첫 번째 카드가 아니면 뒷면으로 생성
-            if (isDealer && _cardTransforms.Count > 1)
+            if (isDealer && _cardTransforms.Count > 1 && !isDealerTurnStarted)
             {
-                cardView.SetFaceDown(); // CardView에 이 함수가 있어야 합니다.
+                cardView.SetFaceDown();
             }
         }
 
-        // UI 갱신 (딜러이고 카드가 가려져 있다면 점수 계산 방식 변경 가능)
+        // UI 갱신
         RefreshScoreDisplay();
     }
 
-    // [추가] 모든 카드를 앞면으로 공개 (DealerAI에서 호출용)
+    // 모든 카드를 앞면으로 공개
     public void RevealAllCards()
     {
+        isDealerTurnStarted = true;
         foreach (Transform t in _cardTransforms)
         {
             CardView cv = t.GetComponent<CardView>();
-            if (cv != null) cv.SetFaceUp(); // CardView에 이 함수가 있어야 합니다.
+            if (cv != null)
+            {
+                cv.SetFaceUp();
+            }
         }
         RefreshScoreDisplay();
     }
 
     private void RefreshScoreDisplay()
-    {
+    {   // 점수 계산
         int currentScore = GetTotalScore();
-        UpdateScoreUI(currentScore);
-        
-        string owner = isDealer ? "Dealer" : "Player";
-        Debug.Log($"<color=yellow>[{owner}]</color> 현재 점수: {currentScore}");
 
-        if (currentScore > 21)
+        if (isDealer && !isDealerTurnStarted)
         {
-            if (scoreText != null) scoreText.color = Color.red; 
+            int firstCardScore = BlackjackScore.CalculateScore(new List<Card> { _cardData[0]});
+
+            if (scoreText != null)
+            {
+                scoreText.text = $"{scorePrefix}{firstCardScore}";
+                scoreText.color = Color.white;
+            }
+        }
+        else
+        {
+            UpdateScoreUI(currentScore);
+
+            if(currentScore > 21)
+            {
+                if(scoreText != null) scoreText.color = Color.red;
+            }
+        }
+
+        string owner = isDealer ? "Dealer" : "Player";
+        Debug.Log($"<color=yellow>[{owner}]</color 점수: {currentScore}");
+    }
+
+    private void UpdateScoreUIHidden()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = $"{scorePrefix}?";
+            scoreText.color = Color.white;
         }
     }
 
@@ -111,12 +139,21 @@ public class PlayerHand : MonoBehaviour
 
     public void ClearHand()
     {
+        isDealerTurnStarted = false;
         _cardData.Clear();
         _cardTransforms.Clear();
-        foreach (Transform child in transform) Destroy(child.gameObject);
 
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
         UpdateScoreUI(0);
-        if (scoreText != null) scoreText.color = Color.white;
+
+        if(scoreText != null)
+        {
+            scoreText.color = Color.white;
+        }
+
         Debug.Log($"{gameObject.name} 핸드 클리어.");
     }
 }

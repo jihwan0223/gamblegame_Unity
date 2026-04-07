@@ -49,7 +49,7 @@ public class GroqAI : MonoBehaviour
             }
             else
             {
-                Debug.LogError($"Groq Error: {request.error}");
+                Debug.LogError($"AI 에러: {request.error}");
                 callback("...The house always wins, but my connection doesn't.");
             }
         }

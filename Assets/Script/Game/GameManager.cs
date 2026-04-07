@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,14 @@ public class GameManager : MonoBehaviour
         // 버튼 리스너 연결
         nextGameButton.onClick.AddListener(ResetBoardForNextRound);
         nextGameButton.gameObject.SetActive(false);
+
+        StartDealerHand();
+    }
+
+    private void StartDealerHand()
+    {
+        dealerHand.AddCard(deckManager.DrawCard());
+        dealerHand.AddCard(deckManager.DrawCard());
     }
 
     // 게임이 완전히 끝났을 때 DealerAI 등에서 호출해줄 함수
@@ -26,17 +35,11 @@ public class GameManager : MonoBehaviour
         
     if (hitButton != null) hitButton.interactable = false;
     if (stayButton != null) stayButton.interactable = false;
-    
-    if (nextGameButton != null)
-    {
-        nextGameButton.gameObject.SetActive(true);
-    }
-    else
-    {
-        Debug.LogError("GameManager: Next Game Button이 연결되지 않았습니다!");
-        }
+    if (nextGameButton != null) nextGameButton.gameObject.SetActive(true);
+    else Debug.LogError("GameManager: Next Game Button이 연결되지 않았습니다!");
     }
 
+    
     public void ResetBoardForNextRound()
 {
     // 플레이어와 딜러의 카드 삭제
@@ -53,8 +56,9 @@ public class GameManager : MonoBehaviour
     hitButton.interactable = true;
     stayButton.interactable = true;
     nextGameButton.gameObject.SetActive(false);
-    dealerAI.speechText.text = "Deck reshuffled. New game!";
-
+    dealerAI.speechText.text = "Next Turn, Good Luck!";
+    StartDealerHand();
+    
     Debug.Log("<color=orange>판이 정리되고 덱이 초기화되었습니다.</color>");
     }
 }

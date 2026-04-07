@@ -5,7 +5,7 @@ public class CardView : MonoBehaviour
 {
     private Image _cardImage;
     private Sprite _frontSprite;
-    [SerializeField] private string backCardFileName = "temp";      // 파일이름
+    [SerializeField] private string backCardFileName = "card_back";      // 파일이름
 
     private void Awake()
     {

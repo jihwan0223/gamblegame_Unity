@@ -206,10 +206,10 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -1453,10 +1453,10 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -1704,7 +1704,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753148e87093a2f4d8e6e4e2b1fc40bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHand
-  isDealer: 0
+  isDealer: 1
+  isDealerTurnStarted: 0
   cradPrefab: {fileID: 1418252301403808820, guid: 049bc377706cc5d4588ab0e703cd59a6, type: 3}
   closedSpacing: 80
   openSpacing: 80
@@ -2338,6 +2339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHand
   isDealer: 0
+  isDealerTurnStarted: 0
   cradPrefab: {fileID: 1418252301403808820, guid: 049bc377706cc5d4588ab0e703cd59a6, type: 3}
   closedSpacing: 80
   openSpacing: 80
