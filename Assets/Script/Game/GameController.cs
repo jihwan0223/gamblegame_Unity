@@ -31,4 +31,5 @@ public class GameController : MonoBehaviour
         // 딜러 AI에게 플레이어 점수를 넘겨주며 시작
         StartCoroutine(dealerAI.PlayTurn(playerHand.GetTotalScore()));
     }
+    
 }
