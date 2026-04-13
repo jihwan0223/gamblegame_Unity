@@ -18435,7 +18435,6 @@ GameObject:
   - component: {fileID: 575642251923908962}
   - component: {fileID: 330816460052331358}
   - component: {fileID: 338817693363684890}
-  - component: {fileID: 574046831479376034}
   - component: {fileID: 393819167959482306}
   m_Layer: 0
   m_Name: invertmousetext
@@ -18520,14 +18519,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!222 &574046831479376034
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352737170872467444}
-  m_CullTransparentMesh: 0
 --- !u!114 &393819167959482306
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -156,23 +156,25 @@ namespace SlimUI.ModernMenu{
 			CameraObject.SetFloat("Animate",0);
 		}
 
-		void DisablePanels(){
-			PanelControls.SetActive(false);
-			PanelVideo.SetActive(false);
-			PanelGame.SetActive(false);
-			PanelKeyBindings.SetActive(false);
+		void DisablePanels()
+		{
+			// if(변수명)을 넣어주면, 인스펙터에서 할당된 경우에만 실행합니다.
+			if(PanelControls) PanelControls.SetActive(false);
+			if(PanelVideo) PanelVideo.SetActive(false);
+			if(PanelGame) PanelGame.SetActive(false);
+			if(PanelKeyBindings) PanelKeyBindings.SetActive(false);
 
-			lineGame.SetActive(false);
-			lineControls.SetActive(false);
-			lineVideo.SetActive(false);
-			lineKeyBindings.SetActive(false);
+			if(lineGame) lineGame.SetActive(false);
+			if(lineControls) lineControls.SetActive(false);
+			if(lineVideo) lineVideo.SetActive(false);
+			if(lineKeyBindings) lineKeyBindings.SetActive(false);
 
-			PanelMovement.SetActive(false);
-			lineMovement.SetActive(false);
-			PanelCombat.SetActive(false);
-			lineCombat.SetActive(false);
-			PanelGeneral.SetActive(false);
-			lineGeneral.SetActive(false);
+			if(PanelMovement) PanelMovement.SetActive(false);
+			if(lineMovement) lineMovement.SetActive(false);
+			if(PanelCombat) PanelCombat.SetActive(false);
+			if(lineCombat) lineCombat.SetActive(false);
+			if(PanelGeneral) PanelGeneral.SetActive(false);
+			if(lineGeneral) lineGeneral.SetActive(false);
 		}
 
 		public void GamePanel(){
