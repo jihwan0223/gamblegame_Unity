@@ -75,10 +75,10 @@ namespace SlimUI.ModernMenu{
 			mouseSmoothSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MouseSmoothing");
 
 			// check full screen
-			if(Screen.fullScreen != true){
+			if(Screen.fullScreen == true){
 				fullscreentext.GetComponent<TMP_Text>().text = "on";
 			}
-			else if(Screen.fullScreen != false){
+			else if(Screen.fullScreen == false){
 				fullscreentext.GetComponent<TMP_Text>().text = "off";
 			}
 
