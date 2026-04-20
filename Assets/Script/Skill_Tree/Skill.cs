@@ -19,11 +19,11 @@ public class Skill : MonoBehaviour
     {   
         // 1. 텍스트 업데이트
         TItleText.text = $"{skillTree.SkillLevels[id]}/{skillTree.SkillCaps[id]}\n{skillTree.SkillNames[id]}";
-        DescriptionText.text = $"{skillTree.SkillDescriptions[id]}\nCost : {skillTree.SkillPoint}/1 SP";
+        DescriptionText.text = $"{skillTree.SkillDescriptions[id]}\nCost : {skillTree.skillPoint}/1 SP";
         
         // 2. 이미지 색상 변경
         GetComponent<Image>().color = skillTree.SkillLevels[id] >= skillTree.SkillCaps[id] ? Color.yellow
-            : skillTree.SkillPoint >= 1 ? Color.green : Color.white;
+            : skillTree.skillPoint >= 1 ? Color.green : Color.white;
 
         // 내가 이 스킬을 배웠는지 확인
         bool isLearned = skillTree.SkillLevels[id] > 0;
@@ -47,9 +47,16 @@ public class Skill : MonoBehaviour
 
     public void Buy()
     {
-        if (skillTree.SkillPoint < 1 || skillTree.SkillLevels[id] >= skillTree.SkillCaps[id]) return;
-        skillTree.SkillPoint -= 1;
+        if (skillTree.skillPoint < 1 || skillTree.SkillLevels[id] >= skillTree.SkillCaps[id]) return;
+        skillTree.skillPoint -= 1;
         skillTree.SkillLevels[id]++;
+        
+        // Json 파일 저장
+        DataManager.instance.gameData.skillPoint = skillTree.skillPoint;
+        DataManager.instance.gameData.skillLevels = skillTree.SkillLevels;
+
+        DataManager.instance.SaveGameData();
+
         skillTree.UpdateAllSkillUI();
     }
 }

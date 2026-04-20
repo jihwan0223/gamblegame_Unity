@@ -20,11 +20,13 @@ public class SkillTree : MonoBehaviour
     public List<GameObject> ConnectorList;
     public GameObject ConnectorHolder;
 
-    public int SkillPoint;      // 유저 스킬 포인트
+    public int skillPoint;      // 유저 스킬 포인트
 
-    private void Start()
-    {   //스킬 포인트
-        SkillPoint = 100;
+    private void Start(){
+        SkillLevels = DataManager.instance.gameData.skillLevels;
+        skillPoint = DataManager.instance.gameData.skillPoint;
+           //스킬 포인트 ***************** 테스트용 ********************************
+        skillPoint = 100;
 
         SkillLevels = new int[12];
         SkillCaps = new[] { 1, 3, 3, 3, 5, 5, 5, 5, 10, 10, 10, 10};

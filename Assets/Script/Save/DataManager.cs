@@ -13,10 +13,12 @@ public class DataManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
         path = Path.Combine(Application.persistentDataPath, "SaveData.json");
         LoadGameData();
@@ -38,11 +40,21 @@ public class DataManager : MonoBehaviour
             string json = File.ReadAllText(path);
             gameData = JsonUtility.FromJson<GameData>(json);
             Debug.Log("데이터 로드 완료");
+            Debug.Log("위치 : " + Application.persistentDataPath);
         }
         else
         {
-            gameData = new GameData(); // 파일 없으면 새로 생성
+            Debug.Log("저장 파일이 없어 새로 생성합니다.");
+            Debug.Log("위치 : " + Application.persistentDataPath);
+            gameData = new GameData();
             SaveGameData();
         }
+    }
+    // [데이터 초기화] 테스트용
+    [ContextMenu("Reset Save Data")]
+    public void ResetData()
+    {
+        gameData = new GameData();
+        SaveGameData();
     }
 }
