@@ -56,28 +56,34 @@ public class DealerAI : MonoBehaviour
         int dealerTotalScore = dealerHand.GetTotalScore();
 
         // 3. 승패 판정 버스트 체크
+        BettingManager betting = Object.FindFirstObjectByType<BettingManager>();
+        long betAmount = 100;
         if (playerTotalScore > 21)
         {
             // 플레이어가 21을 넘으면 딜러 점수와 상관없이 무조건 플레이어 패배
             Debug.Log($"<color=red>[결과] 플레이어 버스트({playerTotalScore})! 딜러 승리.</color>");
+            betting.OnGameLose(betAmount, 100f);    // 100% 잃음
         }
 
         else if (dealerTotalScore > 21)
         {
             // 딜러만 21을 넘은 경우
             Debug.Log($"<color=green>[결과] 딜러 버스트({dealerTotalScore})! 플레이어 승리.</color>");
+            betting.OnGameWin(betAmount, 100f);
         }
 
         else if (playerTotalScore > dealerTotalScore)
         {
             // 둘 다 21 이하일 때 점수 비교
             Debug.Log($"<color=green>[결과] 플레이어({playerTotalScore}) 승리! (딜러: {dealerTotalScore})</color>");
+            betting.OnGameWin(betAmount, 100f);
         }
 
         else if (playerTotalScore < dealerTotalScore)
         {
             // 둘 다 21 이하일 때 점수 비교
             Debug.Log($"<color=red>[결과] 딜러({dealerTotalScore}) 승리! (플레이어: {playerTotalScore})</color>");
+            betting.OnGameLose(betAmount, 100f);
         }
 
         else

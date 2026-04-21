@@ -3,7 +3,7 @@
 public class GameData
 {   
     // 게임자원
-    public int coin;
+    public long money;
     public int skillPoint;
     public int[] skillLevels;
 
@@ -14,7 +14,7 @@ public class GameData
     // 기본값 설정
     public GameData()
     {
-        coin = 1000;
+        money = 1000;
         skillPoint = 1;
         skillLevels = new int[11];
         Volume = 1.0f;

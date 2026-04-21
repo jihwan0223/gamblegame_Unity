@@ -45,18 +45,30 @@ public class Skill : MonoBehaviour
         }
     }
 
-    public void Buy()
-    {
-        if (skillTree.skillPoint < 1 || skillTree.SkillLevels[id] >= skillTree.SkillCaps[id]) return;
-        skillTree.skillPoint -= 1;
-        skillTree.SkillLevels[id]++;
-        
-        // Json 파일 저장
-        DataManager.instance.gameData.skillPoint = skillTree.skillPoint;
-        DataManager.instance.gameData.skillLevels = skillTree.SkillLevels;
+    public int upgradeCost = 500; // 업그레이드 비용 (레벨마다 늘어나게 할 수도 있음)
 
-        DataManager.instance.SaveGameData();
-
-        skillTree.UpdateAllSkillUI();
+public void Buy()
+{
+    // 현재 잔액이 비용보다 많은지 확인
+    if (DataManager.instance.gameData.money >= upgradeCost && 
+        skillTree.SkillLevels[id] < skillTree.SkillCaps[id])
+        {
+            // 1. 돈 차감
+            DataManager.instance.gameData.money -= upgradeCost;
+            
+            // 2. 레벨업
+            skillTree.SkillLevels[id]++;
+            
+            // 3. 저장
+            DataManager.instance.SaveGameData();
+            
+            // 4. UI 갱신
+            skillTree.UpdateAllSkillUI();
+            Debug.Log("업그레이드 성공!");
+        }
+        else
+        {
+            Debug.Log("돈이 부족하거나 이미 마스터했습니다.");
+        }
     }
 }
