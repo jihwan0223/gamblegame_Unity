@@ -14,7 +14,7 @@ public class GameData
     // 기본값 설정
     public GameData()
     {
-        money = 1000;
+        money = 1000000;
         skillPoint = 1;
         skillLevels = new int[11];
         Volume = 1.0f;
