@@ -4,7 +4,7 @@ using System.IO;
 public class DataManager : MonoBehaviour
 {
     public static DataManager instance;
-    public GameData gameData;
+    public GameData gameData = new GameData();
 
     string path;
 
@@ -24,37 +24,32 @@ public class DataManager : MonoBehaviour
         LoadGameData();
     }
 
-    // 저장
     public void SaveGameData()
     {
+        if (gameData == null) return;
         string json = JsonUtility.ToJson(gameData, true);
         File.WriteAllText(path, json);
         Debug.Log("저장 완료: " + path);
     }
 
-    // 불러오기
     public void LoadGameData()
     {
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            gameData = JsonUtility.FromJson<GameData>(json);
-            Debug.Log("데이터 로드 완료");
-            Debug.Log("위치 : " + Application.persistentDataPath);
+            if (gameData == null) gameData = new GameData();
+            JsonUtility.FromJsonOverwrite(json, gameData);
         }
-        else
+
+        // 불러온 후에도 배열 크기가 12가 아니면 강제 조정
+        if (gameData.skillLevels == null || gameData.skillLevels.Length != 12)
         {
-            Debug.Log("저장 파일이 없어 새로 생성합니다.");
-            Debug.Log("위치 : " + Application.persistentDataPath);
-            gameData = new GameData();
-            SaveGameData();
+            int[] newLevels = new int[12];
+            if (gameData.skillLevels != null)
+            {
+                System.Array.Copy(gameData.skillLevels, newLevels, Mathf.Min(gameData.skillLevels.Length, 12));
+            }
+            gameData.skillLevels = newLevels;
         }
-    }
-    // [데이터 초기화] 테스트용
-    [ContextMenu("Reset Save Data")]
-    public void ResetData()
-    {
-        gameData = new GameData();
-        SaveGameData();
     }
 }
