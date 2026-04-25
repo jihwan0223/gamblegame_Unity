@@ -1,40 +1,63 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
 
-    [Header("Audio Sources")]
-    public AudioSource bgmSound;
-    public AudioSource sfxSound;
 
-    [Header("Audio Clips")]
-    public AudioClip cardDrow;
-    public AudioClip getMoney;
-
-    private void Awake()
+    [System.Serializable]
+    public class SoundData
     {
-        if(instance == null)
+        public string name;
+        public AudioClip clip;
+    }
+
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private List<SoundData> soundList;
+
+    private Dictionary<string, AudioClip> soundDict;
+
+    void Awake()
+    {
+        if (instance != null)
         {
-            instance = this;
-            Debug.Log("SoundManaget instance maked");
-        }
-        else
-        {
-            Debug.LogWarning("SoundManager Error");
             Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        soundDict = new Dictionary<string, AudioClip>();
+
+        foreach (var s in soundList)
+        {
+            if (!soundDict.ContainsKey(s.name))
+                soundDict.Add(s.name, s.clip);
         }
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void Play(string soundName)
     {
-        if(clip != null && sfxSound != null)
+        if (soundDict.TryGetValue(soundName, out var clip))
         {
-            sfxSound.PlayOneShot(clip); 
+            sfxSource.PlayOneShot(clip);
         }
         else
         {
-            Debug.LogWarning("재생할 클립이 없거나 AudioSource가 연결되지 않았습니다.");
+            Debug.LogWarning($"{soundName} 없음");
         }
     }
+    public void DrawCard()
+    {
+        SoundManager.instance.Play("CardDrawSound");
+    }
+
+    public void OnClickButton()
+    {
+        SoundManager.instance.Play("ClickSound");
+    }
+
+    
 }

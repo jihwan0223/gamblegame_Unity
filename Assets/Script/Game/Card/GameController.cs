@@ -23,11 +23,14 @@ public class GameController : MonoBehaviour
     public void OnClickHit()
     {
         Card newCard = deckManager.DrawCard();
-        if (newCard != null) {
-            SoundManager.instance.PlaySFX(SoundManager.instance.cardDrow);
+        if (newCard != null) 
+        {
+            SoundManager.instance.Play("CardDrawSound");
+
             playerHand.AddCard(newCard);
-            // 플레이어가 뽑자마자 21 넘으면 바로 딜러 턴으로 넘김
-            if (playerHand.GetTotalScore() > 21) OnClickStay();
+
+            if (playerHand.GetTotalScore() > 21) 
+                OnClickStay();
         }
     }
 

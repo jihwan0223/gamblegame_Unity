@@ -3,11 +3,16 @@ using TMPro;
 public class MoneyUI : MonoBehaviour
 {
     [Header("Money Text")]
-    public TextMeshProUGUI moneyText;
+    public TMP_Text moneyText;
 
     void Update()
     {
+        if(DataManager.instance == null || DataManager.instance.gameData == null)
+        {
+            return;
+        }
+
         // 실제 데이터에 들어있는 money 값을 표시
-        moneyText.text = DataManager.instance.gameData.money.ToString("N0") + "$";
+        moneyText.text = DataManager.instance.gameData.money.ToString() + "$";
     }
 }

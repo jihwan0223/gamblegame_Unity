@@ -945,10 +945,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8417e7499873ef043bd055a436b79d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
-  bgmSound: {fileID: 410105317}
-  sfxSound: {fileID: 410105319}
-  cardDrow: {fileID: 8300000, guid: ccb69b0ccf8cbb94ab036853cf382102, type: 3}
-  getMoney: {fileID: 8300000, guid: 681db36de17be7e4e83357be3f52b87c, type: 3}
+  sfxSource: {fileID: 410105317}
+  soundList:
+  - name: CardDrawSound
+    clip: {fileID: 8300000, guid: ccb69b0ccf8cbb94ab036853cf382102, type: 3}
+  - name: ClickSound
+    clip: {fileID: 8300000, guid: ea4450fd94f33a445bc986f545cf32b9, type: 3}
+  - name: MoneySound
+    clip: {fileID: 8300000, guid: 681db36de17be7e4e83357be3f52b87c, type: 3}
 --- !u!82 &410105319
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1097,6 +1101,7 @@ GameObject:
   - component: {fileID: 553915159}
   - component: {fileID: 553915158}
   - component: {fileID: 553915157}
+  - component: {fileID: 553915160}
   m_Layer: 5
   m_Name: NextGameButton
   m_TagString: Untagged
@@ -1180,6 +1185,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 410105318}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ClickSound
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &553915158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1200,7 +1217,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 202cca839338a4d49aa5db82c2459568, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1218,6 +1235,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553915155}
   m_CullTransparentMesh: 1
+--- !u!114 &553915160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553915155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3fdb60237f1ef14db40c150d4ba9644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonEffect
+  pressedScale: 0.9
+  speed: 10
 --- !u!1 &581101192
 GameObject:
   m_ObjectHideFlags: 11
@@ -1319,6 +1350,7 @@ GameObject:
   - component: {fileID: 608093294}
   - component: {fileID: 608093293}
   - component: {fileID: 608093292}
+  - component: {fileID: 608093295}
   m_Layer: 5
   m_Name: hitButton
   m_TagString: Untagged
@@ -1402,6 +1434,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 410105319}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: set_clip
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: ccb69b0ccf8cbb94ab036853cf382102, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &608093293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1440,6 +1484,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608093290}
   m_CullTransparentMesh: 1
+--- !u!114 &608093295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608093290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3fdb60237f1ef14db40c150d4ba9644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonEffect
+  pressedScale: 0.9
+  speed: 10
 --- !u!1 &668923298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,7 +1643,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Next Game
+  m_text: New Game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
@@ -1665,6 +1723,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714738474}
   m_CullTransparentMesh: 1
+--- !u!1 &764911091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 764911092}
+  - component: {fileID: 764911093}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &764911092
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764911091}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1938639118}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &764911093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764911091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ebb1c7a7088bc4aac397e090e9c14f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DataManager
+  gameData:
+    money: 1000000
+    skillPoint: 1
+    skillLevels: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    Volume: 1
+    isMute: 0
 --- !u!1 &902592928
 GameObject:
   m_ObjectHideFlags: 0
@@ -2218,6 +2326,7 @@ GameObject:
   - component: {fileID: 1330210465}
   - component: {fileID: 1330210464}
   - component: {fileID: 1330210463}
+  - component: {fileID: 1330210466}
   m_Layer: 5
   m_Name: UpgradeButton
   m_TagString: Untagged
@@ -2301,6 +2410,18 @@ MonoBehaviour:
           m_StringArgument: UpgradeScene
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 410105318}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ClickSound
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1330210464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2339,6 +2460,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330210461}
   m_CullTransparentMesh: 1
+--- !u!114 &1330210466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330210461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3fdb60237f1ef14db40c150d4ba9644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonEffect
+  pressedScale: 0.9
+  speed: 10
 --- !u!1 &1459700687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2351,6 +2486,7 @@ GameObject:
   - component: {fileID: 1459700691}
   - component: {fileID: 1459700690}
   - component: {fileID: 1459700689}
+  - component: {fileID: 1459700692}
   m_Layer: 5
   m_Name: stayButton
   m_TagString: Untagged
@@ -2434,6 +2570,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 410105318}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ClickSound
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1459700690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2472,6 +2620,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1459700687}
   m_CullTransparentMesh: 1
+--- !u!114 &1459700692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459700687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3fdb60237f1ef14db40c150d4ba9644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonEffect
+  pressedScale: 0.9
+  speed: 10
 --- !u!1 &1474563214
 GameObject:
   m_ObjectHideFlags: 0
@@ -2785,6 +2947,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705926000}
   m_CullTransparentMesh: 1
+--- !u!1 &1707278959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1707278960}
+  - component: {fileID: 1707278961}
+  m_Layer: 0
+  m_Name: MoneyUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1707278960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707278959}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1938639118}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1707278961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707278959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e39931d32d712c4c8f7692408c2b6c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoneyUI
+  moneyText: {fileID: 1875773969}
 --- !u!1 &1875773967
 GameObject:
   m_ObjectHideFlags: 0
@@ -2796,7 +3003,6 @@ GameObject:
   - component: {fileID: 1875773968}
   - component: {fileID: 1875773970}
   - component: {fileID: 1875773969}
-  - component: {fileID: 1875773971}
   m_Layer: 5
   m_Name: PlayerMoney
   m_TagString: Untagged
@@ -2923,19 +3129,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875773967}
   m_CullTransparentMesh: 1
---- !u!114 &1875773971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1875773967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e39931d32d712c4c8f7692408c2b6c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MoneyUI
-  moneyText: {fileID: 1875773969}
 --- !u!1 &1938639116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2945,7 +3138,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1938639118}
-  - component: {fileID: 1938639117}
   m_Layer: 0
   m_Name: -----GameManager
   m_TagString: Untagged
@@ -2953,19 +3145,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1938639117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938639116}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e39931d32d712c4c8f7692408c2b6c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MoneyUI
-  moneyText: {fileID: 0}
 --- !u!4 &1938639118
 Transform:
   m_ObjectHideFlags: 0
@@ -2986,6 +3165,8 @@ Transform:
   - {fileID: 1474563216}
   - {fileID: 1550343372}
   - {fileID: 1306446081}
+  - {fileID: 764911092}
+  - {fileID: 1707278960}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2092351364

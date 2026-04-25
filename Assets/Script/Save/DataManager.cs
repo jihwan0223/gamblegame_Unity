@@ -34,11 +34,20 @@ public class DataManager : MonoBehaviour
 
     public void LoadGameData()
     {
+        if (gameData == null) gameData = new GameData();
+
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            if (gameData == null) gameData = new GameData();
             JsonUtility.FromJsonOverwrite(json, gameData);
+        }
+        else
+        {
+            // 2. 파일이 없으면 기본값 세팅 (초기 자금 등)
+            Debug.Log("저장 파일이 없어 새로 생성합니다.");
+            gameData.money = 1000; // 초기 돈 설정
+            gameData.skillLevels = new int[12]; 
+            SaveGameData(); // 빈 파일 생성
         }
 
         // 불러온 후에도 배열 크기가 12가 아니면 강제 조정
