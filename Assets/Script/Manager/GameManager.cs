@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [Header("게임 종료 후 나타나는 버튼")]
     public Button nextGameButton;
     public Button upgradeButton;
+    public Button LobbyButton;
 
     private void Start()
     {
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
         nextGameButton.onClick.AddListener(ResetBoardForNextRound);
         nextGameButton.gameObject.SetActive(false);
         upgradeButton.gameObject.SetActive(false);
+        LobbyButton.gameObject.SetActive(false);
 
         StartDealerHand();
     }
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
     if (stayButton != null) stayButton.interactable = false;
     if (nextGameButton != null) nextGameButton.gameObject.SetActive(true);
     if (upgradeButton != null) upgradeButton.gameObject.SetActive(true);
+    if (LobbyButton != null) LobbyButton.gameObject.SetActive(true);
     else Debug.LogError("GameManager: Next Game Button이 연결되지 않았습니다!");
     }
 
@@ -62,6 +65,7 @@ public class GameManager : MonoBehaviour
     stayButton.interactable = true;
     nextGameButton.gameObject.SetActive(false);
     upgradeButton.gameObject.SetActive(false);
+    LobbyButton.gameObject.SetActive(false);
     dealerAI.speechText.text = "Next Turn, Good Luck!";
     StartDealerHand();
     
