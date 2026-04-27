@@ -13,6 +13,6 @@ public class MoneyUI : MonoBehaviour
         }
 
         // 실제 데이터에 들어있는 money 값을 표시
-        moneyText.text = DataManager.instance.gameData.money.ToString() + "$";
+        moneyText.text = $"Money : {DataManager.instance.gameData.money.ToString()}$";
     }
 }

@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public DeckManager deckManager;
     public DealerAI dealerAI;
     public PlayerHand playerHand;
+    public BettingManager bettingManager;
 
     [Header("UI Button")]
     public Button hitButton;
