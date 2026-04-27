@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,14 +12,6 @@ public class GameController : MonoBehaviour
     [Header("UI Button")]
     public Button hitButton;
     public Button stayButton;
-
-    void Start()
-    {
-        if (SoundManager.instance != null)
-        {
-            Debug.Log("None");
-        }
-    }
 
     public void OnClickHit()
     {

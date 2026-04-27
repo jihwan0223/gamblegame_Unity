@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
     upgradeButton.gameObject.SetActive(false);
     LobbyButton.gameObject.SetActive(false);
     dealerAI.speechText.text = "Next Turn, Good Luck!";
+    dealerAI.LWinText.text = "";
     StartDealerHand();
     
     Debug.Log("<color=orange>판이 정리되고 덱이 초기화되었습니다.</color>");

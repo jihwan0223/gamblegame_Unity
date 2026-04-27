@@ -10,7 +10,8 @@ public class DealerAI : MonoBehaviour
     public PlayerHand dealerHand;
 
     [Header("UI")]
-    public TextMeshProUGUI speechText;
+    public TextMeshProUGUI speechText;      // 딜러 메시지
+    public TextMeshProUGUI LWinText;        // 승패 text
     public string scorePrefix = "Score: ";
 
     private GameManager gameManager;
@@ -30,7 +31,7 @@ public class DealerAI : MonoBehaviour
         if (playerTotalScore == 21)
         {
             Debug.Log("<color=cyan>[결과] 플레이어 21점 달성! 즉시 승리.</color>");
-
+            LWinText.text = "You Win!";
             int finalDealerScore = dealerHand.GetTotalScore();
             RequestAIDecision(playerTotalScore, finalDealerScore);
             yield break;
@@ -50,6 +51,7 @@ public class DealerAI : MonoBehaviour
         else // 플레이어가 이미 21점을 넘은 경우
         {
             Debug.Log("플레이어 버스트!");
+            LWinText.text = "Bust!";
         }
 
         // 2. 최종 점수 계산
@@ -62,6 +64,7 @@ public class DealerAI : MonoBehaviour
         {
             // 플레이어가 21을 넘으면 딜러 점수와 상관없이 무조건 플레이어 패배
             Debug.Log($"<color=red>[결과] 플레이어 버스트({playerTotalScore})! 딜러 승리.</color>");
+            LWinText.text = "Bust!";
             betting.OnGameLose(betAmount, 100f);    // 100% 잃음
         }
 
@@ -69,6 +72,7 @@ public class DealerAI : MonoBehaviour
         {
             // 딜러만 21을 넘은 경우
             Debug.Log($"<color=green>[결과] 딜러 버스트({dealerTotalScore})! 플레이어 승리.</color>");
+            LWinText.text = "You Win!";
             betting.OnGameWin(betAmount, 100f);
         }
 
@@ -76,6 +80,7 @@ public class DealerAI : MonoBehaviour
         {
             // 둘 다 21 이하일 때 점수 비교
             Debug.Log($"<color=green>[결과] 플레이어({playerTotalScore}) 승리! (딜러: {dealerTotalScore})</color>");
+            LWinText.text = "You Win!";
             betting.OnGameWin(betAmount, 100f);
         }
 
@@ -83,6 +88,7 @@ public class DealerAI : MonoBehaviour
         {
             // 둘 다 21 이하일 때 점수 비교
             Debug.Log($"<color=red>[결과] 딜러({dealerTotalScore}) 승리! (플레이어: {playerTotalScore})</color>");
+            LWinText.text = "You Lose...";
             betting.OnGameLose(betAmount, 100f);
         }
 
@@ -90,6 +96,7 @@ public class DealerAI : MonoBehaviour
         {
             // 점수가 정확히 같을 때
             Debug.Log($"<color=white>[결과] {playerTotalScore}점으로 무승부(Push)입니다.</color>");
+            LWinText.text = "Draw!";
         }
             // ----------------------------------
 
