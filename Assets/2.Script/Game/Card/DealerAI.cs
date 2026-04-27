@@ -56,16 +56,27 @@ public class DealerAI : MonoBehaviour
             yield break;
         }
 
-        // ⭐ 딜러 카드 뽑기
-        while (dealerHand.GetTotalScore() < 17)
-        {
-            yield return new WaitForSeconds(1.0f);
-            dealerHand.AddCard(deckManager.DrawCard());
-        }
-
+        // 딜러 카드 뽑기
         int dealerTotalScore = dealerHand.GetTotalScore();
 
-        // ⭐ 결과 판정 (여기서만 실행됨)
+        while (true)
+        {
+            dealerTotalScore = dealerHand.GetTotalScore();
+
+            // 17 이상이면 멈춤
+            if (dealerTotalScore >= 17)
+                break;
+
+            // 플레이어보다 높으면 멈춤
+            if (dealerTotalScore > playerTotalScore)
+                break;
+
+            yield return new WaitForSeconds(1.0f);
+
+            dealerHand.AddCard(deckManager.DrawCard());
+}
+
+        // 결과 판정 (여기서만 실행됨)
         if (dealerTotalScore > 21)
         {
             // 딜러 버스트 → 플레이어 승
@@ -92,7 +103,7 @@ public class DealerAI : MonoBehaviour
             // 무승부
             Debug.Log($"<color=white>[결과] {playerTotalScore}점으로 무승부(Push)입니다.</color>");
             LWinText.text = "Draw!";
-            bettingManager.OnGameDraw(); // ⭐ 추가
+            bettingManager.OnGameDraw();
         }
 
         // AI 응답

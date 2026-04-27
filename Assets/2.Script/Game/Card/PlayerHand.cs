@@ -1,8 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.InputSystem;
 using TMPro;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 
 public class PlayerHand : MonoBehaviour
 {
@@ -14,18 +13,40 @@ public class PlayerHand : MonoBehaviour
     public GameObject cradPrefab;
 
     [Header("배치 / 애니메이션 설정")]
-    public float closedSpacing = 80f;
-    public float openSpacing = 80f;
-    public float lerpSpeed = 10f;
+    public float closedSpacing = 80f;       // 카드간격
+    public float openSpacing = 80f;         // 누를때 카드 간격
+    public float lerpSpeed = 10f;           // 카드 속도
 
     [Header("UI 설정")]
     public TextMeshProUGUI scoreText; 
     public string scorePrefix = "Score: ";
 
+    [Header("씬별 설정")]
+    public float gameOpenSpacing = 80f;
+    public float gameClosedSpacing = 80f;
+    public float workOpenSpacing = 0f;
+    public float workClosedSpacing = 0f;
+
     private List<Card> _cardData = new List<Card>();
     private List<Transform> _cardTransforms = new List<Transform>();
 
-    private void Start() => UpdateScoreUI(0);
+    private void Start()
+    {
+        string sceneNane = SceneManager.GetActiveScene().name;
+
+        if(sceneNane == "GameScene")
+        {
+            closedSpacing = gameClosedSpacing;
+            openSpacing = gameOpenSpacing;
+        }
+        else if (sceneNane == "WorkScene")
+        {
+            closedSpacing = workClosedSpacing;
+            openSpacing = workOpenSpacing;
+        }
+
+        UpdateScoreUI(0);   
+    }
 
     private void Update()
     {
@@ -121,6 +142,8 @@ public class PlayerHand : MonoBehaviour
 
     private void UpdateLayout(float spacing)
     {
+        _cardTransforms.RemoveAll(t => t == null);
+        
         int count = _cardTransforms.Count;
         float centerOffset = (count - 1) / 2f;
 

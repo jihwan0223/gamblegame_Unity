@@ -28,8 +28,8 @@ public class GameManager : MonoBehaviour
         nextGameButton.onClick.AddListener(ResetBoardForNextRound);
         nextGameButton.gameObject.SetActive(false);
         upgradeButton.gameObject.SetActive(false);
-        LobbyButton.gameObject.SetActive(false);
 
+        LobbyButton.gameObject.SetActive(true);
         bettingInput.gameObject.SetActive(true);
         hitButton.interactable = false;
         stayButton.interactable = false;   
@@ -38,9 +38,12 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         bettingInput.gameObject.SetActive(false);
+        LobbyButton.gameObject.SetActive(false);
 
         hitButton.interactable = true;
         stayButton.interactable = true;
+
+        
 
         StartDealerHand();
     }
@@ -80,13 +83,14 @@ public class GameManager : MonoBehaviour
 
         bettingInput.text = "";
         bettingInput.gameObject.SetActive(true);
-
+        LobbyButton.gameObject.SetActive(true);
+        
         hitButton.interactable = false;
         stayButton.interactable = false;
         
         nextGameButton.gameObject.SetActive(false);
         upgradeButton.gameObject.SetActive(false);
-        LobbyButton.gameObject.SetActive(false);
+        
 
         dealerAI.speechText.text = "Next Turn, Good Luck!";
         dealerAI.LWinText.text = "";
