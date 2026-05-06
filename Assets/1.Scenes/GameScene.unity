@@ -1379,7 +1379,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585329135}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 57.24353, y: 329.5975, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1894,7 +1894,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: You Win!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3199409928624324999b9336dd1ed8f3, type: 2}
   m_sharedMaterial: {fileID: 21032597133445202, guid: 3199409928624324999b9336dd1ed8f3, type: 2}
@@ -1903,8 +1903,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1921,7 +1921,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 59.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1998,7 +1998,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 902592928}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -148.48181, y: -117.00058, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2033,7 +2033,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 943239574}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
@@ -2065,7 +2065,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '"Looks like the player''s luck ran out this time - a strong hand from
+    the dealer takes the win! Better luck next deal, player!"'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d9be37a470477843b78d2776b31311b, type: 2}
   m_sharedMaterial: {fileID: -6523030418563296507, guid: 4d9be37a470477843b78d2776b31311b, type: 2}
@@ -2074,8 +2075,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2092,7 +2093,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2586,13 +2587,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHand
   isDealer: 1
-  isDealerTurnStarted: 0
+  isDealerTurnStarted: 1
   cradPrefab: {fileID: 1418252301403808820, guid: 049bc377706cc5d4588ab0e703cd59a6, type: 3}
   closedSpacing: 80
   openSpacing: 80
   lerpSpeed: 10
   scoreText: {fileID: 124207172}
   scorePrefix: 'Score: '
+  gameOpenSpacing: 80
+  gameClosedSpacing: 80
+  workOpenSpacing: 0
+  workClosedSpacing: 0
 --- !u!4 &1299985950
 Transform:
   m_ObjectHideFlags: 0
@@ -2601,7 +2606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299985948}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 148.48181, y: 482.00058, z: 0}
   m_LocalScale: {x: 2.3, y: 2.7, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3494,9 +3499,9 @@ MonoBehaviour:
   stayButton: {fileID: 1459700689}
   bettingInput: {fileID: 1395864147}
   bettingManager: {fileID: 668923300}
-  nextGameButton: {fileID: 553915157}
   upgradeButton: {fileID: 1330210463}
-  LobbyButton: {fileID: 2108719252}
+  lobbyButton: {fileID: 2108719252}
+  nextGameButton: {fileID: 553915157}
 --- !u!4 &1474563216
 Transform:
   m_ObjectHideFlags: 0
@@ -4308,6 +4313,10 @@ MonoBehaviour:
   lerpSpeed: 10
   scoreText: {fileID: 1058739516}
   scorePrefix: 'Score: '
+  gameOpenSpacing: 80
+  gameClosedSpacing: 80
+  workOpenSpacing: 0
+  workClosedSpacing: 0
 --- !u!4 &2092351366
 Transform:
   m_ObjectHideFlags: 0
@@ -4316,7 +4325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2092351364}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 148.48181, y: -251.99942, z: 0}
   m_LocalScale: {x: 2.3, y: 2.7, z: 1}
   m_ConstrainProportionsScale: 0

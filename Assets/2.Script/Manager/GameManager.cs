@@ -17,20 +17,24 @@ public class GameManager : MonoBehaviour
     [Header("Bet UI")]
     public TMP_InputField bettingInput;
     public BettingManager bettingManager;
+
+    [Header("게임 시작시 나타나는 버튼")]
+    public Button upgradeButton;
+    public Button lobbyButton;
+
     [Header("게임 종료 후 나타나는 버튼")]
     public Button nextGameButton;
-    public Button upgradeButton;
-    public Button LobbyButton;
+    
 
     private void Start()
     {
         // 버튼 리스너 연결
         nextGameButton.onClick.AddListener(ResetBoardForNextRound);
-        nextGameButton.gameObject.SetActive(false);
-        upgradeButton.gameObject.SetActive(false);
-
-        LobbyButton.gameObject.SetActive(true);
+        upgradeButton.gameObject.SetActive(true);
+        lobbyButton.gameObject.SetActive(true);
         bettingInput.gameObject.SetActive(true);
+
+        nextGameButton.gameObject.SetActive(false);
         hitButton.interactable = false;
         stayButton.interactable = false;   
     }
@@ -38,12 +42,11 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         bettingInput.gameObject.SetActive(false);
-        LobbyButton.gameObject.SetActive(false);
+        lobbyButton.gameObject.SetActive(false);
+        upgradeButton.gameObject.SetActive(false);
 
         hitButton.interactable = true;
         stayButton.interactable = true;
-
-        
 
         StartDealerHand();
     }
@@ -61,7 +64,7 @@ public class GameManager : MonoBehaviour
         if (stayButton != null) stayButton.interactable = false;
         if (nextGameButton != null) nextGameButton.gameObject.SetActive(true);
         if (upgradeButton != null) upgradeButton.gameObject.SetActive(true);
-        if (LobbyButton != null) LobbyButton.gameObject.SetActive(true);
+        if (lobbyButton != null) lobbyButton.gameObject.SetActive(true);
         else Debug.LogError("GameManager: Next Game Button이 연결되지 않았습니다!");
     }
 
@@ -83,14 +86,13 @@ public class GameManager : MonoBehaviour
 
         bettingInput.text = "";
         bettingInput.gameObject.SetActive(true);
-        LobbyButton.gameObject.SetActive(true);
-        
+        lobbyButton.gameObject.SetActive(true);
+        upgradeButton.gameObject.SetActive(true);
+
+        nextGameButton.gameObject.SetActive(false);
+
         hitButton.interactable = false;
         stayButton.interactable = false;
-        
-        nextGameButton.gameObject.SetActive(false);
-        upgradeButton.gameObject.SetActive(false);
-        
 
         dealerAI.speechText.text = "Next Turn, Good Luck!";
         dealerAI.LWinText.text = "";

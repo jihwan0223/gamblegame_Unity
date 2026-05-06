@@ -49,15 +49,30 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning($"{soundName} 없음");
         }
     }
+
+    // Sound
     public void DrawCard()
     {
-        SoundManager.instance.Play("CardDrawSound");
+        Play("CardDrawSound");
     }
 
     public void OnClickButton()
     {
-        SoundManager.instance.Play("ClickSound");
+        Play("ClickSound");
     }
 
-    
+    public void PlayerWin()
+    {
+        Play("MoneySound");
+    }
+
+    public void PlayerLose()
+    {
+        Play("LoseSound");
+    }
+
+    public void PlayerDraw()
+    {
+        //Play("LoseSound");
+    }
 }

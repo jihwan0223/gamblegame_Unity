@@ -14,7 +14,7 @@ public class BettingManager : MonoBehaviour
     private long currentBet = 0;
     private bool isBetDone = false;
 
-    // 🎰 배팅 버튼
+    // 배팅 버튼
     public void OnClickBet()
     {
         if(isBetDone) return;
@@ -58,7 +58,7 @@ public class BettingManager : MonoBehaviour
 
         bettingMessageText.text = $"+{reward}$";
 
-        SoundManager.instance.Play("MoneySound");
+        SoundManager.instance.PlayerWin();
 
         ResetBet();
     }
@@ -70,7 +70,7 @@ public class BettingManager : MonoBehaviour
 
         bettingMessageText.text = $"-{currentBet}$";
 
-        SoundManager.instance.Play("LoseSound");
+        SoundManager.instance.PlayerLose();
 
         ResetBet();
     }
@@ -83,7 +83,7 @@ public class BettingManager : MonoBehaviour
         DataManager.instance.gameData.money += currentBet;
         DataManager.instance.SaveGameData();
 
-        bettingMessageText.text = $"+{currentBet}$";
+        bettingMessageText.text = $"+{0}$";
 
         ResetBet();
     }

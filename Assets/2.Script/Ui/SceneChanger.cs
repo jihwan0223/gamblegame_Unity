@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // 씬 전환을 위해 필수
+using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {

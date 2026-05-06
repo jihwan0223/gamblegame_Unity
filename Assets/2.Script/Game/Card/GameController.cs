@@ -19,12 +19,23 @@ public class GameController : MonoBehaviour
         Card newCard = deckManager.DrawCard();
         if (newCard != null) 
         {
-            SoundManager.instance.Play("CardDrawSound");
+            SoundManager.instance.OnClickButton();
 
             playerHand.AddCard(newCard);
 
             if (playerHand.GetTotalScore() > 21) 
                 OnClickStay();
+
+            // 다음 카드
+            Card nextCard = deckManager.PeekNextCard();
+            if (nextCard != null)
+            {
+                Debug.Log($"다음 카드 : {nextCard.rank}");
+            }
+            else
+            {
+                Debug.Log("덱이 비어있어 다음 카드가 없습니다.");
+            }
         }
     }
 

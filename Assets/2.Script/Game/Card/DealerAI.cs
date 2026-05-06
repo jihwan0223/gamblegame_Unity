@@ -30,7 +30,7 @@ public class DealerAI : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
 
         dealerHand.RevealAllCards();
-        SoundManager.instance.Play("CardDrawSound");
+        SoundManager.instance.DrawCard();
 
         // 블랙잭
         if (playerTotalScore == 21)

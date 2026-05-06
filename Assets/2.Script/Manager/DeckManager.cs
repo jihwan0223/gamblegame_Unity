@@ -56,4 +56,13 @@ public class DeckManager : MonoBehaviour
         _deck.RemoveAt(0);
         return drawnCard;
     }
+
+    public Card PeekNextCard()
+    {
+        if(_deck != null && _deck.Count > 0)
+        {
+            return _deck[0];
+        }
+        return null;
+    }
 }
