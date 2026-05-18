@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -37.5}
-  m_SizeDelta: {x: 0, y: -75}
+  m_AnchoredPosition: {x: 0, y: -33.169075}
+  m_SizeDelta: {x: 0, y: -83.66185}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3139983691864255609
 CanvasRenderer:
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.1
+  m_fontSize: 27.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f85829ee2c7016c429250e0b7cd16a5c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -235,7 +235,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -287,7 +287,13 @@ MonoBehaviour:
   id: 0
   TItleText: {fileID: 370155445389230638}
   DescriptionText: {fileID: 384110985728951383}
-  ConnectedUpgrades: 
+  ConnectedSkills: 
+  MyLines: []
+  upgradeCost: 500
+  LineTargetSkillIds: 
+  normalSprite: {fileID: 21300000, guid: ffe7268183fc54b5f8c9b756a92e843c, type: 3}
+  affordSprite: {fileID: 21300000, guid: 8e7509fb1e66f4ab0a6d477d5d810035, type: 3}
+  maxSprite: {fileID: 21300000, guid: 6de151e8da4354cde90bf5da4ed675b5, type: 3}
 --- !u!1 &7808459781301461391
 GameObject:
   m_ObjectHideFlags: 0
