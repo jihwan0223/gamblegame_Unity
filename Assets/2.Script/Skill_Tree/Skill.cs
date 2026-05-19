@@ -69,7 +69,8 @@ public class Skill : MonoBehaviour
 
     public void Buy()
     {
-        if (skillTree == null) skillTree = SkillTree.skillTree;
+        // 스킬트리가 없으면 찾기
+        // if (skillTree == null) skillTree = SkillTree.skillTree;
 
         if (DataManager.instance == null || DataManager.instance.gameData == null || skillTree == null)
         {
