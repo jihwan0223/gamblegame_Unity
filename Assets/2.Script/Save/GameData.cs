@@ -5,6 +5,7 @@ public class GameData
     // 게임자원
     public long money;
     public int skillPoint;
+    public long bankBalance = 0;
     public int[] skillLevels;
 
     // 설정
