@@ -78,7 +78,6 @@ public class BankManager : MonoBehaviour
     public long GetBalance() => DataManager.instance.gameData.bankBalance;
     public long GetMoney()
     {
-        Debug.Log($"DataManager: {DataManager.instance}, gameData: {DataManager.instance?.gameData}");
         return DataManager.instance.gameData.money;
     }
 }

@@ -21,9 +21,9 @@ public class SkillTree : MonoBehaviour
 
     private void Start()
     {
-        SkillCaps        = new[] { 1, 3, 3, 3, 5, 5, 5, 5, 5, 1, 10, 10 };
-        SkillNames       = new[] { "기본 1", "Upgrade 2", "Upgrade 3", "Upgrade 4", "Upgrade 5", "Upgrade 6", "Upgrade 7", "Upgrade 8", "Upgrade 9", "???", "Upgrade 11", "Upgrade 12" };
-        SkillDescriptions = new[] { "설명1", "설명2", "설명3", "설명4", "설명5", "설명6", "설명7", "설명8", "설명9", "ending", "설명11", "설명12" };
+        SkillCaps        = new[] { 1, 3, 3, 3, 5, 5, 5, 5, 5, 10, 1, 10 };
+        SkillNames       = new[] { "Upgrade 1", "Loss Reduction", "Win Reward Boost", "Blackjack Bonus", "Work Boost", "Upgrade 6", "Luck", "All In Bonus", "Upgrade 9", "Upgrade 10", "???", "Upgrade 12" };
+        SkillDescriptions = new[] { "설명 1", "설명2", "설명3", "설명4", "설명5", "설명6", "설명7", "설명8", "설명9", "설명 10", "", "설명12" };
 
         if (DataManager.instance != null && DataManager.instance.gameData != null)
             SkillLevels = DataManager.instance.gameData.skillLevels;

@@ -334,6 +334,7 @@ MonoBehaviour:
   gameData:
     money: 1000000
     skillPoint: 1
+    bankBalance: 0
     skillLevels: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     Volume: 1
     isMute: 0
@@ -896,21 +897,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityPlayModeSaver::Framework.Utils.UnityPlayModeSaverSceneUtils
   _scenePrefabInstances:
   - _gameObject: {fileID: 1464252029}
-    _prefab: Assets/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
+    _prefab: Assets/0.AssetStore/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
   - _gameObject: {fileID: 542006628}
-    _prefab: Assets/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
+    _prefab: Assets/0.AssetStore/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
   - _gameObject: {fileID: 264966210}
-    _prefab: Assets/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
+    _prefab: Assets/0.AssetStore/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
   - _gameObject: {fileID: 1387958652}
-    _prefab: Assets/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
+    _prefab: Assets/0.AssetStore/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
   - _gameObject: {fileID: 810088191}
-    _prefab: Assets/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
+    _prefab: Assets/0.AssetStore/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
   - _gameObject: {fileID: 1805043550}
-    _prefab: Assets/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
+    _prefab: Assets/0.AssetStore/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
   - _gameObject: {fileID: 1062975851}
-    _prefab: Assets/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
+    _prefab: Assets/0.AssetStore/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
   - _gameObject: {fileID: 98369861}
-    _prefab: Assets/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
+    _prefab: Assets/0.AssetStore/SlimUI/Modern Menu 1/Prefabs/Buttons/Btn_MainMenu.prefab
 --- !u!4 &1806474920
 Transform:
   m_ObjectHideFlags: 11
@@ -926,6 +927,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1904519451 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5429289958580070961, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
+  m_PrefabInstance: {fileID: 1125570117362036063}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &1904519456
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904519451}
+  m_Mesh: {fileID: 0}
 --- !u!1 &2045229821 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5429289958580070961, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
@@ -19557,7 +19571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5206668379868315107, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5206668379868315107, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
       propertyPath: m_AnchorMin.x
@@ -19565,11 +19579,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5206668379868315107, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5206668379868315107, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 522
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5206668379868315107, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
       propertyPath: m_SizeDelta.y
@@ -19605,11 +19619,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5206668379868315107, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 261
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5206668379868315107, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -38.65
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5206668379868315107, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -19689,7 +19703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5388222474218088325, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: GameScene
+      value: ComputerScene
       objectReference: {fileID: 0}
     - target: {fileID: 5388222474218088325, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -19731,7 +19745,10 @@ PrefabInstance:
     - {fileID: 5209478328010258261, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5429289958580070961, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1904519456}
   m_SourcePrefab: {fileID: 100100000, guid: 817319833dd713d45af5c2121e9649c7, type: 3}
 --- !u!114 &1804250641252423442
 MonoBehaviour:

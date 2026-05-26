@@ -42,10 +42,10 @@ public class BankPopup : MonoBehaviour
 
     public void Open()
     {
-        gameObject.SetActive(true);
+        gameObject.SetActive(true);  // 먼저 활성화
         UpdateUI();
         StopAllCoroutines();
-        StartCoroutine(PopIn());
+        StartCoroutine(PopIn());     // 그 다음 코루틴
     }
 
     public void Close()
@@ -91,7 +91,7 @@ public class BankPopup : MonoBehaviour
     {
         if (!TryParseAmount(out int amount)) return;
         bool success = BankManager.instance.Deposit(amount);
-        SetFeedback(success ? $"{amount}$ 입금 완료" : "입금 실패: 금액을 확인하세요", success);
+        SetFeedback(success ? $"{amount}$ Deposit Complete" : "Deposit Failed: Check the amount", success);
         amountInput.text = "";
         UpdateUI();
     }
@@ -100,7 +100,7 @@ public class BankPopup : MonoBehaviour
     {
         if (!TryParseAmount(out int amount)) return;
         bool success = BankManager.instance.Withdraw(amount);
-        SetFeedback(success ? $"{amount}$ 출금 완료" : "출금 실패: 잔액을 확인하세요", success);
+        SetFeedback(success ? $"{amount}$ Withdrawal Complete" : "Withdrawal Failed: Check your balance", success);
         amountInput.text = "";
         UpdateUI();
     }
@@ -111,7 +111,7 @@ public class BankPopup : MonoBehaviour
     {
         if (!int.TryParse(amountInput.text, out amount) || amount <= 0)
         {
-            SetFeedback("올바른 금액을 입력하세요", false);
+            SetFeedback("Please enter a valid amount", false);
             return false;
         }
         return true;
@@ -119,10 +119,9 @@ public class BankPopup : MonoBehaviour
 
     private void UpdateUI()
     {
-        Debug.Log($"moneyText: {moneyText}, balanceText: {balanceText}");
         if (BankManager.instance == null) return;
-        if (moneyText != null)   moneyText.text   = $"보유 금액: {BankManager.instance.GetMoney()}$";
-        if (balanceText != null) balanceText.text = $"은행 잔액: {BankManager.instance.GetBalance()}$";
+        if (moneyText != null)   moneyText.text   = $"Money : {BankManager.instance.GetMoney()}$";
+        if (balanceText != null) balanceText.text = $"Bank : {BankManager.instance.GetBalance()}$";
         if (feedbackText != null) feedbackText.text = "";
     }
     private void SetFeedback(string message, bool success)
