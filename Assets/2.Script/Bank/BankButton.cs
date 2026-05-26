@@ -10,6 +10,6 @@ public class BankButton : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(() => bankPopup.Open());
+        GetComponentInChildren<Button>().onClick.AddListener(() => bankPopup.Open());
     }
 }

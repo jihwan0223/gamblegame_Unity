@@ -119,12 +119,12 @@ public class BankPopup : MonoBehaviour
 
     private void UpdateUI()
     {
+        Debug.Log($"moneyText: {moneyText}, balanceText: {balanceText}");
         if (BankManager.instance == null) return;
-        moneyText.text   = $"보유 금액: {BankManager.instance.GetMoney()}$";
-        balanceText.text = $"은행 잔액: {BankManager.instance.GetBalance()}$";
+        if (moneyText != null)   moneyText.text   = $"보유 금액: {BankManager.instance.GetMoney()}$";
+        if (balanceText != null) balanceText.text = $"은행 잔액: {BankManager.instance.GetBalance()}$";
         if (feedbackText != null) feedbackText.text = "";
     }
-
     private void SetFeedback(string message, bool success)
     {
         if (feedbackText == null) return;

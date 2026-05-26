@@ -1,12 +1,12 @@
+using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// 은행 로직 담당. 이자 시스템은 AddInterest()에서 구현 예정.
+/// 은행 로직 담당. 이자 시스템은 AddInterest()에서 구현 
 /// </summary>
 public class BankManager : MonoBehaviour
 {
     public static BankManager instance;
-
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -76,5 +76,9 @@ public class BankManager : MonoBehaviour
 
     // ── 조회 ────────────────────────────────────────────────────────────────
     public long GetBalance() => DataManager.instance.gameData.bankBalance;
-    public long GetMoney()   => DataManager.instance.gameData.money;
+    public long GetMoney()
+    {
+        Debug.Log($"DataManager: {DataManager.instance}, gameData: {DataManager.instance?.gameData}");
+        return DataManager.instance.gameData.money;
+    }
 }
