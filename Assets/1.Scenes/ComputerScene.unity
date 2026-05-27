@@ -1012,6 +1012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a27d4bee2fecba45a63681324cbfeed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BankManager
+  feedbackText: {fileID: 243299269}
 --- !u!1 &522539456
 GameObject:
   m_ObjectHideFlags: 0

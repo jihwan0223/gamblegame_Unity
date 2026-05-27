@@ -42,10 +42,10 @@ public class BankPopup : MonoBehaviour
 
     public void Open()
     {
-        gameObject.SetActive(true);  // 먼저 활성화
+        gameObject.SetActive(true);
         UpdateUI();
         StopAllCoroutines();
-        StartCoroutine(PopIn());     // 그 다음 코루틴
+        StartCoroutine(PopIn());
     }
 
     public void Close()

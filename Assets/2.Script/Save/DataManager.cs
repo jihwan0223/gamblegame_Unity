@@ -45,7 +45,7 @@ public class DataManager : MonoBehaviour
         {
             // 2. 파일이 없으면 기본값 세팅 (초기 자금 등)
             Debug.Log("저장 파일이 없어 새로 생성합니다.");
-            gameData.money = 10000; // 초기 돈 설정
+            gameData.money = 1000; // 초기 돈 설정
             gameData.skillLevels = new int[12]; 
             SaveGameData(); // 빈 파일 생성
         }

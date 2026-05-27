@@ -129,21 +129,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '0/10
+      value: '0/1
 
-        Upgrade 11'
+        ???'
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 31.1
+      value: 37.3
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: "\uC124\uBA8511\nMoney : 99000$"
+      value: 'Cost : 500$'
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 27.5
+      value: 38.75
       objectReference: {fileID: 0}
     - target: {fileID: 1477550892427588921, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Pivot.x
@@ -229,6 +229,10 @@ PrefabInstance:
       propertyPath: id
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: baseCost
+      value: 10000000
+      objectReference: {fileID: 0}
     - target: {fileID: 5904511462991956891, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -262,6 +266,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -272,6 +280,10 @@ PrefabInstance:
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Type
@@ -298,6 +310,10 @@ PrefabInstance:
       value: Skill (10)
       objectReference: {fileID: 0}
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -105
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -308,6 +324,10 @@ PrefabInstance:
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -447,21 +467,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '0/10
+      value: '5/5
 
         Upgrade 9'
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 31.1
+      value: 37.3
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: "\uC124\uBA859\nMoney : 99000$"
+      value: MAX
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 27.5
+      value: 38.75
       objectReference: {fileID: 0}
     - target: {fileID: 1477550892427588921, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Pivot.x
@@ -548,6 +568,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: baseCost
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: MyLines.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -596,6 +620,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -607,6 +635,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Type
       value: 1
@@ -614,7 +646,7 @@ PrefabInstance:
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8e7509fb1e66f4ab0a6d477d5d810035, type: 3}
+      objectReference: {fileID: 21300000, guid: 6de151e8da4354cde90bf5da4ed675b5, type: 3}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -632,6 +664,10 @@ PrefabInstance:
       value: Skill (8)
       objectReference: {fileID: 0}
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -105
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -642,6 +678,10 @@ PrefabInstance:
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -919,15 +959,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 31.1
+      value: 37.3
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: "\uC124\uBA8510\nMoney : 99000$"
+      value: 'Cost : 500$'
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 27.5
+      value: 38.75
       objectReference: {fileID: 0}
     - target: {fileID: 1477550892427588921, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Pivot.x
@@ -1013,6 +1053,10 @@ PrefabInstance:
       propertyPath: id
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: baseCost
+      value: 200000
+      objectReference: {fileID: 0}
     - target: {fileID: 5904511462991956891, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -1046,6 +1090,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -1056,6 +1104,10 @@ PrefabInstance:
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Type
@@ -1082,6 +1134,10 @@ PrefabInstance:
       value: Skill (9)
       objectReference: {fileID: 0}
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -105
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -1092,6 +1148,10 @@ PrefabInstance:
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1502,21 +1562,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '0/3
+      value: '3/3
 
-        Upgrade 4'
+        Blackjack Bonus'
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 31.1
+      value: 37.3
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: "\uC124\uBA854\nMoney : 99000$"
+      value: MAX
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 27.5
+      value: 38.75
       objectReference: {fileID: 0}
     - target: {fileID: 1477550892427588921, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Pivot.x
@@ -1603,6 +1663,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: baseCost
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: MyLines.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1655,6 +1719,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -1666,6 +1734,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Type
       value: 1
@@ -1673,7 +1745,7 @@ PrefabInstance:
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8e7509fb1e66f4ab0a6d477d5d810035, type: 3}
+      objectReference: {fileID: 21300000, guid: 6de151e8da4354cde90bf5da4ed675b5, type: 3}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -1691,6 +1763,10 @@ PrefabInstance:
       value: Skill (3)
       objectReference: {fileID: 0}
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -105
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -1701,6 +1777,10 @@ PrefabInstance:
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1960,19 +2040,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: "1/1\n\uAE30\uBCF8 1"
+      value: '1/1
+
+        Upgrade 1'
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 31.1
+      value: 37.3
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: "\uC124\uBA851\nMoney : 99000$"
+      value: MAX
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 27.5
+      value: 38.75
       objectReference: {fileID: 0}
     - target: {fileID: 1477550892427588921, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Pivot.x
@@ -2123,6 +2205,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -2133,6 +2219,10 @@ PrefabInstance:
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Type
@@ -2159,6 +2249,10 @@ PrefabInstance:
       value: Skill (0)
       objectReference: {fileID: 0}
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -105
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -2169,6 +2263,10 @@ PrefabInstance:
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2465,21 +2563,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '0/3
+      value: '3/3
 
-        Upgrade 2'
+        Loss Reduction'
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 31.1
+      value: 37.3
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: "\uC124\uBA852\nMoney : 99000$"
+      value: MAX
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 27.5
+      value: 38.75
       objectReference: {fileID: 0}
     - target: {fileID: 1477550892427588921, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Pivot.x
@@ -2566,6 +2664,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: baseCost
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: MyLines.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2618,6 +2720,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -2629,6 +2735,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Type
       value: 1
@@ -2636,7 +2746,7 @@ PrefabInstance:
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8e7509fb1e66f4ab0a6d477d5d810035, type: 3}
+      objectReference: {fileID: 21300000, guid: 6de151e8da4354cde90bf5da4ed675b5, type: 3}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -2654,6 +2764,10 @@ PrefabInstance:
       value: Skill (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -105
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -2664,6 +2778,10 @@ PrefabInstance:
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3009,21 +3127,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '0/10
+      value: '10/10
 
         Upgrade 12'
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 31.1
+      value: 37.3
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: "\uC124\uBA8512\nMoney : 99000$"
+      value: MAX
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 27.5
+      value: 38.75
       objectReference: {fileID: 0}
     - target: {fileID: 1477550892427588921, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Pivot.x
@@ -3109,6 +3227,10 @@ PrefabInstance:
       propertyPath: id
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: baseCost
+      value: 200000
+      objectReference: {fileID: 0}
     - target: {fileID: 5904511462991956891, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -3142,6 +3264,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -3153,6 +3279,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Type
       value: 1
@@ -3160,7 +3290,7 @@ PrefabInstance:
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8e7509fb1e66f4ab0a6d477d5d810035, type: 3}
+      objectReference: {fileID: 21300000, guid: 6de151e8da4354cde90bf5da4ed675b5, type: 3}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -3178,6 +3308,10 @@ PrefabInstance:
       value: Skill (11)
       objectReference: {fileID: 0}
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -105
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -3188,6 +3322,10 @@ PrefabInstance:
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3207,21 +3345,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '0/5
+      value: '1/5
 
-        Upgrade 5'
+        Work Boost'
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 31.1
+      value: 37.3
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: "\uC124\uBA855\nMoney : 99000$"
+      value: 'Cost : 750$'
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 27.5
+      value: 38.75
       objectReference: {fileID: 0}
     - target: {fileID: 1477550892427588921, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Pivot.x
@@ -3308,6 +3446,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: baseCost
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: MyLines.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3356,6 +3498,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -3366,6 +3512,10 @@ PrefabInstance:
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Type
@@ -3392,6 +3542,10 @@ PrefabInstance:
       value: Skill (4)
       objectReference: {fileID: 0}
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -105
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -3402,6 +3556,10 @@ PrefabInstance:
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3421,21 +3579,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '1/3
+      value: '3/3
 
-        Upgrade 3'
+        Win Reward Boost'
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 31.1
+      value: 37.3
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: "\uC124\uBA853\nMoney : 99000$"
+      value: MAX
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 27.5
+      value: 38.75
       objectReference: {fileID: 0}
     - target: {fileID: 1477550892427588921, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Pivot.x
@@ -3522,6 +3680,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: baseCost
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: MyLines.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3570,6 +3732,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -3581,6 +3747,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Type
       value: 1
@@ -3588,7 +3758,7 @@ PrefabInstance:
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8e7509fb1e66f4ab0a6d477d5d810035, type: 3}
+      objectReference: {fileID: 21300000, guid: 6de151e8da4354cde90bf5da4ed675b5, type: 3}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -3606,6 +3776,10 @@ PrefabInstance:
       value: Skill (2)
       objectReference: {fileID: 0}
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -105
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -3616,6 +3790,10 @@ PrefabInstance:
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3635,21 +3813,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '0/5
+      value: '5/5
 
-        Upgrade 8'
+        All In Bonus'
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 31.1
+      value: 37.3
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: "\uC124\uBA858\nMoney : 99000$"
+      value: MAX
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 27.5
+      value: 38.75
       objectReference: {fileID: 0}
     - target: {fileID: 1477550892427588921, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Pivot.x
@@ -3736,6 +3914,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: baseCost
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: MyLines.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3784,6 +3966,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -3795,6 +3981,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Type
       value: 1
@@ -3802,7 +3992,7 @@ PrefabInstance:
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8e7509fb1e66f4ab0a6d477d5d810035, type: 3}
+      objectReference: {fileID: 21300000, guid: 6de151e8da4354cde90bf5da4ed675b5, type: 3}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -3820,6 +4010,10 @@ PrefabInstance:
       value: Skill (7)
       objectReference: {fileID: 0}
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -105
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -3830,6 +4024,10 @@ PrefabInstance:
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3849,21 +4047,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '0/5
+      value: '1/5
 
         Upgrade 6'
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 31.1
+      value: 37.3
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: "\uC124\uBA856\nMoney : 99000$"
+      value: 'Cost : 750$'
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 27.5
+      value: 38.75
       objectReference: {fileID: 0}
     - target: {fileID: 1477550892427588921, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Pivot.x
@@ -3950,6 +4148,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: baseCost
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: MyLines.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3998,6 +4200,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -4008,6 +4214,10 @@ PrefabInstance:
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Type
@@ -4034,6 +4244,10 @@ PrefabInstance:
       value: Skill (5)
       objectReference: {fileID: 0}
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -105
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -4044,6 +4258,10 @@ PrefabInstance:
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5005,21 +5223,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '0/5
+      value: '1/5
 
-        Upgrade 7'
+        Luck'
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 31.1
+      value: 37.3
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: "\uC124\uBA857\nMoney : 99000$"
+      value: 'Cost : 750$'
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
-      value: 27.5
+      value: 38.75
       objectReference: {fileID: 0}
     - target: {fileID: 1477550892427588921, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Pivot.x
@@ -5106,6 +5324,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: baseCost
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: MyLines.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -5154,6 +5376,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -5164,6 +5390,10 @@ PrefabInstance:
     - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405120845851982410, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Type
@@ -5190,6 +5420,10 @@ PrefabInstance:
       value: Skill (6)
       objectReference: {fileID: 0}
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -105
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -5200,6 +5434,10 @@ PrefabInstance:
     - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322090008118986443, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

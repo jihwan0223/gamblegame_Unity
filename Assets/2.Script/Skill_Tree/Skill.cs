@@ -13,12 +13,14 @@ public class Skill : MonoBehaviour
     [Header("이 스킬을 배우면 나타날 선들")]
     public GameObject[] MyLines;
 
-    public int upgradeCost = 500;
-
     [Header("상태별 스프라이트")]
     [SerializeField] private Sprite normalSprite;  // 돈 부족
     [SerializeField] private Sprite affordSprite;  // 구매 가능
     [SerializeField] private Sprite maxSprite;     // 최대 레벨
+
+    [Header("업그레이드 비용")]
+    public int baseCost = 500;          // 기본 가격 (Inspector에서 설정)
+    public float costMultiplier = 1.5f; // 레벨당 배율
 
     private Image _image;
 
@@ -30,15 +32,12 @@ public class Skill : MonoBehaviour
 
     public void UpdateUI()
     {
-        if (skillTree == null || DataManager.instance == null || DataManager.instance.gameData == null) return;
-        if (id < 0 || id >= skillTree.SkillCaps.Length) return;
-        if (_image == null) _image = GetComponent<Image>();
-
         int currentLevel = DataManager.instance.gameData.skillLevels[id];
         int maxCap       = skillTree.SkillCaps[id];
+        int cost         = currentLevel >= maxCap ? 0 : GetUpgradeCost();
 
         TItleText.text       = $"{currentLevel}/{maxCap}\n{skillTree.SkillNames[id]}";
-        DescriptionText.text = $"{skillTree.SkillDescriptions[id]}\nMoney : {DataManager.instance.gameData.money}$";
+        DescriptionText.text = currentLevel >= maxCap ? "MAX" : $"Cost : {cost}$";
 
         // 스프라이트 교체
         if (_image != null)
@@ -48,7 +47,7 @@ public class Skill : MonoBehaviour
                 _image.sprite = maxSprite;
                 Debug.Log($"{id}번 sprite 변경됨: {_image.sprite.name}");
             }
-            else if (DataManager.instance.gameData.money >= upgradeCost) _image.sprite = affordSprite;
+            else if (DataManager.instance.gameData.money >= baseCost) _image.sprite = affordSprite;
             else _image.sprite = normalSprite;
         }
         else
@@ -67,6 +66,13 @@ public class Skill : MonoBehaviour
         }
     }
 
+        // Upgarde
+    private int GetUpgradeCost()
+    {
+        int currentLevel = DataManager.instance.gameData.skillLevels[id];
+        return Mathf.RoundToInt(baseCost * Mathf.Pow(costMultiplier, currentLevel));
+    }
+
     public void Buy()
     {
         // 스킬트리가 없으면 찾기
@@ -78,10 +84,10 @@ public class Skill : MonoBehaviour
             return;
         }
 
-        if (DataManager.instance.gameData.money >= upgradeCost &&
-            DataManager.instance.gameData.skillLevels[id] < skillTree.SkillCaps[id])
+        int cost = GetUpgradeCost();
+        if (DataManager.instance.gameData.money >= cost && DataManager.instance.gameData.skillLevels[id] < skillTree.SkillCaps[id])
         {
-            DataManager.instance.gameData.money -= upgradeCost;
+            DataManager.instance.gameData.money -= cost;
             DataManager.instance.gameData.skillLevels[id]++;
             DataManager.instance.SaveGameData();
             skillTree.UpdateAllSkillUI();

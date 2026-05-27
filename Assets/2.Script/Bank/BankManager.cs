@@ -1,12 +1,14 @@
+using System;
 using TMPro;
 using UnityEngine;
 
-/// <summary>
-/// 은행 로직 담당. 이자 시스템은 AddInterest()에서 구현 
-/// </summary>
 public class BankManager : MonoBehaviour
 {
     public static BankManager instance;
+
+    [Header("Text")]
+    [SerializeField] private TMP_Text feedbackText;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -23,11 +25,13 @@ public class BankManager : MonoBehaviour
         if (amount <= 0)
         {
             Debug.Log("입금 실패: 0 이하는 입금 불가");
+            SetFeedback("Deposit Failed: Amount must be greater than 0", false);
             return false;
         }
         if (amount > DataManager.instance.gameData.money)
         {
             Debug.Log("입금 실패: 보유 금액 초과");
+            SetFeedback("Deposit Failed: Insufficient funds", false);
             return false;
         }
 
@@ -36,6 +40,7 @@ public class BankManager : MonoBehaviour
         DataManager.instance.SaveGameData();
 
         Debug.Log($"입금 완료: {amount}$ / 잔액: {DataManager.instance.gameData.bankBalance}$");
+        SetFeedback($"Deposit Complete: {amount}$ / Balance: {DataManager.instance.gameData.bankBalance}$", true);
         return true;
     }
 
@@ -49,11 +54,13 @@ public class BankManager : MonoBehaviour
         if (amount <= 0)
         {
             Debug.Log("출금 실패: 0 이하는 출금 불가");
+            SetFeedback("Withdrawal Failed: Amount must be greater than 0", false);
             return false;
         }
         if (amount > DataManager.instance.gameData.bankBalance)
         {
             Debug.Log("출금 실패: 은행 잔액 초과");
+            SetFeedback("Withdrawal Failed: Insufficient bank balance", false);
             return false;
         }
 
@@ -62,6 +69,7 @@ public class BankManager : MonoBehaviour
         DataManager.instance.SaveGameData();
 
         Debug.Log($"출금 완료: {amount}$ / 은행 잔액: {DataManager.instance.gameData.bankBalance}$");
+        SetFeedback($"Withdrawal Complete: {amount}$ / Bank Balance: {DataManager.instance.gameData.bankBalance}$", true);
         return true;
     }
 
@@ -79,5 +87,12 @@ public class BankManager : MonoBehaviour
     public long GetMoney()
     {
         return DataManager.instance.gameData.money;
+    }
+
+    private void SetFeedback(string message, bool success)
+    {
+        if (feedbackText == null) return;
+        feedbackText.text  = message;
+        feedbackText.color = success ? Color.green : Color.red;
     }
 }
