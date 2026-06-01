@@ -1,6 +1,11 @@
 ﻿<Solution>
+  <Project Path="LeanLocalization.csproj" />
+  <Project Path="LeanLocalization.TMP.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="LeanLocalizationEditor.csproj" />
+  <Project Path="LeanCommon.csproj" />
   <Project Path="Assembly-CSharp-firstpass.csproj" />
+  <Project Path="CW.Common.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="UnityPlayModeSaver.csproj" />
   <Project Path="UnityPlayModeSaverEditor.csproj" />
