@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Text;
 using UnityEngine;
@@ -18,15 +19,32 @@ public class GroqAI : MonoBehaviour
     private IEnumerator PostRequest(int pScore, int dScore, OnResponse callback)
     {
         // 1. 프롬프트 설정 (영어 사용, 승패 판단 포함)
-        string systemRole = $"You are a blackjack dealer. Player:{pScore}, Dealer:{dScore}. " +
-                            "Decide who won and say a short charismatic line in English (Max 2 sentences).";
+        string systemRole;
+
+        if (LanguageToggle.Instance._isKorean)
+        {
+            systemRole =
+                $"당신은 블랙잭 딜러입니다. 플레이어:{pScore}, 딜러:{dScore}. " +
+                "누가 이겼는지 판단하고 짧고 카리스마 있는 한국어 대사를 2문장 이하로 말하세요.";
+        }
+        else
+        {
+            systemRole =
+                $"You are a blackjack dealer. Player:{pScore}, Dealer:{dScore}. " +
+                "Decide who won and say a short charismatic line in English (Max 2 sentences).";
+        }
 
         // 2. JSON 데이터 구성
         RequestData data = new RequestData();
         data.model = "llama-3.1-8b-instant";
         data.messages = new Message[] { 
             new Message { role = "system", content = systemRole },
-            new Message { role = "user", content = "The game is over. What's your comment?" }
+            new Message
+            {
+                role = "user",
+                content = LanguageToggle.Instance._isKorean
+                ? "게임이 끝났습니다." : "The game is over."
+            }
         };
 
         string jsonData = JsonUtility.ToJson(data);
@@ -50,7 +68,11 @@ public class GroqAI : MonoBehaviour
             else
             {
                 Debug.LogError($"AI 에러: {request.error}");
-                callback("...The house always wins, but my connection doesn't.");
+                callback(
+                LanguageToggle.Instance._isKorean
+                    ? "...게임에 에러가 발생했습니다."
+                    : "...Game Error."
+                    );
             }
         }
     }

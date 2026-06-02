@@ -25,13 +25,15 @@ public class BankManager : MonoBehaviour
         if (amount <= 0)
         {
             Debug.Log("입금 실패: 0 이하는 입금 불가");
-            SetFeedback("Deposit Failed: Amount must be greater than 0", false);
+            if(LanguageToggle.Instance._isKorean) SetFeedback("입금 실패: 금액은 0보다 커야 합니다", false);
+            else SetFeedback("Deposit Failed: Amount must be greater than 0", false);
             return false;
         }
         if (amount > DataManager.instance.gameData.money)
         {
             Debug.Log("입금 실패: 보유 금액 초과");
-            SetFeedback("Deposit Failed: Insufficient funds", false);
+            if(LanguageToggle.Instance._isKorean) SetFeedback("입금 실패: 잔액이 부족합니다", false);
+            else SetFeedback("Deposit Failed: Insufficient funds", false);
             return false;
         }
 
@@ -40,7 +42,8 @@ public class BankManager : MonoBehaviour
         DataManager.instance.SaveGameData();
 
         Debug.Log($"입금 완료: {amount}$ / 잔액: {DataManager.instance.gameData.bankBalance}$");
-        SetFeedback($"Deposit Complete: {amount}$ / Balance: {DataManager.instance.gameData.bankBalance}$", true);
+        if(LanguageToggle.Instance._isKorean) SetFeedback($"입금 완료: {amount}$ / Balance: {DataManager.instance.gameData.bankBalance}$", true);
+        else SetFeedback($"Deposit Complete: {amount}$ / Balance: {DataManager.instance.gameData.bankBalance}$", true);
         return true;
     }
 
@@ -54,13 +57,15 @@ public class BankManager : MonoBehaviour
         if (amount <= 0)
         {
             Debug.Log("출금 실패: 0 이하는 출금 불가");
-            SetFeedback("Withdrawal Failed: Amount must be greater than 0", false);
+            if(LanguageToggle.Instance._isKorean) SetFeedback("출금 실패: 0 이하는 출금이 불가합니다", false);
+            else SetFeedback("Withdrawal Failed: Amount must be greater than 0", false);
             return false;
         }
         if (amount > DataManager.instance.gameData.bankBalance)
         {
             Debug.Log("출금 실패: 은행 잔액 초과");
-            SetFeedback("Withdrawal Failed: Insufficient bank balance", false);
+            if(LanguageToggle.Instance._isKorean) SetFeedback("출금 실패: 잔액이 부족합니다", false);
+            else SetFeedback("Withdrawal Failed: Insufficient bank balance", false);
             return false;
         }
 
@@ -69,7 +74,8 @@ public class BankManager : MonoBehaviour
         DataManager.instance.SaveGameData();
 
         Debug.Log($"출금 완료: {amount}$ / 은행 잔액: {DataManager.instance.gameData.bankBalance}$");
-        SetFeedback($"Withdrawal Complete: {amount}$ / Bank Balance: {DataManager.instance.gameData.bankBalance}$", true);
+        if(LanguageToggle.Instance._isKorean) SetFeedback($"출금 완료: {amount}$ / 은행 잔액: {DataManager.instance.gameData.bankBalance}$", true);
+        else SetFeedback($"Withdrawal Complete: {amount}$ / Bank Balance: {DataManager.instance.gameData.bankBalance}$", true);
         return true;
     }
 

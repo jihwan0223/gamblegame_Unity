@@ -26,7 +26,8 @@ public class DealerAI : MonoBehaviour
     // 1. 딜러 카드 뽑기 로직 -----------------------------------------
     public IEnumerator PlayTurn(int playerTotalScore)
     {   
-        speechText.text = "Dealer's turn...";
+        if (LanguageToggle.Instance._isKorean) speechText.text = "딜러의 차례...";
+        else speechText.text = "Dealer's turn...";
         yield return new WaitForSeconds(1.0f);
 
         dealerHand.RevealAllCards();
@@ -36,7 +37,8 @@ public class DealerAI : MonoBehaviour
         if (playerTotalScore == 21)
         {
             Debug.Log("<color=cyan>[결과] 플레이어 블랙잭.</color>");
-            LWinText.text = "BlackJack!!";
+            if (LanguageToggle.Instance._isKorean) LWinText.text = "블랙잭!!";
+            else LWinText.text = "BlackJack!!";
 
             bettingManager.OnGameWin(200f);
 
@@ -48,8 +50,8 @@ public class DealerAI : MonoBehaviour
         if (playerTotalScore > 21)
         {
             Debug.Log($"<color=red>플레이어 버스트{playerTotalScore}</color>");
-            LWinText.text = "Bust!";
-
+            if (LanguageToggle.Instance._isKorean) LWinText.text = "버스트!";
+            else LWinText.text = "Bust!";
             bettingManager.OnGameLose();
 
             RequestAIDecision(playerTotalScore, dealerHand.GetTotalScore());
@@ -81,28 +83,32 @@ public class DealerAI : MonoBehaviour
         {
             // 딜러 버스트 → 플레이어 승
             Debug.Log($"<color=green>[결과] 딜러 버스트({dealerTotalScore})! 플레이어 승리.</color>");
-            LWinText.text = "You Win!";
+            if (LanguageToggle.Instance._isKorean) LWinText.text = "승리!";
+            else LWinText.text = "You Win!";
             bettingManager.OnGameWin(100f);
         }
         else if (playerTotalScore > dealerTotalScore)
         {
             // 플레이어 승
             Debug.Log($"<color=green>[결과] 플레이어({playerTotalScore}) 승리! (딜러: {dealerTotalScore})</color>");
-            LWinText.text = "You Win!";
+            if (LanguageToggle.Instance._isKorean) LWinText.text = "승리!";
+            else LWinText.text = "You Win!";
             bettingManager.OnGameWin(100f);
         }
         else if (playerTotalScore < dealerTotalScore)
         {
             // 딜러 승
             Debug.Log($"<color=red>[결과] 딜러({dealerTotalScore}) 승리! (플레이어: {playerTotalScore})</color>");
-            LWinText.text = "You Lose...";
+            if (LanguageToggle.Instance._isKorean) LWinText.text = "패배...";
+            else LWinText.text = "You Lose...";
             bettingManager.OnGameLose();
         }
         else
         {
             // 무승부
             Debug.Log($"<color=white>[결과] {playerTotalScore}점으로 무승부(Push)입니다.</color>");
-            LWinText.text = "Draw!";
+            if (LanguageToggle.Instance._isKorean) LWinText.text = "무승부!";
+            else LWinText.text = "Draw!";
             bettingManager.OnGameDraw();
         }
 

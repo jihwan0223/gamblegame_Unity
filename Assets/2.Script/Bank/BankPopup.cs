@@ -91,7 +91,8 @@ public class BankPopup : MonoBehaviour
     {
         if (!TryParseAmount(out int amount)) return;
         bool success = BankManager.instance.Deposit(amount);
-        SetFeedback(success ? $"{amount}$ Deposit Complete" : "Deposit Failed: Check the amount", success);
+        if(LanguageToggle.Instance._isKorean) SetFeedback(success ? $"{amount}$ 입금 완료" : "입금 실패: 금액을 확인하세요", success);
+        else SetFeedback(success ? $"{amount}$ Deposit Complete" : "Deposit Failed: Check the amount", success);
         amountInput.text = "";
         UpdateUI();
     }
@@ -100,7 +101,8 @@ public class BankPopup : MonoBehaviour
     {
         if (!TryParseAmount(out int amount)) return;
         bool success = BankManager.instance.Withdraw(amount);
-        SetFeedback(success ? $"{amount}$ Withdrawal Complete" : "Withdrawal Failed: Check your balance", success);
+        if(LanguageToggle.Instance._isKorean) SetFeedback(success ? $"{amount}$ 출금 완료" : "출금 실패: 잔액을 확인하세요", success);
+        else SetFeedback(success ? $"{amount}$ Withdrawal Complete" : "Withdrawal Failed: Check your balance", success);
         amountInput.text = "";
         UpdateUI();
     }
@@ -111,7 +113,8 @@ public class BankPopup : MonoBehaviour
     {
         if (!int.TryParse(amountInput.text, out amount) || amount <= 0)
         {
-            SetFeedback("Please enter a valid amount", false);
+            if(LanguageToggle.Instance._isKorean) SetFeedback("올바른 금액을 입력해주세요", false);
+            else SetFeedback("Please enter a valid amount", false);
             return false;
         }
         return true;
@@ -120,8 +123,13 @@ public class BankPopup : MonoBehaviour
     private void UpdateUI()
     {
         if (BankManager.instance == null) return;
-        if (moneyText != null)   moneyText.text   = $"Money : {BankManager.instance.GetMoney()}$";
-        if (balanceText != null) balanceText.text = $"Bank : {BankManager.instance.GetBalance()}$";
+        if (moneyText != null) moneyText.text = LanguageToggle.Instance._isKorean
+        ? $"소지금 : {BankManager.instance.GetMoney()}$"
+        : $"Money : {BankManager.instance.GetMoney()}$";
+
+        if (balanceText != null)balanceText.text = LanguageToggle.Instance._isKorean
+        ? $"은행 : {BankManager.instance.GetBalance()}$"
+        : $"Bank : {BankManager.instance.GetBalance()}$";
         if (feedbackText != null) feedbackText.text = "";
     }
     private void SetFeedback(string message, bool success)

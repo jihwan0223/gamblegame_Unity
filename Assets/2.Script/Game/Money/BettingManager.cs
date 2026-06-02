@@ -14,7 +14,7 @@ public class BettingManager : MonoBehaviour
     private long currentBet = 0;
     private bool isBetDone = false;
 
-    // 배팅 버튼
+    // 베팅 버튼
     public void OnClickBet()
     {
         if(isBetDone) return;
@@ -23,22 +23,26 @@ public class BettingManager : MonoBehaviour
 
         if (!long.TryParse(inputField.text, out long bet))
         {
-            bettingMessageText.text = "Enter betting amount";
+            if(LanguageToggle.Instance._isKorean) bettingMessageText.text = "베팅 금액 입력";
+            else bettingMessageText.text = "Enter betting amount";
             return;
         }
 
         if (bet <= 0 || bet > DataManager.instance.gameData.money)
         {
-            bettingMessageText.text = "Please enter the correct betting amount..!";
+            if(LanguageToggle.Instance._isKorean) bettingMessageText.text = "올바른 베팅 금액을 입력하세요!";
+            else bettingMessageText.text = "Please enter the correct betting amount..!";
             return;
+
         }
 
         currentBet = bet;
         DataManager.instance.gameData.money -= currentBet;
         DataManager.instance.SaveGameData();
 
-        Debug.Log("배팅 완료 : " + currentBet);
-        currentBettingText.text = $"betting : {currentBet}";
+        Debug.Log("베팅 완료 : " + currentBet);
+        if(LanguageToggle.Instance._isKorean) currentBettingText.text = $"베팅 : {currentBet}";
+        else currentBettingText.text = $"betting : {currentBet}";
 
         isBetDone = true;
 

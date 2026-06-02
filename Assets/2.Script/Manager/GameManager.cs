@@ -1,7 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Lean.Localization;
 
 public class GameManager : MonoBehaviour
 {
@@ -93,8 +93,9 @@ public class GameManager : MonoBehaviour
 
         hitButton.interactable = false;
         stayButton.interactable = false;
-
-        dealerAI.speechText.text = "Next Turn, Good Luck!";
+        
+        if (LanguageToggle.Instance._isKorean) dealerAI.speechText.text = LeanLocalization.GetTranslationText("다음턴! 행운을 빕니다!");
+        else dealerAI.speechText.text = LeanLocalization.GetTranslationText("Next Turn, Good Luck!");
         dealerAI.LWinText.text = "";
         
         Debug.Log("<color=orange>판이 정리되고 덱이 초기화되었습니다.</color>");

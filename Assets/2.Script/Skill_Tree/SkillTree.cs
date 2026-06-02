@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using DG.Tweening.Plugins;
+using System;
 
 public class SkillTree : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class SkillTree : MonoBehaviour
     public int[] SkillLevels;
     public int[] SkillCaps;
     public string[] SkillNames;
+    private string[] SkillNamesEN;
+    private string[] SkillNamesKR;
     public string[] SkillDescriptions;
 
     [Header("오브젝트 연결")]
@@ -21,9 +25,15 @@ public class SkillTree : MonoBehaviour
 
     private void Start()
     {
-        SkillCaps        = new[] { 1, 3, 3, 3, 5, 5, 5, 5, 5, 10, 1, 10 };
-        SkillNames       = new[] { "Upgrade 1", "Loss Reduction", "Win Reward Boost", "Blackjack Bonus", "Work Boost", "Upgrade 6", "Luck", "All In Bonus", "Upgrade 9", "Upgrade 10", "???", "Upgrade 12" };
+        SkillCaps = new[] { 1, 3, 3, 3, 5, 5, 5, 5, 5, 10, 1, 10 };
+        SkillNamesEN = new[] { "Upgrade 1", "Loss Reduction", "Win Reward Boost", "Blackjack Bonus", "Work Boost", "Upgrade 6", "Luck", "All In Bonus", "Upgrade 9", "Upgrade 10", "???", "Upgrade 12" };
+        SkillNamesKR = new[] {"업그레이드 1","패배 손실 감소", "승리 보상 증가", "블랙잭 보너스", "노동 수입 증가", "업그레이드 6", "행운", "올인 보너스", "업그레이드 9", "업그레이드 10", "???", "업그레이드 12" };
         SkillDescriptions = new[] { "설명 1", "설명2", "설명3", "설명4", "설명5", "설명6", "설명7", "설명8", "설명9", "설명 10", "", "설명12" };
+
+        // 번역
+        SkillNames = LanguageToggle.Instance._isKorean
+        ? SkillNamesKR
+        : SkillNamesEN;
 
         if (DataManager.instance != null && DataManager.instance.gameData != null)
             SkillLevels = DataManager.instance.gameData.skillLevels;
