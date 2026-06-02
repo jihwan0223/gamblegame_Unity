@@ -12,9 +12,14 @@ public class SkillTree : MonoBehaviour
     public int[] SkillLevels;
     public int[] SkillCaps;
     public string[] SkillNames;
+    public string[] SkillDescriptions;
+
+    [Header("한 / 영")]
     private string[] SkillNamesEN;
     private string[] SkillNamesKR;
-    public string[] SkillDescriptions;
+    
+    private string[] SkillDescriptionsEN;
+    private string[] SkillDescriptionsKR;
 
     [Header("오브젝트 연결")]
     public List<Skill> SkillList = new List<Skill>();
@@ -26,14 +31,16 @@ public class SkillTree : MonoBehaviour
     private void Start()
     {
         SkillCaps = new[] { 1, 3, 3, 3, 5, 5, 5, 5, 5, 10, 1, 10 };
-        SkillNamesEN = new[] { "Upgrade 1", "Loss Reduction", "Win Reward Boost", "Blackjack Bonus", "Work Boost", "Upgrade 6", "Luck", "All In Bonus", "Upgrade 9", "Upgrade 10", "???", "Upgrade 12" };
-        SkillNamesKR = new[] {"업그레이드 1","패배 손실 감소", "승리 보상 증가", "블랙잭 보너스", "노동 수입 증가", "업그레이드 6", "행운", "올인 보너스", "업그레이드 9", "업그레이드 10", "???", "업그레이드 12" };
-        SkillDescriptions = new[] { "설명 1", "설명2", "설명3", "설명4", "설명5", "설명6", "설명7", "설명8", "설명9", "설명 10", "", "설명12" };
+        SkillNamesEN = new[] { "Upgrade!", "Loss Reduction", "Win Reward Boost", "Blackjack Bonus", "Work Boost", "Upgrade Discount", "Luck", "All In Bonus", "Double Reward Chance", "Loss Refund", "???", "Jackpot Chance" };
+        SkillNamesKR = new[] { "업그레이드!","패배 손실 감소", "승리 보상 증가", "블랙잭 보너스", "알바 수입 증가", "업그레이드 할인", "행운", "올인 보너스", "보상 2배 확률", "패배 환급", "???", "잭팟 확률" };
+
+        SkillDescriptionsEN = new[] { "Unlock upgrades", "Less loss on defeat", "More win rewards", "More Blackjack rewards", "More Work income", "Cheaper upgrades", "More luck", "All-in reward bonus", "Chance for x2 rewards", "Partial loss refund", "???", "Jackpot chance" };
+
+        SkillDescriptionsKR = new[] { "업그레이드 해금", "패배 손실 감소", "승리 보상 증가", "블랙잭 보상 증가", "알바 수입 증가", "업그레이드 비용 감소", "행운 증가", "올인 보너스", "보상 2배 확률", "패배 금액 환급", "???", "잭팟 확률 증가" };
 
         // 번역
-        SkillNames = LanguageToggle.Instance._isKorean
-        ? SkillNamesKR
-        : SkillNamesEN;
+        SkillNames = LanguageToggle.Instance._isKorean ? SkillNamesKR : SkillNamesEN;
+        SkillDescriptions = LanguageToggle.Instance._isKorean ? SkillDescriptionsKR : SkillDescriptionsEN;
 
         if (DataManager.instance != null && DataManager.instance.gameData != null)
             SkillLevels = DataManager.instance.gameData.skillLevels;
