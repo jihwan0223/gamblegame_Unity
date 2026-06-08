@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using static SkillTree;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
-public class Skill : MonoBehaviour
+public class Skill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public int id;
     public TMP_Text TItleText;
@@ -65,9 +66,13 @@ public class Skill : MonoBehaviour
                 if (line != null) line.SetActive(isLearned);
             }
         }
+
+        // 커서 올린 상태면 툴팁 실시간 갱신
+        if (SkillTooltip.instance.hoveredSkill == this)
+        ShowTooltip();
     }
 
-        // Upgarde
+    // Upgarde
     private int GetUpgradeCost()
     {
         int currentLevel = DataManager.instance.gameData.skillLevels[id];
@@ -100,5 +105,51 @@ public class Skill : MonoBehaviour
         {
             Debug.Log("돈이 부족하거나 최대 레벨입니다.");
         }
+
+        skillTree.UpdateAllSkillUI();
+    }
+
+    private void ShowTooltip()
+    {
+        int currentLevel = DataManager.instance.gameData.skillLevels[id];
+        int maxCap       = skillTree.SkillCaps[id];
+        int nextLevel    = Mathf.Min(currentLevel + 1, maxCap);
+
+        float currentEffect = currentLevel * 5f;
+        float nextEffect    = nextLevel * 5f;
+
+        string currentDesc = skillTree.SkillDescriptions[id].Replace("n", currentEffect.ToString());
+        string nextDesc    = skillTree.SkillDescriptions[id].Replace("n", nextEffect.ToString());
+
+        string tooltip;
+        if (currentLevel <= 0)
+        {
+            // 아직 업글 안한 경우
+            tooltip = $"{skillTree.SkillNames[id]}\n{nextDesc}";
+        }
+        else if (currentLevel >= maxCap)
+        {
+            // 만렙
+            tooltip = $"{skillTree.SkillNames[id]}\n{currentDesc}";
+        }
+        else
+        {
+            // 업글 가능 → 현재 → 다음 비교
+            tooltip = $"{skillTree.SkillNames[id]}\n{currentDesc}\n→ {nextDesc}";
+        }
+
+        SkillTooltip.instance.Show(tooltip);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        SkillTooltip.instance.hoveredSkill = this;
+        ShowTooltip();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        SkillTooltip.instance.hoveredSkill = null;
+        SkillTooltip.instance.Hide();
     }
 }

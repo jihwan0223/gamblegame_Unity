@@ -34,10 +34,10 @@ public class SkillTree : MonoBehaviour
         SkillNamesEN = new[] { "Upgrade!", "Loss Reduction", "Win Reward Boost", "Blackjack Bonus", "Work Boost", "Upgrade Discount", "Luck", "All In Bonus", "Double Reward Chance", "Loss Refund", "???", "Jackpot Chance" };
         SkillNamesKR = new[] { "업그레이드!","패배 손실 감소", "승리 보상 증가", "블랙잭 보너스", "알바 수입 증가", "업그레이드 할인", "행운", "올인 보너스", "보상 2배 확률", "패배 환급", "???", "잭팟 확률" };
 
-        SkillDescriptionsEN = new[] { "Unlock upgrades", "Less loss on defeat", "More win rewards", "More Blackjack rewards", "More Work income", "Cheaper upgrades", "More luck", "All-in reward bonus", "Chance for x2 rewards", "Partial loss refund", "???", "Jackpot chance" };
+        SkillDescriptionsKR = new[] { "업그레이드를 해금합니다", "패배 손실이 n%만큼 감소합니다", "승리 보상이 n%만큼 증가합니다", "블랙잭 보상이 n%만큼 증가합니다", "알바 수입이 n%만큼 증가합니다", "업그레이드 비용이 n%만큼 감소합니다", "행운이 n%만큼 증가합니다", "올인 보상이 n%만큼 증가합니다", "보상 2배 확률이 n%만큼 증가합니다", "패배 금액의 n%를 환급받습니다", "???", "잭팟 확률이 n%만큼 증가합니다" };
 
-        SkillDescriptionsKR = new[] { "업그레이드 해금", "패배 손실 감소", "승리 보상 증가", "블랙잭 보상 증가", "알바 수입 증가", "업그레이드 비용 감소", "행운 증가", "올인 보너스", "보상 2배 확률", "패배 금액 환급", "???", "잭팟 확률 증가" };
-
+        SkillDescriptionsEN = new[] { "Unlocks upgrades", "Reduces defeat loss by n%", "Increases win reward by n%", "Increases Blackjack reward by n%", "Increases work income by n%", "Reduces upgrade cost by n%", "Increases luck by n%", "Increases all-in reward by n%", "Increases double reward chance by n%", "Refunds n% of defeat loss", "???", "Increases jackpot chance by n%" };
+        
         // 번역
         SkillNames = LanguageToggle.Instance._isKorean ? SkillNamesKR : SkillNamesEN;
         SkillDescriptions = LanguageToggle.Instance._isKorean ? SkillDescriptionsKR : SkillDescriptionsEN;
