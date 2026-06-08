@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static SkillTree;
+using UnityEngine.SceneManagement;
 
 public class Skill : MonoBehaviour
 {
@@ -75,6 +76,8 @@ public class Skill : MonoBehaviour
 
     public void Buy()
     {
+        if (id == 10) SceneManager.LoadScene("EndingScene");
+
         // 스킬트리가 없으면 찾기
         // if (skillTree == null) skillTree = SkillTree.skillTree;
 

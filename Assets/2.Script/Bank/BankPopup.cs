@@ -91,8 +91,12 @@ public class BankPopup : MonoBehaviour
     {
         if (!TryParseAmount(out int amount)) return;
         bool success = BankManager.instance.Deposit(amount);
-        if(LanguageToggle.Instance._isKorean) SetFeedback(success ? $"{amount}$ 입금 완료" : "입금 실패: 금액을 확인하세요", success);
-        else SetFeedback(success ? $"{amount}$ Deposit Complete" : "Deposit Failed: Check the amount", success);
+        if (success)
+        {
+            if (LanguageToggle.Instance._isKorean) SetFeedback($"{amount}$ 입금 완료", true);
+            else SetFeedback($"{amount}$ Deposit Complete", true);
+        }
+        else SetFeedback(BankManager.instance.LastError, false);
         amountInput.text = "";
         UpdateUI();
     }
@@ -101,8 +105,12 @@ public class BankPopup : MonoBehaviour
     {
         if (!TryParseAmount(out int amount)) return;
         bool success = BankManager.instance.Withdraw(amount);
-        if(LanguageToggle.Instance._isKorean) SetFeedback(success ? $"{amount}$ 출금 완료" : "출금 실패: 잔액을 확인하세요", success);
-        else SetFeedback(success ? $"{amount}$ Withdrawal Complete" : "Withdrawal Failed: Check your balance", success);
+        if (success)
+        {
+            if (LanguageToggle.Instance._isKorean) SetFeedback($"{amount}$ 출금 완료", true);
+            else SetFeedback($"{amount}$ Withdrawal Complete", true);
+        }
+        else SetFeedback(BankManager.instance.LastError, false);
         amountInput.text = "";
         UpdateUI();
     }

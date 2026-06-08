@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1.Scenes/UpgradeScene.unity
     guid: c142ad61e1709f84f9a7251bcc577724
+  - enabled: 1
+    path: Assets/1.Scenes/EndingScene.unity
+    guid: b8ea447d1ebb05f4a8518ea93a7dead0
+  - enabled: 1
+    path: Assets/1.Scenes/PrivateScene.unity
+    guid: 96cd353e28594e340aec180c962571fc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

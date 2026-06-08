@@ -86,8 +86,8 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _TextureHeight: 1024
-    - _TextureWidth: 1024
+    - _TextureHeight: 4096
+    - _TextureWidth: 4096
     - _UnderlayDilate: 0
     - _UnderlayOffsetX: 0
     - _UnderlayOffsetY: 0
@@ -126,24 +126,24 @@ MonoBehaviour:
     m_FaceIndex: 0
     m_FamilyName: Maplestory
     m_StyleName: Light
-    m_PointSize: 90
+    m_PointSize: 67
     m_Scale: 1
     m_UnitsPerEM: 1000
-    m_LineHeight: 100.350006
-    m_AscentLine: 76.5
-    m_CapLine: 63
-    m_MeanLine: 45
+    m_LineHeight: 74.705
+    m_AscentLine: 56.95
+    m_CapLine: 47
+    m_MeanLine: 33
     m_Baseline: 0
-    m_DescentLine: -23.85
-    m_SuperscriptOffset: 76.5
+    m_DescentLine: -17.755
+    m_SuperscriptOffset: 56.95
     m_SuperscriptSize: 0.5
-    m_SubscriptOffset: -23.85
+    m_SubscriptOffset: -17.755
     m_SubscriptSize: 0.5
-    m_UnderlineOffset: -13.500001
-    m_UnderlineThickness: 4.5
-    m_StrikethroughOffset: 18
-    m_StrikethroughThickness: 4.5
-    m_TabWidth: 24
+    m_UnderlineOffset: -10.05
+    m_UnderlineThickness: 3.35
+    m_StrikethroughOffset: 13.2
+    m_StrikethroughThickness: 3.35
+    m_TabWidth: 18
   m_Material: {fileID: -8590751249792456670}
   m_SourceFontFileGUID: db09d728f9e7d644eabc5e342831288c
   m_CreationSettings:
@@ -151,15 +151,15 @@ MonoBehaviour:
     sourceFontFileGUID: db09d728f9e7d644eabc5e342831288c
     faceIndex: 0
     pointSizeSamplingMode: 0
-    pointSize: 90
+    pointSize: 67
     padding: 9
     paddingMode: 2
     packingMode: 0
-    atlasWidth: 1024
-    atlasHeight: 1024
-    characterSetSelectionMode: 7
-    characterSequence: 
-    referencedFontAssetGUID: 
+    atlasWidth: 4096
+    atlasHeight: 4096
+    characterSetSelectionMode: 5
+    characterSequence: 32-126,44032-55203,12593-12643,8200-9900
+    referencedFontAssetGUID: 732a15b4988d3bf4bb6a2ff219ace402
     referencedTextAssetGUID: 
     fontStyle: 0
     fontStyleModifier: 0
@@ -177,16 +177,16 @@ MonoBehaviour:
   m_IsMultiAtlasTexturesEnabled: 0
   m_GetFontFeatures: 1
   m_ClearDynamicDataOnBuild: 1
-  m_AtlasWidth: 1024
-  m_AtlasHeight: 1024
+  m_AtlasWidth: 4096
+  m_AtlasHeight: 4096
   m_AtlasPadding: 9
   m_AtlasRenderMode: 4165
   m_UsedGlyphRects: []
   m_FreeGlyphRects:
   - m_X: 0
     m_Y: 0
-    m_Width: 1023
-    m_Height: 1023
+    m_Width: 4095
+    m_Height: 4095
   m_FontFeatureTable:
     m_MultipleSubstitutionRecords: []
     m_LigatureSubstitutionRecords: []
@@ -10426,7 +10426,7 @@ Texture2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Maplestory Light Atlas
+  m_Name: Maplestory Light SDF Atlas
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000

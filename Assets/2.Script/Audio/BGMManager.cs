@@ -14,17 +14,20 @@ public class BGMManager : MonoBehaviour
     private AudioSource _source;
     private int         _lastIndex = -1;
 
+    private static BGMManager _instance;
+
     private void Awake()
     {
-        // 씬 전환해도 유지
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
         DontDestroyOnLoad(gameObject);
 
         _source             = GetComponent<AudioSource>();
         _source.loop        = false;
-        _source.playOnAwake = false;
-
-        if (mixerGroup != null)
-            _source.outputAudioMixerGroup = mixerGroup;
     }
 
     private void Start()

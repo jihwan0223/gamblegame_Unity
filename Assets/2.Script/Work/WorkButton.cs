@@ -17,18 +17,18 @@ public class WorkButton : MonoBehaviour
     public void OnClickWork()
     {
         if (DataManager.instance == null) return;
-
-        // 카드 1장 생성
+    
         Card newCard = workDeckManager.DrawCard();
-
+    
         if (newCard != null)
         {
             playerHand.AddCard(newCard);
-
-            // 돈 +1
-            DataManager.instance.gameData.money += rewardPerCard;
+    
+            // 업그레이드 적용 (알바 수입 증가)
+            long income = UpgradeManager.instance.CalcWorkIncome(rewardPerCard);
+            DataManager.instance.gameData.money += income;
             DataManager.instance.SaveGameData();
-
+    
             UpdateMoneyUI();
         }
 
