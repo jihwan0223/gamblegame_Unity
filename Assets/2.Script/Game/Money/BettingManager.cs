@@ -11,86 +11,119 @@ public class BettingManager : MonoBehaviour
     [Header("Manager")]
     public GameManager gameManager;
 
+    [Header("Next Card Button")]
+    [SerializeField] private GameObject nextCardButton;
+
     private long currentBet = 0;
     private bool isBetDone = false;
 
+    private bool _isAllIn = false;      // 올인
+
+
+    private void Start()
+    {
+        inputField.onSubmit.AddListener((value) => OnClickBet());
+    }
+        
     // 베팅 버튼
     public void OnClickBet()
     {
-        if(isBetDone) return;
+        if (isBetDone) return;
+        if (string.IsNullOrEmpty(inputField.text)) return;
 
-        if(string.IsNullOrEmpty(inputField.text)) return;
+        string cleanText = inputField.text.Replace(",", "").Trim();
 
-        if (!long.TryParse(inputField.text, out long bet))
+        if (!long.TryParse(cleanText, out long bet))
         {
-            if(LanguageToggle.Instance._isKorean) bettingMessageText.text = "베팅 금액 입력";
-            else bettingMessageText.text = "Enter betting amount";
+            bettingMessageText.text = LanguageToggle.Instance._isKorean
+                ? "올바른 베팅 금액을 입력하세요!" : "Please enter the correct betting amount..!";
             return;
         }
 
         if (bet <= 0 || bet > DataManager.instance.gameData.money)
         {
-            if(LanguageToggle.Instance._isKorean) bettingMessageText.text = "올바른 베팅 금액을 입력하세요!";
-            else bettingMessageText.text = "Please enter the correct betting amount..!";
+            bettingMessageText.text = LanguageToggle.Instance._isKorean
+                ? "올바른 베팅 금액을 입력하세요!" : "Please enter the correct betting amount..!";
             return;
-
         }
+
+        // 올인 체크 (전재산 베팅)
+        _isAllIn = bet == DataManager.instance.gameData.money;
 
         currentBet = bet;
         DataManager.instance.gameData.money -= currentBet;
         DataManager.instance.SaveGameData();
 
-        Debug.Log("베팅 완료 : " + currentBet);
-        if(LanguageToggle.Instance._isKorean) currentBettingText.text = $"베팅 : {currentBet}";
-        else currentBettingText.text = $"betting : {currentBet}";
+        if (LanguageToggle.Instance._isKorean)
+            currentBettingText.text = _isAllIn ? $"올인!! : {currentBet:N0}" : $"베팅 : {currentBet:N0}";
+        else
+            currentBettingText.text = _isAllIn ? $"ALL IN!! : {currentBet:N0}" : $"Betting : {currentBet:N0}";
 
         isBetDone = true;
-
         gameManager.StartGame();
+
+        // 6번 스킬 해금 시 다음 카드 버튼 활성화
+        if (DataManager.instance.gameData.skillLevels[6] > 0)
+            nextCardButton.SetActive(true);
     }
 
     // 승리
     public void OnGameWin(float percent)
     {
         if (currentBet <= 0) return;
-    
+
         long profit = (long)(currentBet * (percent / 100f));
         long reward = currentBet + profit;
-    
-        // 업그레이드 적용
+        long originalReward = reward;
+
+        // 올인 보너스 적용
+        if (_isAllIn)
+            reward = UpgradeManager.instance.CalcAllInBonus(reward);
+
         reward = UpgradeManager.instance.CalcWinReward(reward);
-    
+        long bonus = reward - originalReward;
+
         DataManager.instance.gameData.money += reward;
         DataManager.instance.SaveGameData();
-    
-        bettingMessageText.text = $"+{reward}$";
-    
+
+        string msg = $"+{reward}$";
+        if (_isAllIn && bonus > 0)
+            msg += LanguageToggle.Instance._isKorean
+                ? $"\n(올인 보너스 +{bonus}$)"
+                : $"\n(All-In Bonus +{bonus}$)";
+        else if (bonus > 0)
+            msg += LanguageToggle.Instance._isKorean
+                ? $"\n(승리 보상 +{bonus}$)"
+                : $"\n(Win Boost +{bonus}$)";
+
+        bettingMessageText.text = msg;
         SoundManager.instance.PlayerWin();
         ResetBet();
     }
-    
+
     // 패배
     public void OnGameLose()
     {
         if (currentBet <= 0) return;
 
-        // 베팅 시 이미 차감됐으므로 손실 감소분만 돌려줌
-        long actualLoss = UpgradeManager.instance.CalcLoss(currentBet);
-        long savedAmount = currentBet - actualLoss; // 감소로 아낀 금액
-
-        // 손실 감소 적용 (아낀 금액 돌려주기)
+        long actualLoss  = UpgradeManager.instance.CalcLoss(currentBet);
+        long savedAmount = currentBet - actualLoss;
         DataManager.instance.gameData.money += savedAmount;
-
-        // 환급 계산
-        long refund = UpgradeManager.instance.CalcLossRefund(actualLoss);
-        DataManager.instance.gameData.money += refund;
-
         DataManager.instance.SaveGameData();
 
-        bettingMessageText.text = refund > 0
-            ? $"-{actualLoss}$ (+{refund}$ refund)"
-            : $"-{actualLoss}$";
+        string msg;
+        if (actualLoss == 0)
+            msg = LanguageToggle.Instance._isKorean
+                ? $"-0$\n(패배 환급 적용!)"
+                : $"-0$\n(Loss Refund Applied!)";
+        else if (savedAmount > 0)
+            msg = LanguageToggle.Instance._isKorean
+                ? $"-{actualLoss:N0}$\n(손실 감소 {savedAmount:N0}$)"
+                : $"-{actualLoss:N0}$\n(Loss Reduction {savedAmount:N0}$)";
+        else
+            msg = $"-{actualLoss:N0}$";
 
+        bettingMessageText.text = msg;
         SoundManager.instance.PlayerLose();
         ResetBet();
     }

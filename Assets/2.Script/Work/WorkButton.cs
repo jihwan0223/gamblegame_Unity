@@ -16,21 +16,22 @@ public class WorkButton : MonoBehaviour
     // 버튼 클릭
     public void OnClickWork()
     {
-        if (DataManager.instance == null) return;
-    
-        Card newCard = workDeckManager.DrawCard();
-    
-        if (newCard != null)
+        long baseIncome = rewardPerCard;
+        long income = UpgradeManager.instance.CalcWorkIncome(baseIncome);
+        DataManager.instance.gameData.money += income;
+        DataManager.instance.SaveGameData();
+
+        // 증가분 표시
+        long bonus = income - baseIncome;
+        if (bonus > 0)
         {
-            playerHand.AddCard(newCard);
-    
-            // 업그레이드 적용 (알바 수입 증가)
-            long income = UpgradeManager.instance.CalcWorkIncome(rewardPerCard);
-            DataManager.instance.gameData.money += income;
-            DataManager.instance.SaveGameData();
-    
-            UpdateMoneyUI();
+            // 알바 수입 증가 적용 메시지 (텍스트 오브젝트 있으면 표시)
+            Debug.Log(LanguageToggle.Instance._isKorean
+                ? $"+{income}$ (수입 증가 +{bonus}$)"
+                : $"+{income}$ (Work Boost +{bonus}$)");
         }
+
+        UpdateMoneyUI();
 
         // 카드 너무 많으면 정리
         if (cleaner != null)

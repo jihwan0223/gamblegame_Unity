@@ -30,13 +30,13 @@ public class SkillTree : MonoBehaviour
 
     private void Start()
     {
-        SkillCaps = new[] { 1, 3, 3, 3, 5, 5, 5, 5, 5, 10, 1, 10 };
-        SkillNamesEN = new[] { "Upgrade!", "Loss Reduction", "Win Reward Boost", "Blackjack Bonus", "Work Boost", "Upgrade Discount", "Luck", "All In Bonus", "Double Reward Chance", "Loss Refund", "???", "Jackpot Chance" };
-        SkillNamesKR = new[] { "업그레이드!","패배 손실 감소", "승리 보상 증가", "블랙잭 보너스", "알바 수입 증가", "업그레이드 할인", "행운", "올인 보너스", "보상 2배 확률", "패배 환급", "???", "잭팟 확률" };
+        SkillCaps = new[] { 1, 3, 3, 3, 5, 5, 1, 5, 5, 1, 1, 1 };
+        SkillNamesEN = new[] { "Upgrade!", "Loss Reduction", "Win Reward Boost", "Blackjack Bonus", "Work Boost", "Upgrade Discount", "Next Card Reveal", "All In Bonus", "Double Reward Chance", "Loss Refund", "???", "Jackpot Chance" };
+        SkillNamesKR = new[] { "업그레이드!","패배 손실 감소", "승리 보상 증가", "블랙잭 보너스", "알바 수입 증가", "업그레이드 할인", "다음 카드 확인", "올인 보너스", "보상 2배 확률", "패배 환급", "???", "잭팟 확률" };
 
-        SkillDescriptionsKR = new[] { "업그레이드를 해금합니다", "패배 손실이 n%만큼 감소합니다", "승리 보상이 n%만큼 증가합니다", "블랙잭 보상이 n%만큼 증가합니다", "알바 수입이 n%만큼 증가합니다", "업그레이드 비용이 n%만큼 감소합니다", "행운이 n%만큼 증가합니다", "올인 보상이 n%만큼 증가합니다", "보상 2배 확률이 n%만큼 증가합니다", "패배 금액의 n%를 환급받습니다", "???", "잭팟 확률이 n%만큼 증가합니다" };
+        SkillDescriptionsKR = new[] { "업그레이드를 해금합니다", "패배 손실이 n%만큼 감소합니다", "승리 보상이 n%만큼 증가합니다", "블랙잭 보상이 n%만큼 증가합니다", "알바 수입이 n%만큼 증가합니다", "업그레이드 비용이 n%만큼 감소합니다", "덱의 다음 카드를 확인합니다", "올인 보상이 n%만큼 증가합니다", "보상 2배 확률이 n%만큼 증가합니다", "패배 금액을 모두 돌려받습니다", "???", "잭팟 확률이 n%만큼 증가합니다" };
 
-        SkillDescriptionsEN = new[] { "Unlocks upgrades", "Reduces defeat loss by n%", "Increases win reward by n%", "Increases Blackjack reward by n%", "Increases work income by n%", "Reduces upgrade cost by n%", "Increases luck by n%", "Increases all-in reward by n%", "Increases double reward chance by n%", "Refunds n% of defeat loss", "???", "Increases jackpot chance by n%" };
+        SkillDescriptionsEN = new[] { "Unlocks upgrades", "Reduces defeat loss by n%", "Increases win reward by n%", "Increases Blackjack reward by n%", "Increases work income by n%", "Reduces upgrade cost by n%", "Reveals the next card in the deck", "Increases all-in reward by n%", "Increases double reward chance by n%", "Receive all the lost money back.", "???", "Increases jackpot chance by n%" };
         
         // 번역
         SkillNames = LanguageToggle.Instance._isKorean ? SkillNamesKR : SkillNamesEN;

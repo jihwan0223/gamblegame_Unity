@@ -53,6 +53,8 @@ public class UpgradeManager : MonoBehaviour
     /// <summary>패배 시 실제 잃는 금액 계산</summary>
     public long CalcLoss(long amount)
     {
+        // 9번 스킬 1레벨 이상이면 손실 없음
+        if (Level(9) >= 1) return 0;
         return (long)(amount * (1f - LossReduction));
     }
 

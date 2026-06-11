@@ -184,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: 'Cost : 500$'
+      value: 'Cost : 10000000$'
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -276,7 +276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: baseCost
-      value: 10000000
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 5904511462991956891, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -478,9 +478,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '5/5
-
-        Upgrade 9'
+      value: "1/5\n\uBCF4\uC0C1 2\uBC30 \uD655\uB960"
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -488,7 +486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: MAX
+      value: 'Cost : 15000$'
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -657,7 +655,7 @@ PrefabInstance:
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6de151e8da4354cde90bf5da4ed675b5, type: 3}
+      objectReference: {fileID: 21300000, guid: 8e7509fb1e66f4ab0a6d477d5d810035, type: 3}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -954,9 +952,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '0/10
-
-        Upgrade 10'
+      value: "0/1\n\uD328\uBC30 \uD658\uAE09"
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -964,7 +960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: 'Cost : 500$'
+      value: 'Cost : 200000$'
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -1056,7 +1052,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: baseCost
-      value: 200000
+      value: 50000
       objectReference: {fileID: 0}
     - target: {fileID: 5904511462991956891, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1232,8 +1228,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Back
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e499d5989003c7d4495b813bd6b1c955, type: 2}
+  m_sharedMaterial: {fileID: -2891978357456540816, guid: e499d5989003c7d4495b813bd6b1c955, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1257,8 +1253,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1563,9 +1559,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '3/3
-
-        Blackjack Bonus'
+      value: "2/3\n\uBE14\uB799\uC7AD \uBCF4\uB108\uC2A4"
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -1573,7 +1567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: MAX
+      value: 'Cost : 2250$'
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -1746,7 +1740,7 @@ PrefabInstance:
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6de151e8da4354cde90bf5da4ed675b5, type: 3}
+      objectReference: {fileID: 21300000, guid: 8e7509fb1e66f4ab0a6d477d5d810035, type: 3}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -2241,9 +2235,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '1/1
-
-        Upgrade 1'
+      value: "1/1\n\uC5C5\uADF8\uB808\uC774\uB4DC!"
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -2731,9 +2723,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '3/3
-
-        Loss Reduction'
+      value: "1/3\n\uD328\uBC30 \uC190\uC2E4 \uAC10\uC18C"
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -2741,7 +2731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: MAX
+      value: 'Cost : 1500$'
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -2914,7 +2904,7 @@ PrefabInstance:
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6de151e8da4354cde90bf5da4ed675b5, type: 3}
+      objectReference: {fileID: 21300000, guid: 8e7509fb1e66f4ab0a6d477d5d810035, type: 3}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -3284,9 +3274,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '10/10
-
-        Upgrade 12'
+      value: "0/1\n\uC7AD\uD31F \uD655\uB960"
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -3294,7 +3282,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: MAX
+      value: 'Cost : 200000$'
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -3386,7 +3374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: baseCost
-      value: 200000
+      value: 50000
       objectReference: {fileID: 0}
     - target: {fileID: 5904511462991956891, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3447,7 +3435,7 @@ PrefabInstance:
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6de151e8da4354cde90bf5da4ed675b5, type: 3}
+      objectReference: {fileID: 21300000, guid: 8e7509fb1e66f4ab0a6d477d5d810035, type: 3}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -3513,9 +3501,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '1/5
-
-        Work Boost'
+      value: "1/5\n\uC54C\uBC14 \uC218\uC785 \uC99D\uAC00"
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -3523,7 +3509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: 'Cost : 750$'
+      value: 'Cost : 7500$'
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -3615,7 +3601,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: baseCost
-      value: 5000
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: MyLines.Array.size
@@ -3758,9 +3744,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '3/3
-
-        Win Reward Boost'
+      value: "1/3\n\uC2B9\uB9AC \uBCF4\uC0C1 \uC99D\uAC00"
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -3768,7 +3752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: MAX
+      value: 'Cost : 7500$'
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -3860,7 +3844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: baseCost
-      value: 10000
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: MyLines.Array.size
@@ -3937,7 +3921,7 @@ PrefabInstance:
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6de151e8da4354cde90bf5da4ed675b5, type: 3}
+      objectReference: {fileID: 21300000, guid: 8e7509fb1e66f4ab0a6d477d5d810035, type: 3}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -4003,9 +3987,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '5/5
-
-        All In Bonus'
+      value: "1/5\n\uC62C\uC778 \uBCF4\uB108\uC2A4"
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -4013,7 +3995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: MAX
+      value: 'Cost : 7500$'
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -4105,7 +4087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: baseCost
-      value: 5000
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: MyLines.Array.size
@@ -4182,7 +4164,7 @@ PrefabInstance:
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6de151e8da4354cde90bf5da4ed675b5, type: 3}
+      objectReference: {fileID: 21300000, guid: 8e7509fb1e66f4ab0a6d477d5d810035, type: 3}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -4409,9 +4391,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '1/5
-
-        Upgrade 6'
+      value: "1/5\n\uC5C5\uADF8\uB808\uC774\uB4DC \uD560\uC778"
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -4419,7 +4399,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: 'Cost : 750$'
+      value: 'Cost : 15000$'
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -4511,7 +4491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: baseCost
-      value: 10000
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: MyLines.Array.size
@@ -5560,9 +5540,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: '1/5
-
-        Luck'
+      value: "1/1\n\uB2E4\uC74C \uCE74\uB4DC \uD655\uC778"
       objectReference: {fileID: 0}
     - target: {fileID: 370155445389230638, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -5570,7 +5548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_text
-      value: 'Cost : 750$'
+      value: MAX
       objectReference: {fileID: 0}
     - target: {fileID: 384110985728951383, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_fontSize
@@ -5662,7 +5640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: baseCost
-      value: 100000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 5298508009082022380, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: MyLines.Array.size
@@ -5739,7 +5717,7 @@ PrefabInstance:
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8e7509fb1e66f4ab0a6d477d5d810035, type: 3}
+      objectReference: {fileID: 21300000, guid: 6de151e8da4354cde90bf5da4ed675b5, type: 3}
     - target: {fileID: 6684745679176271515, guid: 04ffdc9bde08c0e47920bfe4c709ea15, type: 3}
       propertyPath: m_Color.b
       value: 1

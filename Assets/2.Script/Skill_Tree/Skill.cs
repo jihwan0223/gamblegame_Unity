@@ -76,7 +76,8 @@ public class Skill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private int GetUpgradeCost()
     {
         int currentLevel = DataManager.instance.gameData.skillLevels[id];
-        return Mathf.RoundToInt(baseCost * Mathf.Pow(costMultiplier, currentLevel));
+        int baseCostCalc = Mathf.RoundToInt(baseCost * Mathf.Pow(costMultiplier, currentLevel));
+        return UpgradeManager.instance.CalcUpgradeCost(baseCostCalc);
     }
 
     public void Buy()
@@ -118,8 +119,8 @@ public class Skill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         float currentEffect = currentLevel * 5f;
         float nextEffect    = nextLevel * 5f;
 
-        string currentDesc = skillTree.SkillDescriptions[id].Replace("n", currentEffect.ToString());
-        string nextDesc    = skillTree.SkillDescriptions[id].Replace("n", nextEffect.ToString());
+        string currentDesc = skillTree.SkillDescriptions[id].Replace("n%", currentEffect + "%");
+        string nextDesc    = skillTree.SkillDescriptions[id].Replace("n%", nextEffect + "%");
 
         string tooltip;
         if (currentLevel <= 0)

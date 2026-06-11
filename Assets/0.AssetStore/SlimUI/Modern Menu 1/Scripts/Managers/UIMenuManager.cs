@@ -20,6 +20,8 @@ namespace SlimUI.ModernMenu{
         public GameObject exitMenu;
         [Tooltip("Optional 4th Menu")]
         public GameObject extrasMenu;
+		[Tooltip("New GameMenupopup")]
+		public GameObject newGameMenu;
 
         public enum Theme {custom1, custom2, custom3};
         [Header("THEME SETTINGS")]
@@ -85,6 +87,7 @@ namespace SlimUI.ModernMenu{
 
 			playMenu.SetActive(false);
 			exitMenu.SetActive(false);
+			newGameMenu.SetActive(false);
 			if(extrasMenu) extrasMenu.SetActive(false);
 			firstMenu.SetActive(true);
 			mainMenu.SetActive(true);
@@ -134,6 +137,26 @@ namespace SlimUI.ModernMenu{
 			playMenu.SetActive(false);
 			if(extrasMenu) extrasMenu.SetActive(false);
 			exitMenu.SetActive(false);
+			mainMenu.SetActive(true);
+		}
+
+		public void NewGamePlayCampaign(){
+			newGameMenu.SetActive(false);
+			if(extrasMenu) extrasMenu.SetActive(false);
+			playMenu.SetActive(true);
+		}
+		
+		public void NewGamePlayCampaignMobile(){
+			newGameMenu.SetActive(false);
+			if(extrasMenu) extrasMenu.SetActive(false);
+			playMenu.SetActive(true);
+			mainMenu.SetActive(false);
+		}
+
+		public void NewGameReturnMenu(){
+			playMenu.SetActive(false);
+			if(extrasMenu) extrasMenu.SetActive(false);
+			newGameMenu.SetActive(false);
 			mainMenu.SetActive(true);
 		}
 
@@ -239,12 +262,14 @@ namespace SlimUI.ModernMenu{
 		public void AreYouSure(){
 			exitMenu.SetActive(true);
 			if(extrasMenu) extrasMenu.SetActive(false);
+			newGameMenu.SetActive(false);
 			DisablePlayCampaign();
 		}
 
 		public void AreYouSureMobile(){
 			exitMenu.SetActive(true);
 			if(extrasMenu) extrasMenu.SetActive(false);
+			newGameMenu.SetActive(false);
 			mainMenu.SetActive(false);
 			DisablePlayCampaign();
 		}
@@ -253,6 +278,29 @@ namespace SlimUI.ModernMenu{
 			playMenu.SetActive(false);
 			if(extrasMenu) extrasMenu.SetActive(true);
 			exitMenu.SetActive(false);
+		}
+
+
+		// New Game Sure
+		public void NewGameAreYouSure(){
+			newGameMenu.SetActive(true);
+			if(extrasMenu) extrasMenu.SetActive(false);
+			exitMenu.SetActive(false);
+			DisablePlayCampaign();
+		}
+
+		public void NewGameAreYouSureMobile(){
+			newGameMenu.SetActive(true);
+			if(extrasMenu) extrasMenu.SetActive(false);
+			exitMenu.SetActive(false);
+			mainMenu.SetActive(false);
+			DisablePlayCampaign();
+		}
+
+		public void NewGameExtrasMenu(){
+			playMenu.SetActive(false);
+			if(extrasMenu) extrasMenu.SetActive(true);
+			newGameMenu.SetActive(false);
 		}
 
 		public void QuitGame(){
