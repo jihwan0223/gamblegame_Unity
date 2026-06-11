@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class WorkButton : MonoBehaviour
 {
@@ -10,36 +11,58 @@ public class WorkButton : MonoBehaviour
 
     [Header("Money UI")]
     public TMP_Text moneyText;
+    public TMP_Text currentMoneyText;
+    private Coroutine _textCoroutine;
 
     public long rewardPerCard = 1;
 
     // 버튼 클릭
     public void OnClickWork()
     {
-        long baseIncome = rewardPerCard;
-        long income = UpgradeManager.instance.CalcWorkIncome(baseIncome);
-        DataManager.instance.gameData.money += income;
-        DataManager.instance.SaveGameData();
+        if (DataManager.instance == null) return;
 
-        // 증가분 표시
-        long bonus = income - baseIncome;
-        if (bonus > 0)
+        Card newCard = workDeckManager.DrawCard();
+
+        if (newCard != null)
         {
-            // 알바 수입 증가 적용 메시지 (텍스트 오브젝트 있으면 표시)
-            Debug.Log(LanguageToggle.Instance._isKorean
-                ? $"+{income}$ (수입 증가 +{bonus}$)"
-                : $"+{income}$ (Work Boost +{bonus}$)");
+            playerHand.AddCard(newCard);
+
+            long cardValue = newCard.rank >= 11 ? 10 : newCard.rank;
+            long income    = UpgradeManager.instance.CalcWorkIncome(cardValue);
+            DataManager.instance.gameData.money += income;
+            DataManager.instance.SaveGameData();
+
+            long bonus = income - cardValue;
+
+            // 업그레이드 여부 상관없이 항상 표시
+            if (bonus > 0)
+                currentMoneyText.SetText(LanguageToggle.Instance._isKorean
+                    ? $"+{income}$ (수입 증가 +{bonus}$)"
+                    : $"+{income}$ (Work Boost +{bonus}$)");
+            else
+                currentMoneyText.SetText($"+{income}$");
+
+            UpdateMoneyUI();
         }
 
-        UpdateMoneyUI();
-
-        // 카드 너무 많으면 정리
-        if (cleaner != null)
-        {
-            cleaner.CheckAndClear();
-        }
+        if (cleaner != null) cleaner.CheckAndClear();
     }
 
+
+    private void ShowIncomeText(string msg)
+    {
+        if (_textCoroutine != null) StopCoroutine(_textCoroutine);
+        _textCoroutine = StartCoroutine(ShowTextRoutine(msg));
+    }
+
+    private IEnumerator ShowTextRoutine(string msg)
+    {
+        currentMoneyText.SetText(msg);
+        yield return new WaitForSeconds(1f);
+        currentMoneyText.SetText("Work!");
+    }
+
+    
     // 돈 UI 갱신
     private void UpdateMoneyUI()
     {

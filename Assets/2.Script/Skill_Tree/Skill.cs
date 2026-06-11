@@ -84,9 +84,6 @@ public class Skill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (id == 10) SceneManager.LoadScene("EndingScene");
 
-        // 스킬트리가 없으면 찾기
-        // if (skillTree == null) skillTree = SkillTree.skillTree;
-
         if (DataManager.instance == null || DataManager.instance.gameData == null || skillTree == null)
         {
             Debug.LogError("DataManager 또는 SkillTree가 씬에 없습니다!");
