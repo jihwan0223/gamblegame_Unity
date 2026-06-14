@@ -86,15 +86,15 @@ public class BettingManager : MonoBehaviour
         DataManager.instance.gameData.money += reward;
         DataManager.instance.SaveGameData();
 
-        string msg = $"+{reward}$";
+        string msg = $"+{reward:N0}$";
         if (_isAllIn && bonus > 0)
             msg += LanguageToggle.Instance._isKorean
-                ? $"\n(올인 보너스 +{bonus}$)"
-                : $"\n(All-In Bonus +{bonus}$)";
+                ? $"\n(올인 보너스 +{bonus:N0}$)"
+                : $"\n(All-In Bonus +{bonus:N0}$)";
         else if (bonus > 0)
             msg += LanguageToggle.Instance._isKorean
-                ? $"\n(승리 보상 +{bonus}$)"
-                : $"\n(Win Boost +{bonus}$)";
+                ? $"\n(승리 보상 +{bonus:N0}$)"
+                : $"\n(Win Boost +{bonus:N0}$)";
 
         bettingMessageText.text = msg;
         SoundManager.instance.PlayerWin();

@@ -5,10 +5,20 @@ using UnityEngine.Networking;
 
 public class GroqAI : MonoBehaviour
 {
-    private string apiKey = "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";
+    private string apiKey;
     private const string url = "https://api.groq.com/openai/v1/chat/completions";
 
     public delegate void OnResponse(string message);
+
+    private void Awake()
+    {
+        string path = System.IO.Path.Combine(Application.streamingAssetsPath, "config.json");
+        string json = System.IO.File.ReadAllText(path);
+        apiKey = JsonUtility.FromJson<Config>(json).apiKey;
+    }
+
+    [System.Serializable]
+    private class Config { public string apiKey; }
 
     public void GetDealerResponse(int pScore, int dScore, OnResponse callback)
     {
@@ -31,24 +41,27 @@ public class GroqAI : MonoBehaviour
         if (LanguageToggle.Instance._isKorean)
         {
             systemRole =
-                $"당신은 냉소적이고 카리스마 넘치는 블랙잭 딜러입니다. 결과: {result}. " +
-                "이 결과에 어울리는 짧은 대사를 말하세요. " +
-                "조건: 반말. 20자 이내. 비꼬거나 여유있는 말투. 숫자/설명 금지. 대사만. 맞춤법 정확히. " +
-                "예시(player_win): '운이 좋았군, 다음엔 없어.' " +
-                "예시(dealer_win): '처음부터 결과는 정해져 있었어.' " +
-                "예시(player_bust): '욕심이 화를 불렀지.' " +
-                "예시(draw): '오늘은 봐주는 거야.'";
+                $"You are a sophisticated blackjack dealer at a high-end casino. " +
+                $"Player: {pScore}, Dealer: {dScore}, Result: {result}. " +
+                "Say ONE elegant line naturally mentioning the scores and result. " +
+                "Rules: Polite Korean tone. Max 40 characters. Composed and refined. Dialogue only. Correct Korean spelling. " +
+                "Example(player_win): '1점 차이군요. 아슬아슬한 승리였습니다.' " +
+                "Example(dealer_win): '딜러가 앞섰습니다. 다음 기회를 노려보시죠.' " +
+                "Example(player_bust): '21을 넘기셨군요. 한 장이 과했습니다.' " +
+                "Example(draw): '같은 점수로 무승부입니다. 드문 일이죠.' " +
+                "IMPORTANT: Response must be in Korean only.";
         }
         else
         {
             systemRole =
-                $"You are a cynical and charismatic blackjack dealer. Result: {result}. " +
-                "Say a short line matching this result. " +
-                "Rules: Max 8 words. Sarcastic or cool tone. No numbers, no explanations. Dialogue only. " +
-                "Example(player_win): 'Luck won't save you next time.' " +
-                "Example(dealer_win): 'The house always wins.' " +
-                "Example(player_bust): 'Greed got the better of you.' " +
-                "Example(draw): 'Consider yourself lucky today.'";
+                $"You are a sophisticated blackjack dealer at a high-end casino. " +
+                $"Player: {pScore}, Dealer: {dScore}, Result: {result}. " +
+                "Say ONE elegant line naturally mentioning the scores and result. " +
+                "Rules: Polite tone. Max 15 words. Composed and refined. Dialogue only. " +
+                "Example(player_win): 'Just one point ahead — a close victory, well played.' " +
+                "Example(dealer_win): 'The dealer edges ahead. Better luck next time.' " +
+                "Example(player_bust): 'Over 21 — one card too many, I'm afraid.' " +
+                "Example(draw): 'Equal scores — a rare tie. Fate was undecided today.'";
         }
 
         RequestData data = new RequestData();
