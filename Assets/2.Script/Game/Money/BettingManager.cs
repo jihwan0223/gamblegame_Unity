@@ -6,7 +6,6 @@ public class BettingManager : MonoBehaviour
     [Header("UI")]
     public TextMeshProUGUI bettingMessageText;
     public TextMeshProUGUI currentBettingText;
-    public TMP_InputField inputField;
 
     [Header("Manager")]
     public GameManager gameManager;
@@ -15,56 +14,83 @@ public class BettingManager : MonoBehaviour
     [SerializeField] private GameObject nextCardButton;
 
     private long currentBet = 0;
-    private bool isBetDone = false;
+    private bool isBetDone  = false;
+    private bool _isAllIn   = false;
+    private long _pendingBet = 0; // 누적 베팅 금액
 
-    private bool _isAllIn = false;      // 올인
-
-
-    private void Start()
+    // +버튼
+    public void AddBet(long amount)
     {
-        inputField.onSubmit.AddListener((value) => OnClickBet());
+        if (isBetDone) return;
+        long money  = DataManager.instance.gameData.money;
+        long newBet = (long)Mathf.Min(_pendingBet + amount, money);
+        _pendingBet = newBet;
+        UpdateBetUI();
     }
-        
-    // 베팅 버튼
+
+    // 절반
+    public void HalfBet()
+    {
+        if (isBetDone) return;
+        _pendingBet = DataManager.instance.gameData.money / 2;
+        UpdateBetUI();
+    }
+
+    // 올인 (즉시 베팅)
+    public void OnClickAllIn()
+    {
+        if (isBetDone) return;
+        _pendingBet = DataManager.instance.gameData.money;
+        ConfirmBet();
+    }
+
+    // 베팅 확정 버튼
     public void OnClickBet()
     {
         if (isBetDone) return;
-        if (string.IsNullOrEmpty(inputField.text)) return;
-
-        string cleanText = inputField.text.Replace(",", "").Trim();
-
-        if (!long.TryParse(cleanText, out long bet))
+        if (_pendingBet <= 0)
         {
             bettingMessageText.text = LanguageToggle.Instance._isKorean
-                ? "올바른 베팅 금액을 입력하세요!" : "Please enter the correct betting amount..!";
+                ? "베팅 금액을 선택하세요!" : "Please select a bet amount!";
+            return;
+        }
+        ConfirmBet();
+    }
+
+    private void ConfirmBet()
+    {
+        long money = DataManager.instance.gameData.money;
+
+        if (_pendingBet <= 0 || _pendingBet > money)
+        {
+            bettingMessageText.text = LanguageToggle.Instance._isKorean
+                ? "올바른 베팅 금액을 입력하세요!" : "Please enter the correct betting amount!";
             return;
         }
 
-        if (bet <= 0 || bet > DataManager.instance.gameData.money)
-        {
-            bettingMessageText.text = LanguageToggle.Instance._isKorean
-                ? "올바른 베팅 금액을 입력하세요!" : "Please enter the correct betting amount..!";
-            return;
-        }
+        _isAllIn   = _pendingBet == money;
+        currentBet = _pendingBet;
 
-        // 올인 체크 (전재산 베팅)
-        _isAllIn = bet == DataManager.instance.gameData.money;
-
-        currentBet = bet;
         DataManager.instance.gameData.money -= currentBet;
         DataManager.instance.SaveGameData();
 
-        if (LanguageToggle.Instance._isKorean)
-            currentBettingText.text = _isAllIn ? $"올인!! : {currentBet:N0}" : $"베팅 : {currentBet:N0}";
-        else
-            currentBettingText.text = _isAllIn ? $"ALL IN!! : {currentBet:N0}" : $"Betting : {currentBet:N0}";
+        currentBettingText.text = _isAllIn
+            ? (LanguageToggle.Instance._isKorean ? $"올인!! : {currentBet:N0}" : $"ALL IN!! : {currentBet:N0}")
+            : (LanguageToggle.Instance._isKorean ? $"베팅 : {currentBet:N0}" : $"Betting : {currentBet:N0}");
 
-        isBetDone = true;
+        isBetDone   = true;
+        _pendingBet = 0;
         gameManager.StartGame();
 
-        // 6번 스킬 해금 시 다음 카드 버튼 활성화
         if (DataManager.instance.gameData.skillLevels[6] > 0)
             nextCardButton.SetActive(true);
+    }
+
+    private void UpdateBetUI()
+    {
+        currentBettingText.text = LanguageToggle.Instance._isKorean
+            ? $"베팅 : {_pendingBet:N0}"
+            : $"Betting : {_pendingBet:N0}";
     }
 
     // 승리
@@ -72,11 +98,10 @@ public class BettingManager : MonoBehaviour
     {
         if (currentBet <= 0) return;
 
-        long profit = (long)(currentBet * (percent / 100f));
-        long reward = currentBet + profit;
+        long profit         = (long)(currentBet * (percent / 100f));
+        long reward         = currentBet + profit;
         long originalReward = reward;
 
-        // 올인 보너스 적용
         if (_isAllIn)
             reward = UpgradeManager.instance.CalcAllInBonus(reward);
 
@@ -127,23 +152,25 @@ public class BettingManager : MonoBehaviour
         SoundManager.instance.PlayerLose();
         ResetBet();
     }
-    
+
     // 무승부
     public void OnGameDraw()
     {
         if (currentBet <= 0) return;
-    
+
         DataManager.instance.gameData.money += currentBet;
         DataManager.instance.SaveGameData();
-    
+
         bettingMessageText.text = $"+{0}$";
         ResetBet();
     }
 
     public void ResetBet()
     {
-        currentBet = 0;
-        isBetDone = false;
+        currentBet  = 0;
+        _pendingBet = 0;
+        _isAllIn    = false;
+        isBetDone   = false;
         currentBettingText.text = "";
     }
 }

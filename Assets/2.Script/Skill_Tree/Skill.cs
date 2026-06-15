@@ -111,34 +111,42 @@ public class Skill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         int currentLevel = DataManager.instance.gameData.skillLevels[id];
         int maxCap       = skillTree.SkillCaps[id];
-        int nextLevel    = Mathf.Min(currentLevel + 1, maxCap);
 
-        float currentEffect = currentLevel * 5f;
-        float nextEffect    = nextLevel * 5f;
+        // UpgradeManager에서 실제 % 읽기
+        float currentEffect = GetEffectPercent(currentLevel);
+        float nextEffect    = GetEffectPercent(Mathf.Min(currentLevel + 1, maxCap));
 
-        string currentDesc = skillTree.SkillDescriptions[id].Replace("n%", currentEffect + "%");
-        string nextDesc    = skillTree.SkillDescriptions[id].Replace("n%", nextEffect + "%");
+        string currentDesc = skillTree.SkillDescriptions[id].Replace("n%", $"{currentEffect}%");
+        string nextDesc    = skillTree.SkillDescriptions[id].Replace("n%", $"{nextEffect}%");
 
         string tooltip;
         if (currentLevel <= 0)
-        {
-            // 아직 업글 안한 경우
             tooltip = $"{skillTree.SkillNames[id]}\n{nextDesc}";
-        }
         else if (currentLevel >= maxCap)
-        {
-            // 만렙
             tooltip = $"{skillTree.SkillNames[id]}\n{currentDesc}";
-        }
         else
-        {
-            // 업글 가능 → 현재 → 다음 비교
-            tooltip = $"{skillTree.SkillNames[id]}\n{currentDesc}\n→ {nextDesc}";
-        }
+            tooltip = $"{skillTree.SkillNames[id]}\n{currentDesc} → {nextDesc}";
 
         SkillTooltip.instance.Show(tooltip);
     }
 
+    private float GetEffectPercent(int level)
+    {
+        if (UpgradeManager.instance == null) return 0f;
+        return id switch
+        {
+            1  => Mathf.Round(UpgradeManager.instance.effectPerSkill[1] * level * 100f),
+            2  => Mathf.Round(UpgradeManager.instance.effectPerSkill[2] * level * 100f),
+            3  => Mathf.Round(UpgradeManager.instance.effectPerSkill[3] * level * 100f),
+            4  => Mathf.Round(UpgradeManager.instance.effectPerSkill[4] * level * 100f),
+            5  => Mathf.Round(UpgradeManager.instance.effectPerSkill[5] * level * 100f),
+            7  => Mathf.Round(UpgradeManager.instance.effectPerSkill[7] * level * 100f),
+            8  => Mathf.Round(UpgradeManager.instance.effectPerSkill[8] * level * 100f),
+            11 => Mathf.Round(UpgradeManager.instance.effectPerSkill[11] * level * 100f),
+            _  => 0f
+        };
+    }
+    
     public void OnPointerEnter(PointerEventData eventData)
     {
         SkillTooltip.instance.hoveredSkill = this;

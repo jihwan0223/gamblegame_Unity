@@ -8,7 +8,22 @@ public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager instance;
 
-    [SerializeField] private float effectPerLevel = 0.05f; // 레벨당 5%
+    [Header("스킬별 레벨당 효과 (%)")]
+    public float[] effectPerSkill = new float[]
+    {
+        0f,    // 0번 - 해금
+        0.3f, // 1번 - 패배 손실 감소
+        1f, // 2번 - 승리 보상 증가
+        1, // 3번 - 블랙잭 보너스
+        1f, // 4번 - 알바 수입 증가
+        3f, // 5번 - 업그레이드 할인
+        0f,    // 6번 - 다음 카드 확인
+        1f, // 7번 - 올인 보너스
+        0.5f, // 8번 - 보상 2배 확률
+        0f,    // 9번 - 패배 환급 (레벨 1이면 무조건 0)
+        0f,    // 10번 - ???
+        0.5f  // 11번 - 잭팟 확률
+    };
 
     private void Awake()
     {
@@ -22,31 +37,31 @@ public class UpgradeManager : MonoBehaviour
     // ── 각 업그레이드 효과 ──────────────────────────────────────────────────
 
     /// <summary>1번 - 패배 손실 감소 (0.1 = 10% 감소)</summary>
-    public float LossReduction      => Level(1) * effectPerLevel;
+    public float LossReduction      => Level(1) * effectPerSkill[1];
 
     /// <summary>2번 - 승리 보상 증가 (0.1 = 10% 증가)</summary>
-    public float WinRewardBoost     => Level(2) * effectPerLevel;
+    public float WinRewardBoost     => Level(2) * effectPerSkill[2];
 
     /// <summary>3번 - 블랙잭 보상 증가 (0.1 = 10% 증가)</summary>
-    public float BlackjackBonus     => Level(3) * effectPerLevel;
+    public float BlackjackBonus     => Level(3) * effectPerSkill[3];
 
     /// <summary>4번 - 알바 수입 증가 (0.1 = 10% 증가)</summary>
-    public float WorkBoost          => Level(4) * effectPerLevel;
+    public float WorkBoost          => Level(4) * effectPerSkill[4];
 
     /// <summary>5번 - 업그레이드 비용 감소 (0.1 = 10% 감소)</summary>
-    public float UpgradeCostReduce  => Level(5) * effectPerLevel;
+    public float UpgradeCostReduce  => Level(5) * effectPerSkill[5];
 
     /// <summary>7번 - 올인 보너스 (0.1 = 10% 추가)</summary>
-    public float AllInBonus         => Level(7) * effectPerLevel;
+    public float AllInBonus         => Level(7) * effectPerSkill[7];
 
     /// <summary>8번 - 보상 2배 확률 (0.1 = 10% 확률)</summary>
-    public float DoubleRewardChance => Level(8) * effectPerLevel;
+    public float DoubleRewardChance => Level(8) * effectPerSkill[8];
 
     /// <summary>9번 - 패배 금액 환급 (0.1 = 10% 환급)</summary>
-    public float LossRefund         => Level(9) * effectPerLevel;
+    public float LossRefund         => Level(9) * effectPerSkill[9];
 
     /// <summary>11번 - 잭팟 확률 증가 (0.1 = 10% 증가)</summary>
-    public float JackpotChance      => Level(11) * effectPerLevel;
+    public float JackpotChance      => Level(11) * effectPerSkill[11];
 
     // ── 실제 계산 헬퍼 ──────────────────────────────────────────────────────
 

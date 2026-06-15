@@ -14,8 +14,9 @@ public class GameManager : MonoBehaviour
     public Button hitButton;
     public Button stayButton;
 
+    public Button allInButton;
+
     [Header("Bet UI")]
-    public TMP_InputField bettingInput;
     public BettingManager bettingManager;
 
     [Header("게임 시작시 나타나는 버튼")]
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
         nextGameButton.onClick.AddListener(ResetBoardForNextRound);
         upgradeButton.gameObject.SetActive(true);
         lobbyButton.gameObject.SetActive(true);
-        bettingInput.gameObject.SetActive(true);
+        allInButton.gameObject.SetActive(true);
 
         nextGameButton.gameObject.SetActive(false);
         hitButton.interactable = false;
@@ -44,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        bettingInput.gameObject.SetActive(false);
+        allInButton.gameObject.SetActive(false);
         lobbyButton.gameObject.SetActive(false);
         upgradeButton.gameObject.SetActive(false);
         nextCardButton.gameObject.SetActive(false);
@@ -89,8 +90,7 @@ public class GameManager : MonoBehaviour
         // UI 및 버튼 상태 복구
         bettingManager.ResetBet();
 
-        bettingInput.text = "";
-        bettingInput.gameObject.SetActive(true);
+        allInButton.gameObject.SetActive(true);
         lobbyButton.gameObject.SetActive(true);
         upgradeButton.gameObject.SetActive(true);
 
