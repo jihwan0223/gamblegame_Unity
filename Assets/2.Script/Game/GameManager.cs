@@ -32,6 +32,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        // 튜토리얼
+        if (!PlayerPrefs.HasKey("tutorial_game"))
+        {
+            PlayerPrefs.SetInt("tutorial_game", 1);
+            var msgs = LanguageToggle.Instance._isKorean
+                ? TutorialData.GameRulesKR
+                : TutorialData.GameRulesEN;
+            TutorialManager.instance.ShowTutorial(msgs);
+        }
+        
         // 버튼 리스너 연결
         nextGameButton.onClick.AddListener(ResetBoardForNextRound);
         upgradeButton.gameObject.SetActive(true);
@@ -66,6 +76,16 @@ public class GameManager : MonoBehaviour
     // 게임이 완전히 끝났을 때 DealerAI 등에서 호출해줄 함수
     public void OnGameEnd()
     {
+         // 한 판 후 튜토리얼
+        if (!PlayerPrefs.HasKey("tutorial_after"))
+        {
+            PlayerPrefs.SetInt("tutorial_after", 1);
+            var msgs = LanguageToggle.Instance._isKorean
+                ? TutorialData.AfterFirstGameKR
+                : TutorialData.AfterFirstGameEN;
+            TutorialManager.instance.ShowTutorial(msgs);
+        }
+        
         if (hitButton != null) hitButton.interactable = false;
         if (stayButton != null) stayButton.interactable = false;
         if (nextGameButton != null) nextGameButton.gameObject.SetActive(true);
