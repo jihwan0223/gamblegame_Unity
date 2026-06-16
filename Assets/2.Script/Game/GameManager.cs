@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using Lean.Localization;
 
 public class GameManager : MonoBehaviour
@@ -10,29 +9,23 @@ public class GameManager : MonoBehaviour
     public DealerAI dealerAI;
     public DeckManager deckManager;
 
-    [Header("UI Buttons")]
-    public Button hitButton;
-    public Button stayButton;
-
-    public Button allInButton;
-
-    [Header("Bet UI")]
+    [Header("Manager")]
     public BettingManager bettingManager;
+    public GameController gameController;
 
     [Header("게임 시작시 나타나는 버튼")]
     public Button upgradeButton;
     public Button lobbyButton;
+    public Button allInButton;
 
     [Header("게임 종료 후 나타나는 버튼")]
     public Button nextGameButton;
 
     [Header("Next Card Button")]
-    [SerializeField] private GameObject nextCardButton;
-    
+    public GameObject nextCardButton;
 
     private void Start()
     {
-        // 튜토리얼
         if (!PlayerPrefs.HasKey("tutorial_game"))
         {
             PlayerPrefs.SetInt("tutorial_game", 1);
@@ -41,29 +34,27 @@ public class GameManager : MonoBehaviour
                 : TutorialData.GameRulesEN;
             TutorialManager.instance.ShowTutorial(msgs);
         }
-        
-        // 버튼 리스너 연결
+
         nextGameButton.onClick.AddListener(ResetBoardForNextRound);
         upgradeButton.gameObject.SetActive(true);
         lobbyButton.gameObject.SetActive(true);
-        allInButton.gameObject.SetActive(true);
-
         nextGameButton.gameObject.SetActive(false);
-        hitButton.interactable = false;
-        stayButton.interactable = false;   
+
+        // 버튼 초기 비활성화는 GameController에서 관리
+        gameController.hitButton.interactable = false;
+        gameController.stayButton.interactable = true; 
     }
 
     public void StartGame()
     {
-        allInButton.gameObject.SetActive(false);
         lobbyButton.gameObject.SetActive(false);
         upgradeButton.gameObject.SetActive(false);
         nextCardButton.gameObject.SetActive(false);
 
-        hitButton.interactable = true;
-        stayButton.interactable = true;
+        gameController.SetButtonsInteractable(true);
 
         StartDealerHand();
+        bettingManager.HideBettingUI();
     }
 
     private void StartDealerHand()
@@ -73,10 +64,8 @@ public class GameManager : MonoBehaviour
         dealerHand.AddCard(deckManager.DrawCard());
     }
 
-    // 게임이 완전히 끝났을 때 DealerAI 등에서 호출해줄 함수
     public void OnGameEnd()
     {
-         // 한 판 후 튜토리얼
         if (!PlayerPrefs.HasKey("tutorial_after"))
         {
             PlayerPrefs.SetInt("tutorial_after", 1);
@@ -85,44 +74,41 @@ public class GameManager : MonoBehaviour
                 : TutorialData.AfterFirstGameEN;
             TutorialManager.instance.ShowTutorial(msgs);
         }
-        
-        if (hitButton != null) hitButton.interactable = false;
-        if (stayButton != null) stayButton.interactable = false;
+
+        gameController.SetButtonsInteractable(false);
+
         if (nextGameButton != null) nextGameButton.gameObject.SetActive(true);
-        if (upgradeButton != null) upgradeButton.gameObject.SetActive(true);
-        if (lobbyButton != null) lobbyButton.gameObject.SetActive(true);
-        else Debug.LogError("GameManager: Next Game Button이 연결되지 않았습니다!");
+        if (upgradeButton != null)  upgradeButton.gameObject.SetActive(true);
+        if (lobbyButton != null)    lobbyButton.gameObject.SetActive(true);
     }
 
-    
     public void ResetBoardForNextRound()
     {
-        // 플레이어와 딜러의 카드 삭제
         playerHand.ClearHand();
         dealerHand.ClearHand();
+        bettingManager.ShowToggleButton();
 
-        // 덱 초기화
-        if (deckManager != null)
-        {
-            deckManager.ResetDeck();
-        }
+        if (deckManager != null) deckManager.ResetDeck();
 
-        // UI 및 버튼 상태 복구
         bettingManager.ResetBet();
 
         allInButton.gameObject.SetActive(true);
         lobbyButton.gameObject.SetActive(true);
         upgradeButton.gameObject.SetActive(true);
-
         nextGameButton.gameObject.SetActive(false);
 
-        hitButton.interactable = false;
-        stayButton.interactable = false;
-        
-        if (LanguageToggle.Instance._isKorean) dealerAI.speechText.text = LeanLocalization.GetTranslationText("다음턴! 행운을 빕니다!");
-        else dealerAI.speechText.text = LeanLocalization.GetTranslationText("Next Turn, Good Luck!");
+        gameController.SetButtonsInteractable(false);
+
+        if (LanguageToggle.Instance._isKorean)
+            dealerAI.speechText.text = LeanLocalization.GetTranslationText("다음턴! 행운을 빕니다!");
+        else
+            dealerAI.speechText.text = LeanLocalization.GetTranslationText("Next Turn, Good Luck!");
+
         dealerAI.LWinText.text = "";
-        
-        Debug.Log("<color=orange>판이 정리되고 덱이 초기화되었습니다.</color>");
+
+        gameController.hitButton.interactable = false;
+        gameController.stayButton.interactable = true;
+
+        bettingManager.ShowBettingUI();
     }
 }
