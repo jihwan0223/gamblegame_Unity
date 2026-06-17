@@ -121,15 +121,32 @@ public class BettingManager : MonoBehaviour
                 ? "베팅 금액을 선택하세요!" : "Please select a bet amount!";
             return;
         }
+
+        long money = DataManager.instance.gameData.money;
+        _isAllIn   = _pendingBet == money;
+        currentBet = _pendingBet;
+
+        DataManager.instance.gameData.money -= currentBet;
+        DataManager.instance.SaveGameData();
+
+        currentBettingText.text = _isAllIn
+            ? (LanguageToggle.Instance._isKorean ? $"올인!! : {currentBet:N0}" : $"ALL IN!! : {currentBet:N0}")
+            : (LanguageToggle.Instance._isKorean ? $"베팅 : {currentBet:N0}" : $"Betting : {currentBet:N0}");
+
+        isBetDone   = true;
+        _pendingBet = 0;
+
         bettingButtonsPanel.SetActive(false);
         if (confirmBetButton != null) confirmBetButton.SetActive(false);
         HideToggleButton();
-        ConfirmBetOnly();
-        gameManager.StartGame();
 
-        // Stay 버튼 표시
+        if (DataManager.instance.gameData.skillLevels[6] > 0)
+            Debug.Log("NextCardButton 활성화");
+            nextCardButton.SetActive(true);
+
+        gameManager.StartGame();
         gameManager.gameController.stayButton.gameObject.SetActive(true);
-        gameManager.gameController.hitButton.interactable = true;
+        gameManager.gameController.hitButton.interactable  = true;
         gameManager.gameController.stayButton.interactable = true;
     }
 
@@ -153,7 +170,10 @@ public class BettingManager : MonoBehaviour
         _pendingBet = 0;
 
         if (DataManager.instance.gameData.skillLevels[6] > 0)
+        {
+            Debug.Log("NextCardButton 활성화");
             nextCardButton.SetActive(true);
+        }
     }
 
     private void UpdateBetUI()

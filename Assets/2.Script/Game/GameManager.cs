@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
     {
         lobbyButton.gameObject.SetActive(false);
         upgradeButton.gameObject.SetActive(false);
-        nextCardButton.gameObject.SetActive(false);
         bettingButton.gameObject.SetActive(false);
 
         gameController.SetButtonsInteractable(true);

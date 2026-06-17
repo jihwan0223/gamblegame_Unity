@@ -11,12 +11,13 @@ public class UpgradeManager : MonoBehaviour
     [Header("스킬별 레벨당 효과 (%)")]
     public float[] effectPerSkill = new float[]
     {
+        // 0.01f = 1%
         0f,    // 0번 - 해금
         0.3f, // 1번 - 패배 손실 감소
         1f, // 2번 - 승리 보상 증가
         1, // 3번 - 블랙잭 보너스
         1f, // 4번 - 알바 수입 증가
-        3f, // 5번 - 업그레이드 할인
+        0.1f, // 5번 - 업그레이드 할인
         0f,    // 6번 - 다음 카드 확인
         1f, // 7번 - 올인 보너스
         0.5f, // 8번 - 보상 2배 확률
