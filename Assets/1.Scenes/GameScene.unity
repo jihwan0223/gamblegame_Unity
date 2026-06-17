@@ -1360,7 +1360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f0696300aeac44a0e17efee222854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: LeanLocalization::Lean.Localization.LeanLocalization
-  currentLanguage: Korean
+  currentLanguage: English
   detectLanguage: 0
   defaultLanguage: English
   saveLoad: 1
@@ -1845,7 +1845,7 @@ GameObject:
   - component: {fileID: 615972554}
   - component: {fileID: 615972553}
   m_Layer: 5
-  m_Name: BettiingButton
+  m_Name: BettingButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3603,7 +3603,7 @@ GameObject:
   - component: {fileID: 1026491723}
   - component: {fileID: 1026491722}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BettingEndButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3626,8 +3626,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 434, y: 42}
+  m_SizeDelta: {x: 289.0995, y: 111.2558}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1026491722
 MonoBehaviour:
@@ -4079,7 +4079,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB51C\uB7EC"
+  m_text: Dealer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 732a15b4988d3bf4bb6a2ff219ace402, type: 2}
   m_sharedMaterial: {fileID: -8590751249792456670, guid: 732a15b4988d3bf4bb6a2ff219ace402, type: 2}
@@ -4985,7 +4985,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB51C\uB7EC"
+  m_text: Dealer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 732a15b4988d3bf4bb6a2ff219ace402, type: 2}
   m_sharedMaterial: {fileID: -8590751249792456670, guid: 732a15b4988d3bf4bb6a2ff219ace402, type: 2}
@@ -5084,7 +5084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1377170405
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5328,7 +5328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1459700688
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5346,8 +5346,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 860, y: -281}
-  m_SizeDelta: {x: 200, y: 120}
+  m_AnchoredPosition: {x: 860, y: -440}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1459700689
 MonoBehaviour:
@@ -5644,6 +5644,7 @@ MonoBehaviour:
   upgradeButton: {fileID: 1330210463}
   lobbyButton: {fileID: 2108719252}
   allInButton: {fileID: 1795225071}
+  bettingButton: {fileID: 615972554}
   nextGameButton: {fileID: 553915157}
   nextCardButton: {fileID: 1681816015}
 --- !u!4 &1474563216
@@ -7645,7 +7646,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Betting End
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7672,10 +7673,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 55.85
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0

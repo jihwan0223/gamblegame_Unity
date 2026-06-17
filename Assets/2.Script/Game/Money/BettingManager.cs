@@ -16,48 +16,19 @@ public class BettingManager : MonoBehaviour
     [Header("배팅 패널 토글 버튼")]
     public GameObject bettingToggleButton;
 
-    // 외부에서 배팅 완료 여부를 확인할 수 있게 해주는 함수
-    public bool IsBetDone() => isBetDone;
-
-    // 외부에서 현재 누적된 배팅금을 확인할 수 있게 해주는 함수
-    public long GetPendingBet() => _pendingBet;
-
-    // 외부에서 에러 메시지를 띄울 수 있게 해주는 함수
-    public void ShowMessage(string text)
-    {
-        bettingMessageText.text = text;
-    }
-
-    private long currentBet = 0;
-    private bool isBetDone = false;
-    private long _pendingBet = 0; // 누적 베팅 금액
-
-    [Header("BettingButton")]
-    private bool _isAllIn = false;
-    // + 100
-    public void AddBet1000() => AddBet(1000);
-    public void AddBet10000() => AddBet(10000);
-
     [Header("Betting UI")]
-    public GameObject bettingButtonsPanel; // +10, +100 등 버튼 묶음
-    public GameObject confirmBetButton;    // 배팅 끝 버튼
+    public GameObject bettingButtonsPanel;
+    public GameObject confirmBetButton;
 
+    private long currentBet  = 0;
+    private bool isBetDone   = false;
+    private long _pendingBet = 0;
+    private bool _isAllIn    = false;
 
-    public void ClearBet()
-    {
-        if (isBetDone) return;
-        _pendingBet = 0;
-        UpdateBetUI();
-    }
+    public bool IsBetDone()      => isBetDone;
+    public long GetPendingBet()  => _pendingBet;
 
-    public void ToggleBettingPanel()
-    {    
-        if (isBetDone) return;
-        bool isActive = bettingButtonsPanel.activeSelf;
-        bettingButtonsPanel.SetActive(!isActive);
-        if (confirmBetButton != null)
-            confirmBetButton.SetActive(!isActive);
-    }
+    public void ShowMessage(string text) => bettingMessageText.text = text;
 
     // +버튼
     public void AddBet(long amount)
@@ -69,6 +40,22 @@ public class BettingManager : MonoBehaviour
         UpdateBetUI();
     }
 
+    public void AddBet1000()  => AddBet(1000);
+    public void AddBet10000() => AddBet(10000);
+
+    // -버튼
+    private void SubBet(long amount)
+    {
+        if (isBetDone) return;
+        _pendingBet = (long)Mathf.Max(0, _pendingBet - amount);
+        UpdateBetUI();
+    }
+
+    public void SubBet10()    => SubBet(10);
+    public void SubBet100()   => SubBet(100);
+    public void SubBet1000()  => SubBet(1000);
+    public void SubBet10000() => SubBet(10000);
+
     // 절반
     public void HalfBet()
     {
@@ -77,7 +64,7 @@ public class BettingManager : MonoBehaviour
         UpdateBetUI();
     }
 
-    // 올인 (즉시 베팅)
+    // 올인
     public void OnClickAllIn()
     {
         if (isBetDone) return;
@@ -85,25 +72,47 @@ public class BettingManager : MonoBehaviour
         UpdateBetUI();
     }
 
-    // 베팅 확정 버튼
-    public void OnClickBet()
+    // 클리어
+    public void ClearBet()
     {
         if (isBetDone) return;
-        if (_pendingBet <= 0)
-        {
-            bettingMessageText.text = LanguageToggle.Instance._isKorean
-                ? "베팅 금액을 선택하세요!" : "Please select a bet amount!";
-            return;
-        }
-        ConfirmBet();
+        _pendingBet = 0;
+        UpdateBetUI();
+    }
+
+    // 배팅 패널 토글
+    public void ToggleBettingPanel()
+    {
+        if (isBetDone) return;
+        bool isActive = bettingButtonsPanel.activeSelf;
+        bettingButtonsPanel.SetActive(!isActive);
+        if (confirmBetButton != null)
+            confirmBetButton.SetActive(!isActive);
     }
 
     public void ShowBettingUI()
     {
-        bettingButtonsPanel.SetActive(true);
-        confirmBetButton.SetActive(true);
+        if (bettingButtonsPanel != null) bettingButtonsPanel.SetActive(true);
+        if (confirmBetButton != null)    confirmBetButton.SetActive(true);
     }
 
+    public void HideBettingUI()
+    {
+        if (bettingButtonsPanel != null) bettingButtonsPanel.SetActive(false);
+        if (confirmBetButton != null)    confirmBetButton.SetActive(false);
+    }
+
+    public void ShowToggleButton()
+    {
+        if (bettingToggleButton != null) bettingToggleButton.SetActive(true);
+    }
+
+    public void HideToggleButton()
+    {
+        if (bettingToggleButton != null) bettingToggleButton.SetActive(false);
+    }
+
+    // 배팅 패널 닫기 버튼
     public void OnClickConfirmBet()
     {
         if (_pendingBet <= 0)
@@ -113,28 +122,22 @@ public class BettingManager : MonoBehaviour
             return;
         }
         bettingButtonsPanel.SetActive(false);
-        confirmBetButton.SetActive(false);
-        if (bettingToggleButton != null) bettingToggleButton.SetActive(false);
-        ConfirmBet();
+        if (confirmBetButton != null) confirmBetButton.SetActive(false);
+        HideToggleButton();
+        ConfirmBetOnly();
+        gameManager.StartGame();
+
+        // Stay 버튼 표시
+        gameManager.gameController.stayButton.gameObject.SetActive(true);
+        gameManager.gameController.hitButton.interactable = true;
+        gameManager.gameController.stayButton.interactable = true;
     }
 
-    public void HideBettingUI()
+    // GameController에서 호출 - 돈 차감만 (StartGame 없음)
+    public void ConfirmBetOnly()
     {
-        if (bettingButtonsPanel != null) bettingButtonsPanel.SetActive(false);
-        if (confirmBetButton != null)    confirmBetButton.SetActive(false);
-    }
-
-    private void ConfirmBet()
-    {
-        Debug.Log($"ConfirmBet / money: {DataManager.instance.gameData.money} / pendingBet: {_pendingBet}");
         long money = DataManager.instance.gameData.money;
-
-        if (_pendingBet <= 0 || _pendingBet > money)
-        {
-            bettingMessageText.text = LanguageToggle.Instance._isKorean
-                ? "올바른 베팅 금액을 입력하세요!" : "Please enter the correct betting amount!";
-            return;
-        }
+        if (_pendingBet <= 0 || _pendingBet > money) return;
 
         _isAllIn   = _pendingBet == money;
         currentBet = _pendingBet;
@@ -148,7 +151,6 @@ public class BettingManager : MonoBehaviour
 
         isBetDone   = true;
         _pendingBet = 0;
-        gameManager.StartGame();
 
         if (DataManager.instance.gameData.skillLevels[6] > 0)
             nextCardButton.SetActive(true);
@@ -233,11 +235,6 @@ public class BettingManager : MonoBehaviour
         ResetBet();
     }
 
-    public void ShowToggleButton()
-    {
-        if (bettingToggleButton != null) bettingToggleButton.SetActive(true);
-    }
-    
     public void ResetBet()
     {
         currentBet  = 0;

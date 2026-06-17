@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public Button upgradeButton;
     public Button lobbyButton;
     public Button allInButton;
+    public Button bettingButton;
 
     [Header("게임 종료 후 나타나는 버튼")]
     public Button nextGameButton;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         lobbyButton.gameObject.SetActive(false);
         upgradeButton.gameObject.SetActive(false);
         nextCardButton.gameObject.SetActive(false);
+        bettingButton.gameObject.SetActive(false);
 
         gameController.SetButtonsInteractable(true);
 
@@ -66,6 +68,15 @@ public class GameManager : MonoBehaviour
 
     public void OnGameEnd()
     {
+        gameController.stayButton.gameObject.SetActive(false);
+        gameController.hitButton.interactable = false;
+
+        if (bettingButton != null) bettingButton.gameObject.SetActive(false);
+        
+        if (nextGameButton != null) nextGameButton.gameObject.SetActive(true);
+        if (upgradeButton != null) upgradeButton.gameObject.SetActive(true);
+        if (lobbyButton != null) lobbyButton.gameObject.SetActive(true);
+
         if (!PlayerPrefs.HasKey("tutorial_after"))
         {
             PlayerPrefs.SetInt("tutorial_after", 1);
@@ -74,41 +85,33 @@ public class GameManager : MonoBehaviour
                 : TutorialData.AfterFirstGameEN;
             TutorialManager.instance.ShowTutorial(msgs);
         }
-
-        gameController.SetButtonsInteractable(false);
-
-        if (nextGameButton != null) nextGameButton.gameObject.SetActive(true);
-        if (upgradeButton != null)  upgradeButton.gameObject.SetActive(true);
-        if (lobbyButton != null)    lobbyButton.gameObject.SetActive(true);
     }
 
     public void ResetBoardForNextRound()
     {
         playerHand.ClearHand();
         dealerHand.ClearHand();
-        bettingManager.ShowToggleButton();
-
         if (deckManager != null) deckManager.ResetDeck();
 
         bettingManager.ResetBet();
 
-        allInButton.gameObject.SetActive(true);
-        lobbyButton.gameObject.SetActive(true);
-        upgradeButton.gameObject.SetActive(true);
+        // Stay 버튼 숨기기
+        gameController.stayButton.gameObject.SetActive(false);
+        gameController.hitButton.interactable = false;
+
         nextGameButton.gameObject.SetActive(false);
+        upgradeButton.gameObject.SetActive(true);
+        lobbyButton.gameObject.SetActive(true);
+        bettingButton.gameObject.SetActive(true);
 
-        gameController.SetButtonsInteractable(false);
+        // 배팅 열기 버튼 표시
+        bettingManager.ShowToggleButton();
 
+        dealerAI.LWinText.text = "";
         if (LanguageToggle.Instance._isKorean)
             dealerAI.speechText.text = LeanLocalization.GetTranslationText("다음턴! 행운을 빕니다!");
         else
             dealerAI.speechText.text = LeanLocalization.GetTranslationText("Next Turn, Good Luck!");
-
-        dealerAI.LWinText.text = "";
-
-        gameController.hitButton.interactable = false;
-        gameController.stayButton.interactable = true;
-
-        bettingManager.ShowBettingUI();
     }
+
 }
