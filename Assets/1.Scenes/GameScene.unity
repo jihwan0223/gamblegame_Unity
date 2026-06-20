@@ -594,10 +594,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 231508358}
+  - {fileID: 902592929}
   - {fileID: 515342340}
   - {fileID: 142810607}
-  - {fileID: 902592929}
-  - {fileID: 1459700688}
   - {fileID: 1377170405}
   - {fileID: 1975241656}
   m_Father: {fileID: 0}
@@ -1244,6 +1243,7 @@ RectTransform:
   - {fileID: 615972552}
   - {fileID: 2108719250}
   - {fileID: 1330210462}
+  - {fileID: 1459700688}
   - {fileID: 1681816016}
   m_Father: {fileID: 205525998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2585,7 +2585,6 @@ MonoBehaviour:
   gameData:
     money: 1000000
     skillPoint: 1
-    bankBalance: 0
     skillLevels: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     Volume: 1
     isMute: 0
@@ -5600,7 +5599,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 356828222}
-  m_Father: {fileID: 205525998}
+  m_Father: {fileID: 515342340}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
