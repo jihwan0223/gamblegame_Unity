@@ -49,7 +49,8 @@ public class GroqAI : MonoBehaviour
                 "Example(dealer_win): '딜러가 앞섰습니다. 다음 기회를 노려보시죠.' " +
                 "Example(player_bust): '21을 넘기셨군요. 한 장이 과했습니다.' " +
                 "Example(draw): '같은 점수로 무승부입니다. 드문 일이죠.' " +
-                "IMPORTANT: Response must be in Korean only.";
+                "IMPORTANT: Response must be in Korean only." +
+                "CRITICAL: Use ONLY Korean language. No Chinese, Japanese, or any other language. Korean characters only.";
         }
         else
         {
@@ -61,7 +62,8 @@ public class GroqAI : MonoBehaviour
                 "Example(player_win): 'Just one point ahead — a close victory, well played.' " +
                 "Example(dealer_win): 'The dealer edges ahead. Better luck next time.' " +
                 "Example(player_bust): 'Over 21 — one card too many, I'm afraid.' " +
-                "Example(draw): 'Equal scores — a rare tie. Fate was undecided today.'";
+                "Example(draw): 'Equal scores — a rare tie. Fate was undecided today.'" +
+                "CRITICAL: Use ONLY Korean language. No Chinese, Japanese, or any other language. Korean characters only.";
         }
 
         RequestData data = new RequestData();

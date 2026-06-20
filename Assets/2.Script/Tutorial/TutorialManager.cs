@@ -76,7 +76,7 @@ public class TutorialManager : MonoBehaviour
         gameObject.SetActive(true);
         canvasGroup.alpha = 0f;
 
-        skipText.text = LanguageToggle.Instance._isKorean ? "건너뛰기" : "Skip";
+        skipText.text = LanguageToggle.Instance._isKorean ? "건너뛰기 >>" : "Skip >>";
 
         StartCoroutine(FadeIn());
     }

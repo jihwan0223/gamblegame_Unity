@@ -11,7 +11,7 @@ public class BettingManager : MonoBehaviour
     public GameManager gameManager;
 
     [Header("Next Card Button")]
-    public GameObject nextCardButton;
+    public NextCardDisplay nextCardDisplay;
 
     [Header("배팅 패널 토글 버튼")]
     public GameObject bettingToggleButton;
@@ -80,6 +80,12 @@ public class BettingManager : MonoBehaviour
         UpdateBetUI();
     }
 
+    public void CloseBettingPanel()
+    {
+        if (bettingButtonsPanel != null) bettingButtonsPanel.SetActive(false);
+        if (confirmBetButton != null)    confirmBetButton.SetActive(false);
+    }
+
     // 배팅 패널 토글
     public void ToggleBettingPanel()
     {
@@ -140,14 +146,12 @@ public class BettingManager : MonoBehaviour
         if (confirmBetButton != null) confirmBetButton.SetActive(false);
         HideToggleButton();
 
-        if (DataManager.instance.gameData.skillLevels[6] > 0)
-            Debug.Log("NextCardButton 활성화");
-            nextCardButton.SetActive(true);
-
         gameManager.StartGame();
         gameManager.gameController.stayButton.gameObject.SetActive(true);
         gameManager.gameController.hitButton.interactable  = true;
         gameManager.gameController.stayButton.interactable = true;
+
+        nextCardDisplay.CheckAndShowButton();
     }
 
     // GameController에서 호출 - 돈 차감만 (StartGame 없음)
@@ -169,11 +173,6 @@ public class BettingManager : MonoBehaviour
         isBetDone   = true;
         _pendingBet = 0;
 
-        if (DataManager.instance.gameData.skillLevels[6] > 0)
-        {
-            Debug.Log("NextCardButton 활성화");
-            nextCardButton.SetActive(true);
-        }
     }
 
     private void UpdateBetUI()

@@ -1,7 +1,3 @@
-/// <summary>
-/// 튜토리얼 메시지 모음.
-/// 필요한 곳에서 TutorialManager.instance.ShowTutorial() 호출.
-/// </summary>
 public static class TutorialData
 {
     // ── 게임씬 첫 진입 ──────────────────────────────────────────────────────
@@ -13,8 +9,9 @@ public static class TutorialData
         "HIT: 카드를 한 장 더 받습니다.",
         "STAY: 현재 패로 승부합니다.",
         "21을 초과하면 버스트! 자동으로 패배합니다.",
-        "베팅 버튼으로 금액을 선택한 뒤 BET 버튼을 누르세요.",
+        "베팅 버튼으로 금액을 선택한 뒤 배팅 닫기 버튼을 누르면 게임이 시작됩니다.",
         "올인 버튼을 누르면 전 재산을 베팅합니다!",
+        "+/- 버튼으로 베팅 금액을 조절할 수 있습니다.",
     };
 
     public static string[] GameRulesEN = new[]
@@ -25,8 +22,9 @@ public static class TutorialData
         "HIT: Draw another card.",
         "STAY: Stand with your current hand.",
         "Bust over 21 and you lose automatically.",
-        "Select your bet amount then press the BET button.",
+        "Select your bet using +/- buttons, then close the bet panel to start.",
         "Press ALL IN to bet everything you have!",
+        "Use +/- buttons to fine-tune your bet amount.",
     };
 
     // ── 한 판 후 - 다른 씬 안내 ─────────────────────────────────────────────
@@ -34,17 +32,19 @@ public static class TutorialData
     {
         "첫 판이 끝났습니다!",
         "로비로 돌아가면 다양한 기능을 이용할 수 있습니다.",
-        "알바 씬: 카드를 뽑아 돈을 벌 수 있습니다.",
+        "알바 씬: 카드를 뽑아 돈을 벌 수 있습니다. 높은 카드일수록 더 많이 벌어요!",
         "업그레이드 씬: 스킬 트리로 능력을 강화하세요.",
-        "컴퓨터 씬: 은행에서 돈을 관리할 수 있습니다.",
+        "업그레이드로 승리 보상 증가, 패배 손실 감소, 블랙잭 보너스 등을 강화할 수 있습니다.",
+        "스킬을 해금하면 새로운 능력이 열립니다. 먼저 기본 업그레이드를 찍어보세요!",
     };
 
     public static string[] AfterFirstGameEN = new[]
     {
         "First game complete!",
         "Return to the lobby to access more features.",
-        "Work Scene: Draw cards to earn money.",
+        "Work Scene: Draw cards to earn money. Higher cards earn more!",
         "Upgrade Scene: Strengthen your abilities with the skill tree.",
-        "Computer Scene: Manage your money at the bank.",
+        "Upgrades include win reward boost, loss reduction, blackjack bonus, and more.",
+        "Unlock skills to gain new abilities. Start with the basic upgrade first!",
     };
 }

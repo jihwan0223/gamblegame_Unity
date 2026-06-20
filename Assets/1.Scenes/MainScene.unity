@@ -1647,7 +1647,6 @@ MonoBehaviour:
   gameData:
     money: 1000
     skillPoint: 1
-    bankBalance: 0
     skillLevels: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     Volume: 1
     isMute: 0

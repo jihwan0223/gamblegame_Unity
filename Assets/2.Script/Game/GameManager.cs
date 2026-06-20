@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public Button nextGameButton;
 
     [Header("Next Card Button")]
-    public GameObject nextCardButton;
+    public NextCardDisplay nextCardDisplay;
 
     private void Start()
     {
@@ -88,6 +88,8 @@ public class GameManager : MonoBehaviour
 
     public void ResetBoardForNextRound()
     {
+        nextCardDisplay.Reset();
+        
         playerHand.ClearHand();
         dealerHand.ClearHand();
         if (deckManager != null) deckManager.ResetDeck();

@@ -26,10 +26,12 @@ public class DeckManager : MonoBehaviour
         {
             for (int r = 1; r <= 13; r++)
             {
+                // A(1), 10, J, Q, K - 2개 슈트만
+                if ((r == 1 || r >= 10) && s >= 2) continue;
                 _deck.Add(new Card((Card.CardSuit)s, r));
             }
         }
-    }
+}
 
     // 카드 섞기 (Fisher-Yates 알고리즘)
     public void Shuffle()
