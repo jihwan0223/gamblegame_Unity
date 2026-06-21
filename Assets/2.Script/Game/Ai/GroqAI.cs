@@ -63,7 +63,7 @@ public class GroqAI : MonoBehaviour
                 "Example(dealer_win): 'The dealer edges ahead. Better luck next time.' " +
                 "Example(player_bust): 'Over 21 — one card too many, I'm afraid.' " +
                 "Example(draw): 'Equal scores — a rare tie. Fate was undecided today.'" +
-                "CRITICAL: Use ONLY Korean language. No Chinese, Japanese, or any other language. Korean characters only.";
+                "CRITICAL: Use ONLY English. No Korean, Chinese, Japanese, or any other language.";
         }
 
         RequestData data = new RequestData();
