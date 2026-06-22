@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour
         Card newCard = deckManager.DrawCard();
         if (newCard == null) return;
 
-        SoundManager.instance.OnClickButton();
+        SoundManager.instance.DrawCard();
         playerHand.AddCard(newCard);
 
         if (playerHand.GetTotalScore() > 21)
