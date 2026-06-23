@@ -181,6 +181,15 @@ public class BettingManager : MonoBehaviour
             ? $"베팅 : {_pendingBet:N0}"
             : $"Betting : {_pendingBet:N0}";
     }
+    private string FormatMoney(long amount)
+    {
+        if (amount >= 1_000_000_000_000_000) return $"{amount / 1_000_000_000_000_000.0:F2}Qa";
+        if (amount >= 1_000_000_000_000)     return $"{amount / 1_000_000_000_000.0:F2}T";
+        if (amount >= 1_000_000_000)         return $"{amount / 1_000_000_000.0:F2}B";
+        if (amount >= 1_000_000)             return $"{amount / 1_000_000.0:F2}M";
+        if (amount >= 1_000)                 return $"{amount / 1_000.0:F2}K";
+        return $"{amount:N0}";
+    }
 
     // 승리
     public void OnGameWin(float percent)
@@ -198,6 +207,8 @@ public class BettingManager : MonoBehaviour
         long bonus = reward - originalReward;
 
         DataManager.instance.gameData.money += reward;
+        DataManager.instance.gameData.money = System.Math.Min(DataManager.instance.gameData.money, long.MaxValue - 1);
+
         DataManager.instance.SaveGameData();
 
         string msg = $"+{reward:N0}$";
@@ -223,6 +234,8 @@ public class BettingManager : MonoBehaviour
         long actualLoss  = UpgradeManager.instance.CalcLoss(currentBet);
         long savedAmount = currentBet - actualLoss;
         DataManager.instance.gameData.money += savedAmount;
+        DataManager.instance.gameData.money = System.Math.Min(DataManager.instance.gameData.money, long.MaxValue - 1);
+
         DataManager.instance.SaveGameData();
 
         string msg;
@@ -248,6 +261,8 @@ public class BettingManager : MonoBehaviour
         if (currentBet <= 0) return;
 
         DataManager.instance.gameData.money += currentBet;
+        DataManager.instance.gameData.money = System.Math.Min(DataManager.instance.gameData.money, long.MaxValue - 1);
+
         DataManager.instance.SaveGameData();
 
         bettingMessageText.text = $"+{0}$";

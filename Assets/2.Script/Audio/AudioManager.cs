@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        float saved = PlayerPrefs.GetFloat(BGM_KEY, 1f);
+        float saved = PlayerPrefs.GetFloat(BGM_KEY, 0.2f);
         bgmSlider.value = saved;
         SetBGMVolume(saved);
 

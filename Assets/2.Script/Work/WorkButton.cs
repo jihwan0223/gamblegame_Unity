@@ -30,6 +30,8 @@ public class WorkButton : MonoBehaviour
             long cardValue = newCard.rank >= 11 ? 10 : newCard.rank;
             long income    = UpgradeManager.instance.CalcWorkIncome(cardValue);
             DataManager.instance.gameData.money += income;
+            DataManager.instance.gameData.money = System.Math.Min(DataManager.instance.gameData.money, long.MaxValue - 1);
+
             DataManager.instance.SaveGameData();
 
             long bonus = income - cardValue;
