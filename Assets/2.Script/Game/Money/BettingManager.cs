@@ -187,8 +187,9 @@ public class BettingManager : MonoBehaviour
     {
         if (currentBet <= 0) return;
 
-        long profit         = (long)(currentBet * (percent / 100f));
-        long reward         = currentBet + profit;
+        long profit = (long)((double)currentBet * (percent / 100.0));
+        long reward = currentBet + profit;
+        if (reward < 0 || reward > long.MaxValue / 2) reward = long.MaxValue / 2;
         long originalReward = reward;
 
         if (_isAllIn)
