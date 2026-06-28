@@ -9,16 +9,11 @@ public class MoneyUI : MonoBehaviour
     void Update()
     {
         if (DataManager.instance == null || DataManager.instance.gameData == null) return;
-        moneyText.text = $"{FormatMoney(DataManager.instance.gameData.money)}$";
-    }
-
-    private string FormatMoney(long amount)
-    {
-        if (amount >= 1_000_000_000_000_000) return $"{amount / 1_000_000_000_000_000.0:F2}Qa";
-        if (amount >= 1_000_000_000_000)     return $"{amount / 1_000_000_000_000.0:F2}T";
-        if (amount >= 1_000_000_000)         return $"{amount / 1_000_000_000.0:F2}B";
-        if (amount >= 1_000_000)             return $"{amount / 1_000_000.0:F2}M";
-        if (amount >= 1_000)                 return $"{amount / 1_000.0:F2}K";
-        return $"{amount:N0}";
+        
+        // long 최대값 초과 방지
+        if (DataManager.instance.gameData.money > long.MaxValue - 1)
+            DataManager.instance.gameData.money = long.MaxValue - 1;
+        
+        moneyText.text = $"{DataManager.instance.gameData.money:N0}$";
     }
 }
